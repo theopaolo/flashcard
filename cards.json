@@ -1,0 +1,538 @@
+{
+    "flashcards": [
+        {
+            "question": "Quelle est la différence entre un langage compilé et interprété?",
+            "reponse": "Un langage compilé est traduit en code machine avant l'exécution, tandis qu'un langage interprété est exécuté ligne par ligne au moment de l'exécution. Les langages compilés sont généralement plus rapides, tandis que les langages interprétés sont plus flexibles et portables.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Décrire HTML et CSS",
+            "reponse": "HTML (HyperText Markup Language) est un langage de balisage utilisé pour structurer le contenu d'une page web. CSS (Cascading Style Sheets) est un langage de feuille de style utilisé pour décrire la présentation et le style des éléments HTML.",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Expliquer la différence entre SQL et NoSQL",
+            "reponse": "SQL est un langage de requête pour bases de données relationnelles avec des schémas prédéfinis. NoSQL est une approche de gestion de bases de données non relationnelles, offrant plus de flexibilité pour les données non structurées ou semi-structurées.",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Qu'est-ce qu'un Thread dans un langage de programmation?",
+            "reponse": "Un thread est une unité d'exécution légère au sein d'un processus. Il permet l'exécution concurrente de plusieurs tâches dans un même programme, partageant le même espace mémoire du processus parent.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce que la POO (Programmation Orientée Objet)?",
+            "reponse": "La POO est un paradigme de programmation basé sur le concept d'objets contenant des données et du code. Elle organise le code en unités réutilisables appelées classes, et utilise des concepts comme l'encapsulation, l'héritage et le polymorphisme.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce que l'encapsulation en POO?",
+            "reponse": "L'encapsulation est le principe de regroupement des données et des méthodes qui les manipulent au sein d'une même unité (classe). Elle permet de cacher les détails d'implémentation et de contrôler l'accès aux données via des méthodes publiques.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce qu'une interface en programmation?",
+            "reponse": "Une interface définit un contrat que les classes doivent respecter. Elle spécifie un ensemble de méthodes que les classes implémentant cette interface doivent fournir, sans définir leur implémentation.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce que l'héritage en POO?",
+            "reponse": "L'héritage est un mécanisme permettant à une classe (sous-classe) d'hériter des propriétés et méthodes d'une autre classe (super-classe), favorisant la réutilisation du code et la création de hiérarchies de classes.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est la différence entre une classe et un objet?",
+            "reponse": "Une classe est un modèle ou un plan qui définit la structure et le comportement d'un type d'objet. Un objet est une instance concrète d'une classe, représentant une entité spécifique avec ses propres valeurs d'attributs.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Citer des types de structures de données",
+            "reponse": "Quelques structures de données courantes sont : Tableaux (Arrays), Listes chaînées, Piles (Stacks), Files (Queues), Arbres (Trees), Graphes, Tables de hachage (Hash tables), Ensembles (Sets), Dictionnaires / Maps, Heaps (Tas).",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment définir un dictionnaire en programmation?",
+            "reponse": "Un dictionnaire est une structure de données qui stocke des paires clé-valeur. Chaque élément du dictionnaire est accessible via sa clé unique. En JavaScript, on peut utiliser un objet comme dictionnaire : let dict = {clé1: valeur1, clé2: valeur2};",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment structurer des données sans doublons en JavaScript?",
+            "reponse": "En JavaScript, on peut utiliser un Set pour stocker des valeurs uniques : let monSet = new Set([1, 2, 2, 3, 4, 4, 5]); // Résultat: Set(5) {1, 2, 3, 4, 5}",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Qu'est-ce que l'asynchrone en programmation?",
+            "reponse": "La programmation asynchrone est un modèle qui permet l'exécution de tâches de manière non bloquante. Elle permet à un programme de continuer son exécution pendant qu'une opération potentiellement longue est en cours, améliorant ainsi les performances et la réactivité des applications.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment marche un ordinateur ?",
+            "reponse": "Un ordinateur fonctionne en traitant des données à l'aide d'un processeur central (CPU), stockant des informations dans la mémoire (RAM et stockage), et interagissant avec des périphériques d'entrée/sortie.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce qu'un système d'exploitation ?",
+            "reponse": "Un système d'exploitation est un logiciel qui gère les ressources matérielles de l'ordinateur et fournit des services communs pour les programmes informatiques.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que le binaire ?",
+            "reponse": "Le binaire est un système de numération à base 2, utilisant uniquement les chiffres 0 et 1. C'est le langage fondamental des ordinateurs.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment marche internet ?",
+            "reponse": "Internet fonctionne comme un réseau de réseaux, utilisant des protocoles comme TCP/IP pour transmettre des données entre appareils connectés à travers le monde.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment marche un navigateur ? Un moteur de recherche ?",
+            "reponse": "Un navigateur interprète le code HTML, CSS et JavaScript pour afficher des pages web. Un moteur de recherche indexe le contenu web et utilise des algorithmes pour fournir des résultats pertinents aux requêtes des utilisateurs.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce qui se passe quand on se connecte à une page web ?",
+            "reponse": "Le navigateur envoie une requête HTTP au serveur hébergeant la page, qui répond en envoyant les fichiers nécessaires (HTML, CSS, JavaScript). Le navigateur interprète ensuite ces fichiers pour afficher la page.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que l'ASCII ?",
+            "reponse": "ASCII (American Standard Code for Information Interchange) est un standard de codage de caractères, attribuant des valeurs numériques aux lettres, chiffres et symboles.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce qu'un protocole ?",
+            "reponse": "Un protocole est un ensemble de règles qui définissent comment les données sont transmises entre des appareils dans un réseau.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que le protocole HTTP ?",
+            "reponse": "HTTP (Hypertext Transfer Protocol) est un protocole de communication utilisé pour transférer des données sur le Web, principalement entre navigateurs et serveurs.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Que signifie SSR ? CSR ?",
+            "reponse": "SSR : Server-Side Rendering (rendu côté serveur). CSR : Client-Side Rendering (rendu côté client).",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "C'est quoi une API ?",
+            "reponse": "Une API (Application Programming Interface) est un ensemble de définitions et de protocoles permettant à différents logiciels de communiquer entre eux.",
+            "category": "backend",
+            "category_id": 3
+        },
+        {
+            "question": "Que signifie REST ?",
+            "reponse": "REST (Representational State Transfer) est un style d'architecture pour la conception d'applications réseau, basé sur des principes comme la statelessness et l'utilisation des méthodes HTTP.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que signifie CRUD et expliquer ?",
+            "reponse": "CRUD signifie Create, Read, Update, Delete. Ce sont les quatre opérations de base pour la persistance des données.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Expliquer l'utilité d'un mock et quoi tester quand on en utilise un ?",
+            "reponse": "Un mock simule le comportement d'objets réels dans des tests unitaires. On teste les interactions avec l'objet mocké, y compris les cas d'erreur, sans dépendre de l'implémentation réelle.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Définir DOM",
+            "reponse": "Le DOM (Document Object Model) est une interface de programmation représentant la structure d'un document HTML ou XML sous forme d'arborescence.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce qu'un Design Pattern ?",
+            "reponse": "Un Design Pattern est une solution réutilisable à un problème récurrent en conception logicielle. Le Singleton assure une instance unique, la Strategy permet de changer d'algorithme dynamiquement, et la Factory crée des objets sans spécifier leur classe exacte.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce qu'un Architectural Pattern ? Qu'est-ce que MVC ?",
+            "reponse": "Un Architectural Pattern organise la structure globale d'une application. MVC (Model-View-Controller) sépare la logique métier, la présentation et le contrôle des entrées utilisateur.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce qu'une Base De Données (BDD) ?",
+            "reponse": "Une BDD est un système organisé pour stocker, gérer et récupérer des données structurées.",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Qu'est ce qu'une cardinalité en BDD ?",
+            "reponse": "La cardinalité définit le nombre de relations possibles entre des entités dans une base de données.",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Qu'est ce qu'une foreign key ?",
+            "reponse": "Une foreign key (clé étrangère) est un champ dans une table qui fait référence à la clé primaire d'une autre table, établissant une relation entre elles.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce que le Cloud ?",
+            "reponse": "Le Cloud est un modèle de fourniture de services informatiques via Internet, offrant des ressources à la demande sans gestion directe par l'utilisateur.",
+            "category": "cloud",
+            "category_id": 9
+        },
+        {
+            "question": "Qu'est-ce qu'une architecture micro-services ?",
+            "reponse": "Une architecture micro-services décompose une application en services indépendants, chacun gérant une fonctionnalité spécifique et communiquant via des API.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que les méthodes agiles ?",
+            "reponse": "Les méthodes agiles sont des approches itératives et incrémentales de gestion de projet, favorisant la flexibilité, la collaboration et l'adaptation rapide aux changements.",
+            "category": "project_management",
+            "category_id": 8
+        },
+        {
+            "question": "Quelle est la différence entre la méthode agile et le SCRUM ?",
+            "reponse": "La méthode agile est un ensemble de principes, tandis que Scrum est un cadre de travail spécifique qui applique ces principes agiles avec des rôles, événements et artefacts définis.",
+            "category": "project_management",
+            "category_id": 8
+        },
+        {
+            "question": "A quoi servent les tests unitaires ? Pourquoi en faire ?",
+            "reponse": "Les tests unitaires vérifient le bon fonctionnement de petites unités de code isolées. Ils permettent de détecter rapidement les erreurs, facilitent les modifications et améliorent la qualité du code.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que le TDD ? Quels sont les avantages ?",
+            "reponse": "TDD (Test-Driven Development) est une approche où les tests sont écrits avant le code. Avantages : meilleure conception, code plus fiable, documentation vivante du code.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est la différence entre une approche de gestion de projet agile et une approche de gestion de projet en cascade ?",
+            "reponse": "L'approche agile est itérative et flexible, s'adaptant aux changements, tandis que l'approche en cascade est linéaire et séquentielle, avec des phases distinctes.",
+            "category": "project_management",
+            "category_id": 8
+        },
+        {
+            "question": "Outre un code propre, qu'est-ce qui fait pour vous un « bon code » ?",
+            "reponse": "Un bon code est : lisible, maintenable, efficace, bien documenté, testé, modulaire, et suit les principes SOLID.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quels outils de contrôle de version connaissez-vous et avez-vous utilisés ?",
+            "reponse": "Git, SVN (Subversion), Mercurial, CVS (Concurrent Versions System).",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quels termes ou vocabulaire connaissez-vous des systèmes de contrôle de version et comment les décrivez-vous simplement ?",
+            "reponse": "Commit : Enregistrer des modifications dans le dépôt local. Push : Envoyer les commits locaux vers un dépôt distant. Pull : Récupérer et intégrer les changements d'un dépôt distant. Branch : Ligne de développement indépendante. Merge : Fusionner des branches. Clone : Copier un dépôt distant en local.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Vous avez commis un code secret par accident dans votre système de contrôle de version, comment gérez-vous cette situation ?",
+            "reponse": "Supprimer immédiatement le secret du code. Utiliser des outils comme git filter-branch pour supprimer le commit de l'historique. Changer le secret compromis. Informer l'équipe et mettre à jour les systèmes concernés. Renforcer les pratiques de sécurité pour éviter que cela ne se reproduise.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Différence entre git et github ?",
+            "reponse": "Git est un système de contrôle de version distribué, tandis que GitHub est une plateforme de développement collaboratif basée sur Git, offrant des fonctionnalités supplémentaires comme l'hébergement de dépôts, le suivi des problèmes et la gestion de projets.",
+            "category": "tooling",
+            "category_id": 5
+        },
+        {
+            "question": "Qu'est ce que la complexité algorithmique?",
+            "reponse": "La complexité algorithmique mesure les ressources (temps, espace mémoire) nécessaires à l'exécution d'un algorithme en fonction de la taille des données d'entrée.",
+            "category": "algorithms",
+            "category_id": 4
+        },
+        {
+            "question": "Que signifie le terme AJAX ?",
+            "reponse": "AJAX (Asynchronous JavaScript and XML) permet d'effectuer des requêtes asynchrones au serveur sans recharger la page entière.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que le cache? Quels sont ses differents niveaux?",
+            "reponse": "Le cache stocke temporairement des données pour accélérer les accès futurs. Niveaux : navigateur, CDN, serveur d'application, base de données.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que le local storage ?",
+            "reponse": "Le local storage est un mécanisme de stockage côté client permettant de sauvegarder des données dans le navigateur de manière persistante.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment décririez-vous un module dans le monde JavaScript ?",
+            "reponse": "Un module JavaScript est une unité de code réutilisable et indépendante, encapsulant des fonctionnalités et définissant une interface publique.",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Que savez-vous de Sass, Scss ou Less ?",
+            "reponse": "Ce sont des préprocesseurs CSS qui étendent les fonctionnalités du CSS avec des variables, des mixins, des imbrications, etc.",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Quelles méthodes JavaScript Array connaissez-vous ou utilisez-vous fréquemment ?",
+            "reponse": "map(), filter(), reduce(), forEach(), find(), some(), every(), push(), pop(), slice(), splice().",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Que pouvez-vous faire avec l'API Fetch intégrée aux navigateurs ?",
+            "reponse": "Fetch permet d'effectuer des requêtes HTTP asynchrones et de manipuler les réponses.",
+            "category": "backend",
+            "category_id": 3
+        },
+        {
+            "question": "Qu'est-ce qu'une promesse JavaScript ?",
+            "reponse": "Une promesse représente une opération asynchrone qui peut être complétée ou échouer dans le futur.",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Comment écrire de manière séquentielle avec des promesses ?",
+            "reponse": "Utiliser async/await ou chaîner les promesses avec .then().",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quand utiliser un littéral objet et quand travailler avec une classe ?",
+            "reponse": "Littéral objet pour des structures simples, classes pour des objets complexes avec méthodes et état.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Expliquez la politique de la même origine en ce qui concerne JavaScript.",
+            "reponse": "Cette politique de sécurité empêche le JavaScript d'une page d'accéder aux ressources d'une autre origine.",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Qu'est ce que le package.json ?",
+            "reponse": "Fichier de configuration pour les projets Node.js, listant les dépendances et scripts du projet.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est ce que React ?",
+            "reponse": "React est une bibliothèque JavaScript pour construire des interfaces utilisateur interactives et réutilisables.",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Expliquer useEffect & useState.",
+            "reponse": "useState gère l'état local d'un composant. useEffect gère les effets de bord dans les composants fonctionnels.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Expliquer le cycle de vie d'un composant React.",
+            "reponse": "Phases : montage, mise à jour, démontage. Chaque phase a des méthodes spécifiques (ou hooks pour les composants fonctionnels).",
+            "category": "frontend",
+            "category_id": 2
+        },
+        {
+            "question": "Qu'est ce que le certificat SSL ?",
+            "reponse": "Un certificat SSL sécurise les communications entre le navigateur et le serveur en les chiffrant.",
+            "category": "security",
+            "category_id": 7
+        },
+        {
+            "question": "A quoi sert une maquette et pourquoi est ce important pour le client ?",
+            "reponse": "Une maquette visualise le design avant le développement, permettant au client de valider l'apparence et la structure.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "En quoi le SEO est-il important ?",
+            "reponse": "Le SEO améliore la visibilité d'un site web dans les résultats des moteurs de recherche, augmentant le trafic organique.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Que signifie npm ?",
+            "reponse": "npm signifie Node Package Manager, gestionnaire de paquets pour Node.js.",
+            "category": "tooling",
+            "category_id": 5
+        },
+        {
+            "question": "Quelle est la différence entre le chiffrement et le hachage ?",
+            "reponse": "Le chiffrement est réversible avec une clé, le hachage est unidirectionnel.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Qu'est-ce qu'un XSS et comment s'en prémunir en tant que développeur ?",
+            "reponse": "XSS (Cross-Site Scripting) injecte du code malveillant dans une page web. Prévention : échapper les données utilisateur, utiliser des en-têtes de sécurité.",
+            "category": "security",
+            "category_id": 7
+        },
+        {
+            "question": "Qu'est-ce qu'un hachage salé et quel type d'attaques prévient-il ?",
+            "reponse": "Hachage salé ajoute une valeur aléatoire avant le hachage. Prévient les attaques par dictionnaire et tables arc-en-ciel.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment les applications empêchent-elles les attaques par injection SQL ?",
+            "reponse": "Utilisation de requêtes paramétrées, échappement des entrées utilisateur, principe du moindre privilège.",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Quelles sont les deux commandes permettant de supprimer (toutes) les lignes d'un tableau ? Les commandes spécifiques ont-elles des implications ?",
+            "reponse": "DELETE FROM table; (conserve la structure) et TRUNCATE TABLE table; (plus rapide, réinitialise les auto-incréments).",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Qu'est-ce qu'une vue de base de données SQL ?",
+            "reponse": "Une vue est une table virtuelle basée sur le résultat d'une requête SQL.",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Quelle est la différence entre une procédure SQL et une fonction ?",
+            "reponse": "Une procédure peut modifier des données et n'a pas de valeur de retour obligatoire. Une fonction retourne toujours une valeur et est généralement utilisée dans des requêtes.",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Une requête est lente, comment gérer l'optimisation ?",
+            "reponse": "Analyser le plan d'exécution, optimiser les index, réécrire la requête, partitionner les données, mettre à jour les statistiques.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Savez-vous ce qu'est un CTE SQL Server ?",
+            "reponse": "CTE (Common Table Expression) est une expression de table temporaire nommée dans une requête SELECT, INSERT, UPDATE, DELETE ou MERGE.",
+            "category": "database",
+            "category_id": 6
+        },
+        {
+            "question": "Comment évaluez-vous l'urgence d'un problème ?",
+            "reponse": "J'évalue l'urgence en considérant l'impact sur les objectifs du projet, les délais, les ressources et les parties prenantes. J'utilise une matrice d'Eisenhower pour classer les problèmes selon leur importance et leur urgence.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est votre approche pour rassembler les informations nécessaires avant de prendre une décision ?",
+            "reponse": "Je collecte des données de diverses sources : équipe, parties prenantes, documentation, et analyses. J'utilise des techniques comme le brainstorming, les entretiens individuels, et l'analyse de données pour avoir une vue d'ensemble complète.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment impliquez-vous votre équipe dans le processus de résolution de problèmes ?",
+            "reponse": "J'organise des sessions de brainstorming collectives, j'encourage le partage d'idées, et je délègue des aspects spécifiques du problème à des membres de l'équipe selon leurs compétences. J'utilise également des techniques comme le design thinking pour stimuler la créativité collective.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est votre stratégie pour gérer les conflits d'opinions au sein de l'équipe ?",
+            "reponse": "Je favorise un dialogue ouvert et respectueux, j'écoute activement toutes les parties, et je cherche à identifier les points communs. J'utilise des techniques de médiation pour trouver un consensus ou, si nécessaire, je prends une décision éclairée en expliquant clairement mon raisonnement.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment priorisez-vous les différents aspects d'un problème complexe ?",
+            "reponse": "J'utilise des techniques comme la méthode MoSCoW (Must, Should, Could, Won't) ou la matrice d'impact/effort pour classer les aspects du problème. Je considère également les dépendances entre les différents aspects pour établir un ordre logique de résolution.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est votre approche pour communiquer les décisions difficiles à votre équipe ?",
+            "reponse": "Je communique de manière transparente et empathique. J'explique le raisonnement derrière la décision, j'anticipe les préoccupations potentielles, et je suis ouvert aux questions et au feedback. Je m'assure également de fournir un soutien pour la mise en œuvre de la décision.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment gérez-vous la pression du temps dans la prise de décision ?",
+            "reponse": "Je reste calme et méthodique. Je priorise les informations essentielles, j'utilise des heuristiques basées sur mon expérience, et je n'hésite pas à demander de l'aide à mon équipe ou à des experts si nécessaire. Je garde à l'esprit qu'une décision rapide mais réfléchie est souvent préférable à pas de décision du tout.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est votre méthode pour évaluer les risques associés à différentes options ?",
+            "reponse": "J'utilise une matrice de risques pour évaluer la probabilité et l'impact de chaque risque potentiel. Je considère également les opportunités associées à chaque option. J'implique l'équipe dans cette évaluation pour bénéficier de différentes perspectives.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment encouragez-vous la créativité et l'innovation dans la résolution de problèmes ?",
+            "reponse": "J'instaure un environnement où les idées nouvelles sont valorisées. J'utilise des techniques comme le brainstorming inversé ou les six chapeaux de Bono pour stimuler la pensée créative. J'encourage également l'expérimentation et j'accepte les échecs comme partie intégrante du processus d'innovation.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est votre approche pour déléguer les responsabilités lors de la résolution d'un problème ?",
+            "reponse": "Je délègue en fonction des compétences et des intérêts de chaque membre de l'équipe. Je fournis des objectifs clairs et les ressources nécessaires, tout en laissant de l'autonomie dans la méthode de résolution. Je reste disponible pour du soutien et des conseils, et je fais régulièrement le point sur l'avancement.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment gérez-vous les situations où vous devez prendre une décision avec des informations limitées ?",
+            "reponse": "Je me base sur mon expérience et mon intuition, tout en reconnaissant les limites de l'information disponible. J'identifie les hypothèses clés et je prévois des plans de contingence. Je reste flexible et prêt à ajuster la décision si de nouvelles informations émergent.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est votre stratégie pour obtenir l'adhésion de l'équipe à une décision controversée ?",
+            "reponse": "Je communique ouvertement sur le raisonnement derrière la décision. J'écoute et j'adresse les préoccupations de l'équipe. J'implique l'équipe dans la planification de la mise en œuvre, ce qui permet de transformer les réticences en solutions constructives. Je reste ouvert aux ajustements si des problèmes imprévus surviennent.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment assurez-vous le suivi et l'évaluation des décisions prises ?",
+            "reponse": "J'établis des indicateurs de performance clés (KPI) pour mesurer l'impact de la décision. Je programme des revues régulières pour évaluer les progrès et identifier les ajustements nécessaires. J'encourage également le feedback continu de l'équipe et des parties prenantes.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Quelle est votre approche pour apprendre des erreurs passées dans la prise de décision ?",
+            "reponse": "J'organise des sessions de rétrospective après chaque projet ou décision majeure. J'encourage une culture où les erreurs sont vues comme des opportunités d'apprentissage. Je documente les leçons apprises et je les partage avec l'équipe pour améliorer nos processus futurs de prise de décision.",
+            "category": "génerique",
+            "category_id": 1
+        },
+        {
+            "question": "Comment adaptez-vous votre style de leadership en fonction de la nature du problème à résoudre ?",
+            "reponse": "J'adapte mon style en fonction de la complexité du problème et de la maturité de l'équipe. Pour des problèmes simples avec une équipe expérimentée, j'adopte un style plus délégateur. Pour des problèmes complexes ou une équipe moins expérimentée, j'opte pour un style plus directif ou participatif selon les besoins. Je reste flexible et à l'écoute pour ajuster mon approche si nécessaire.",
+            "category": "génerique",
+            "category_id": 1
+        }
+    ]
+}

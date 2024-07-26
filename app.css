@@ -1,0 +1,97 @@
+:root {
+    --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --primary-color: #222;
+    --background-color: #fff;
+    --answer-background-color: #575757;
+    --border-radius: 15px;
+    --transition-duration: 0.3s;
+    --flashcard-width: 320px;
+    --flashcard-min-height: 500px;
+    --content-font-size: 18px;
+    --category-font-size: 14px;
+    --button-font-size: 16px;
+    --spacing-small: 10px;
+    --spacing-medium: 20px;
+    --spacing-large: 1rem;
+}
+
+body {
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+footer {
+    position: absolute;
+    bottom: var(--spacing-large);
+    right: var(--spacing-large);
+}
+
+.flashcard {
+    width: var(--flashcard-width);
+    max-width: 100%;
+    min-height: var(--flashcard-min-height);
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform var(--transition-duration) ease;
+    padding: var(--spacing-medium);
+    box-sizing: border-box;
+    position: relative;
+}
+
+.flashcard:hover {
+    transform: scale(1.05);
+}
+
+.flashcard-content {
+    font-size: var(--content-font-size);
+}
+
+.flashcard-category {
+    margin-top: var(--spacing-small);
+    font-size: var(--category-font-size);
+    position: absolute;
+    bottom: var(--spacing-large);
+    left: var(--spacing-large);
+    color: var(--primary-color);
+}
+
+.flashcard.answer {
+    background-color: var(--answer-background-color);
+    color: var(--background-color);
+}
+
+.flashcard.answer .flashcard-category {
+    color: var(--background-color);
+}
+
+
+button {
+    margin-top: var(--spacing-medium);
+    padding: var(--spacing-small) var(--spacing-medium);
+    font-size: var(--button-font-size);
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: calc(var(--border-radius) / 3);
+    transition: background-color var(--transition-duration) ease,
+                color var(--transition-duration) ease;
+}
+
+button:hover {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
