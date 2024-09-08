@@ -5,12 +5,12 @@
     --answer-background-color: #575757;
     --border-radius: 15px;
     --transition-duration: 0.3s;
-    --flashcard-width: 320px;
-    --flashcard-min-height: 500px;
-    --content-font-size: 18px;
-    --category-font-size: 14px;
-    --button-font-size: 16px;
-    --spacing-small: 10px;
+    --flashcard-width: 380px;
+    --flashcard-min-height: 600px;
+    --content-font-size: 22px;
+    --category-font-size: 18px;
+    --button-font-size: 18px;
+    --spacing-small: 12px;
     --spacing-medium: 20px;
     --spacing-large: 1rem;
 }
