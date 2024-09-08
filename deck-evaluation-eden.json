@@ -1,0 +1,507 @@
+{
+    "flashcards": [
+      {
+        "question": "Quelle est la différence entre un UX et un UI ?",
+        "choices": [
+          "L'UX Design se préoccupe de l'utilisateur, pas l'UI",
+          "Aucune, ils font la même chose",
+          "L'UX est concerné par le look and feel d'un produit, L'UI analyse les besoins utilisateurs",
+          "L'UX est concentré sur l'optimisation et la facilité du parcours utilisateurs, l'UI sur la présentation et l'interactivité du produit"
+        ],
+        "reponse": "L'UX est concentré sur l'optimisation et la facilité du parcours utilisateurs, l'UI sur la présentation et l'interactivité du produit",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Le scroll infini est-il une bonne pratique UX?",
+        "choices": [
+          "oui",
+          "non",
+          "ça dépend"
+        ],
+        "reponse": "Bien que populaire sur les applications Facebook, Instagram, le scroll infini ne permet pas pour l'utilisateur une recherche de contenu qui l'intéresse, l'information n'est pas immédiatement trouvable et n'est pas structurée. De plus, le scroll infini développe une utilisation addictive au détriment du bénéfice utilisateur. La pagination est une alternative.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Quel le rôle d'un UX designer ?",
+        "choices": [
+          "Déterminer la structure de l'interface et la fonctionnalité",
+          "Concevoir la forme des boutons",
+          "Choisir les couleurs",
+          "Décider de la police adéquate"
+        ],
+        "reponse": "Déterminer la structure de l'interface et la fonctionnalité",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Qu'est-ce qu'un persona ?",
+        "choices": [
+          "Un chef de projet web",
+          "Un personnages imaginaire représentant un groupe ou segment cible",
+          "Le client",
+          "Un modèle utilisateur ou archétype décidé par l'UX designer"
+        ],
+        "reponse": "Un personnages imaginaire représentant un groupe ou segment cible. Le persona aide à la conception en restant centré sur l'utilisateur final.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Laquelle de ces pratiques est peu recommandée pour un formulaire ?",
+        "choices": [
+          "Une barre de progression, un formulaire divisé en étapes pour les formulaires denses",
+          "Une gestion fine des champs optionnels ou obligatoires",
+          "Structurer son formulaire sur une seule colonne",
+          "Proposer des checkbox avec 18 options"
+        ],
+        "reponse": "Proposer des checkbox avec 18 options. Un Formulaire en étape permet un cheminement logique dans l'édition du formulaire tout en annulant le sentiment de complexité. Marquer les champs obligatoires d'une astérisque est pertinent.. Si les champs obligatoires sont plus nombreux que les champs facultatifs, faire l'inverse. Structurer son formulaire sur une seule colonne permet d'éviter une utilisation en zig-zag lors de l'édition. Dès qu'une checkbox dépasse 7 options, elle devient peu user-friendly.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Qu'appelle-ton l'affordance dans le domaine de l'UX Design ?",
+        "choices": [
+          "La capacité d'un objet à suggérer sa propre utilisation",
+          "Un tunnel de conversion",
+          "Flux d'interaction spécifique pour expliquer au développeur le comportement de l'utilisateur",
+          "Une distorsion dans le traitement cognitif d'une information"
+        ],
+        "reponse": "La capacité d'un objet à suggérer sa propre utilisation. L'utilisateur doit percevoir l'action de façon immédiate qu'un objet implique.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Qu'est ce qu'un wireframe ?",
+        "choices": [
+          "Une maquette basse fidélité qui permet d'organiser et hiérarchiser le contenu d'une page web",
+          "La représentation fidèle du produit cliquable et navigable",
+          "Une prévisualisation statique comportant les couleurs, la typographie, le style visuel",
+          "Un découpage du produit en besoins de façon très détaillée"
+        ],
+        "reponse": "Une maquette basse fidélité qui permet d'organiser et hiérarchiser le contenu d'une page web",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Comment sont placés les labels de façon optimale dans un formulaire ?",
+        "choices": [
+          "A droite du champ",
+          "Dans le champ comme placeholder",
+          "Au dessus du champ",
+          "A gauche du champ"
+        ],
+        "reponse": "Au dessus du champ. Ceci permet la lecture aisée du haut vers le bas sans effet zig-zag.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Quelle information est vraie concernant un carrousel/slider?",
+        "choices": [
+          "La concentration de l'utilisateur est majoritaire sur la dernière slide",
+          "Le carrousel priorise l'information",
+          "Le taux de clic est très faible (1 à 3%)",
+          "Démarrer l'animation automatiquement est conseillée"
+        ],
+        "reponse": "Le taux de clic est très faible (1 à 3%). En outre la concentration de l'utilisateur est majoritaire sur la première slide.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Comment optimiser un carrousel d'images ?",
+        "choices": [
+          "Mettre le contenu le plus important avec un CTA",
+          "Eviter les boutons 'Suivant', 'Précédent'",
+          "Mettre en place une pagination",
+          "Eviter la fonctionnalité marche-arrêt"
+        ],
+        "reponse": "Mettre en place une pagination. Placer des boutons 'Suivant', 'Précédent' explicites est conseillé ainsi que contrôler un carrousel avec une une fonctionnalité de marche-arrêt.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Qu'est ce que l'Atomic Design ?",
+        "choices": [
+          "Une méthode de design par composants unitaires",
+          "Un design minimaliste",
+          "Une méthode de design page par page",
+          "Une interface skeuomorphique"
+        ],
+        "reponse": "Une méthode de design par composants unitaires",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Que représente les Dark Patterns ?",
+        "choices": [
+          "Une charte graphique avec une couleur primaire noire ou très foncée",
+          "Des pratiques web mises en œuvres pour désorienter l'utilisateur",
+          "Un mode d'affichage sombre pour améliorer la lisibilité dans le noir",
+          "Une tendance de webdesign des années 2000"
+        ],
+        "reponse": "Des pratiques web mises en œuvres pour désorienter l'utilisateur",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Quelle balise utilisera-t-on de préférence pour le titre principal d'une page html:",
+        "choices": [
+          "<xmp><head></xmp>",
+          "<xmp><title></xmp>",
+          "<xmp><h1></xmp>",
+          "<xmp><header></xmp>"
+        ],
+        "reponse": "On utilisera la balise <h1>",
+        "category": "HTML",
+        "category_id": 2
+      },
+      {
+        "question": "Pour mettre un portion de texte en gras on utilise:",
+        "choices": [
+          "La balise HTML <xmp><b></xmp>",
+          "La balise HTML <xmp><strong></xmp>",
+          "La propriété CSS font-weight:bold;",
+          "Une balise HTML <xmp><h1> à <h6> </xmp>"
+        ],
+        "reponse": "On utilisera le CSS. la balise <strong> indique que le texte est important mais le consensus de son rendu dans les navigateurs (gras) n'est pas une obligation. La balise <b> est obsolète. Les <hn> ne doivent être employés que pour les niveaux de titre",
+        "category": "HTML/CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quelle est la syntaxe des commentaire en HTML ?",
+        "choices": [
+          "<xmp><!-- Mon commentaire --></xmp>",
+          "<xmp>// Mon commentaire</xmp>",
+          "<xmp>/* Mon commentaire */</xmp>",
+          "<xmp>|# Mon commentaire #|</xmp>"
+        ],
+        "reponse": "<!-- Mon commentaire -->",
+        "category": "HTML",
+        "category_id": 2
+      },
+      {
+        "question": "Quelle syntaxe pour insérer une image dans le HTML est correcte?",
+        "choices": [
+          "<xmp><img> src=\"image.jpg\" mon image </img></xmp>",
+          "<xmp><img href=\"image.jpg\" alt=\"Mon image\"></xmp>",
+          "<xmp><picture src=\"image.jpg\">Mon image</picture></xmp>",
+          "<xmp><img src=\"image.jpg\" alt=\"Mon image\"></xmp>"
+        ],
+        "reponse": "<img src=\"image.jpg\" alt=\"Mon image\">",
+        "category": "HTML",
+        "category_id": 2
+      },
+      {
+        "question": "La règles de CSS p.red{color:red;} aura pour effet de :",
+        "choices": [
+          "Mettre le texte de tous les paragraphes en rouge",
+          "Mettre le texte du paragraphe avec l'identifiant red en rouge",
+          "Mettre le texte des paragraphes avec la classe red en rouge",
+          "Mettre l'arrière-plan des paragraphes avec la classe red en rouge"
+        ],
+        "reponse": "Mettre le texte des paragraphes avec la classe red en rouge",
+        "category": "CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quelle est la syntaxe correcte pour faire référence à un CSS externe ?",
+        "choices": [
+          "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">",
+          "<link rel=\"stylesheet\" type=\"text/css\" src=\"style.css\">",
+          "<style rel=\"stylesheet\" type=\"text/css\" src=\"style.css\">",
+          "<style rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">"
+        ],
+        "reponse": "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">",
+        "category": "HTML/CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quelle règle de CSS passe le H1 en majuscules ?",
+        "choices": [
+          "h1{text-transform:capitalize;}",
+          "h1{text-convert:uppercase;}",
+          "h1{text-transform:uppercase;}",
+          "h1{font-style:capitalize;}"
+        ],
+        "reponse": "h1{text-transform:uppercase;}",
+        "category": "CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quelle propriété de flexbox dispose les flex-items le long de l'axe principal (flex-direction) ?",
+        "choices": [
+          "justify-content",
+          "align-items",
+          "justify-self",
+          "align-content"
+        ],
+        "reponse": "justify-content",
+        "category": "CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quelle sera la largeur de la div ? (sans reset ni normalize ni sanitize) div{width:300px; padding:20px: border:5px solid black; margin:12px;}",
+        "choices": [
+          "300px",
+          "350px",
+          "340px",
+          "320px"
+        ],
+        "reponse": "350px (largeur 300 + 2xPadding 40 + 2xBorder 10)",
+        "category": "CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quelle est la bonne syntaxe pour créer une variable CSS?",
+        "choices": [
+          ":root{ var(rouge) = #ff0000; }",
+          ":root{ let rouge = #ff0000;}",
+          ":root{ --rouge : #ff0000;}",
+          ":root{ var(--rouge) : #ff0000;}"
+        ],
+        "reponse": ":root{ --rouge : #ff0000;}",
+        "category": "CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quel paragraphe ne s'affichera pas en rouge ? p:not(.yellow){ color: red; }",
+        "choices": [
+          "<div class=\"yellow\"><p>Lorem</p></div>",
+          "<div><p class=\"yellow\">Lorem</p></div>",
+          "<div><p id=\"yellow\">Lorem</p></div>",
+          "<div><p>Lorem</p></div>"
+        ],
+        "reponse": "<div><p class=\"yellow\">Lorem</p></div>",
+        "category": "CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Quelles est la propriété CSS qui affecte la transparence d'un élément?",
+        "choices": [
+          "filter",
+          "visibility",
+          "transparent",
+          "opacity"
+        ],
+        "reponse": "opacity",
+        "category": "CSS",
+        "category_id": 2
+      },
+      {
+        "question": "Comment rendre un site web plus éco-conçu ?",
+        "choices": [
+          "Utiliser des images haute résolution pour toutes les pages",
+          "Minimiser les requêtes HTTP et compresser les fichiers",
+          "Ajouter plus de vidéos en autoplay",
+          "Augmenter la fréquence des animations CSS"
+        ],
+        "reponse": "Minimiser les requêtes HTTP et compresser les fichiers. Réduire le nombre de requêtes et optimiser les fichiers (images, scripts, etc.) aide à limiter la consommation de ressources, améliorant ainsi la performance et réduisant l'impact environnemental.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Comment optimiser les vidéos pour une conception éco-responsable ?",
+        "choices": [
+          "Utiliser des vidéos de haute résolution en boucle",
+          "Activer la lecture automatique pour les vidéos de grande taille",
+          "Compresser les vidéos et ajuster leur résolution pour chaque appareil",
+          "Limiter les vidéos à 2 secondes maximum"
+        ],
+        "reponse": "Compresser les vidéos et ajuster leur résolution pour chaque appareil. Compresser les vidéos réduit leur taille et ajuste leur qualité pour diminuer la consommation de bande passante, ce qui est bénéfique pour l'environnement.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Quelle est la meilleure manière d'organiser les options dans un formulaire avec plusieurs champs de choix ?",
+        "choices": [
+          "Utiliser des checkboxes longues avec plus de 20 options",
+          "Grouper les options similaires dans des menus déroulants",
+          "Mettre toutes les options dans un seul champ de texte",
+          "Limiter les options à une seule par défaut"
+        ],
+        "reponse": "Grouper les options similaires dans des menus déroulants. Cela permet d'améliorer la clarté et la simplicité du formulaire, rendant les choix plus faciles à parcourir pour l'utilisateur",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Pourquoi est-il important d'optimiser la taille des images pour le web ?",
+        "choices": [
+          "Pour réduire le nombre de requêtes HTTP",
+          "Pour diminuer le temps de chargement de la page",
+          "Pour améliorer la clarté des images sur mobile",
+          "Pour diminuer le taux de rebond"
+        ],
+        "reponse": "Pour diminuer le temps de chargement de la page. Des images plus légères accélèrent le chargement du site, réduisant la consommation de bande passante et améliorant l'expérience utilisateur.",
+        "category": "Performance",
+        "category_id": 4
+      },
+      {
+        "question": "Quel est l'avantage de l'approche \"mobile-first\" ?",
+        "choices": [
+          "Les sites sont plus rapides sur les ordinateurs de bureau",
+          "Les sites sont optimisés d'abord pour les appareils mobiles, puis pour les écrans plus grands",
+          "Elle permet d'utiliser des images haute résolution partout",
+          "Elle améliore uniquement le SEO"
+        ],
+        "reponse": "Les sites sont optimisés d'abord pour les appareils mobiles, puis pour les écrans plus grands. L'approche \"mobile-first\" permet de concevoir des sites web performants sur des appareils mobiles, avant d'adapter le design pour des écrans plus grands.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Comment rendre un bouton de soumission accessible pour les utilisateurs de lecteurs d'écran ?",
+        "choices": [
+          "Utiliser l'élément <div>",
+          "Utiliser l'attribut role=\"submit\"",
+          "S'assurer que le bouton a une étiquette descriptive comme \"Soumettre\"",
+          "Le cacher avec display: none;"
+        ],
+        "reponse": "S'assurer que le bouton a une étiquette descriptive comme \"Soumettre\". Une étiquette descriptive aide les utilisateurs de lecteurs d'écran à comprendre la fonction du bouton.",
+        "category": "Accessibilité",
+        "category_id": 5
+      },
+      {
+        "question": "Quelle est la meilleure pratique pour choisir les polices en éco-conception ?",
+        "choices": [
+          "Utiliser plusieurs polices web pour chaque section",
+          "Privilégier les polices locales ou celles hébergées en interne",
+          "Utiliser uniquement des polices exotiques et rares",
+          "Choisir une police différente pour chaque titre"
+        ],
+        "reponse": "Privilégier les polices locales ou celles hébergées en interne. Limiter les requêtes pour les polices externes permet de réduire le nombre de ressources téléchargées, ce qui améliore les performances.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Quel principe de design est important pour réduire la consommation d'énergie d'un site web ?",
+        "choices": [
+          "Ajouter plus de transitions visuelles",
+          "Réduire la complexité visuelle en adoptant un design minimaliste",
+          "Utiliser des images haute définition sur toutes les pages",
+          "Inclure plus de widgets interactifs"
+        ],
+        "reponse": "Réduire la complexité visuelle en adoptant un design minimaliste Un design simple et minimaliste consomme moins de ressources, permettant au site de se charger plus rapidement et avec moins d'impact sur l'environnement.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Comment les pratiques d'éco-conception peuvent-elles améliorer l'expérience utilisateur ?",
+        "choices": [
+          "Elles permettent de réduire le nombre de publicités sur les sites web",
+          "Elles optimisent le temps de chargement, rendant les sites plus rapides et efficaces",
+          "Elles augmentent la quantité de contenu disponible sur un site",
+          "Elles encouragent l'utilisation de technologies nouvelles et complexes"
+        ],
+        "reponse": "Elles optimisent le temps de chargement, rendant les sites plus rapides et efficaces. En réduisant la taille des fichiers et en optimisant les ressources, les pratiques d'éco-conception permettent un chargement plus rapide des pages web, ce qui améliore l'expérience utilisateur en réduisant le temps d'attente et en rendant la navigation plus fluide.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Comment les performances du site influencent-elles l'impact environnemental ?",
+        "choices": [
+          "Un site plus rapide consomme moins de ressources serveur et réduit la consommation d'énergie",
+          "Les sites plus lents sont plus accessibles aux utilisateurs",
+          "Les performances du site n'ont aucun impact sur l'environnement",
+          "Un site plus rapide nécessite toujours plus d'énergie"
+        ],
+        "reponse": "Un site plus rapide consomme moins de ressources serveur et réduit la consommation d'énergie. Améliorer les performances d'un site réduit les ressources nécessaires pour charger les pages et diminuer la consommation d'énergie au niveau des serveurs, ce qui réduit l'impact environnemental.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Quelle est l'importance de la simplicité dans la conception web éco-responsable ?",
+        "choices": [
+          "Elle améliore l'expérience utilisateur",
+          "Elle diminue la consommation de bande passante et de ressources serveur",
+          "Elle permet de gagner du temps de développement",
+          "Elle réduit le nombre de bugs dans le code"
+        ],
+        "reponse": "Elle diminue la consommation de bande passante et de ressources serveur. Une conception simple et épurée réduit le nombre d'éléments à charger sur une page, ce qui diminue la consommation de bande passante et les ressources nécessaires, tout en améliorant la performance générale du site.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Comment l'utilisation d'un hébergement \"vert\" contribue-t-elle à l'éco-conception ?",
+        "choices": [
+          "En réduisant la latence des sites web",
+          "En garantissant que l'électricité utilisée provient de sources d'énergie renouvelables",
+          "En offrant plus d'espace de stockage pour les images",
+          "En améliorant l'optimisation pour les moteurs de recherche (SEO)"
+        ],
+        "reponse": "En garantissant que l'électricité utilisée provient de sources d'énergie renouvelables. Un hébergement \"vert\" utilise des sources d'énergie renouvelables pour alimenter les serveurs, ce qui réduit l'impact environnemental des sites web hébergés.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Pourquoi est-il recommandé de privilégier le format SVG pour les images",
+        "choices": [
+          "Parce que SVG est un format plus populaire",
+          "Parce que SVG est un format vectoriel léger qui réduit la taille des fichiers",
+          "Parce que SVG améliore l'accessibilité des sites web",
+          "Parce que SVG est plus facile à coder que d'autres formats"
+        ],
+        "reponse": "Parce que SVG est un format vectoriel léger qui réduit la taille des fichiers. Les fichiers SVG, étant des images vectorielles, sont plus légers et peuvent être redimensionnés sans perte de qualité, ce qui aide à améliorer la performance d'un site tout en réduisant l'impact environnemental lié à la taille des images.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Quelle pratique peut aider à réduire l'empreinte carbone d'un site web",
+        "choices": [
+          "Utiliser des images haute résolution partout",
+          "Minimiser les requêtes HTTP et compresser les fichiers",
+          "Augmenter le nombre de plugins sur le site",
+          "Ajouter plus d'animations JavaScript"
+        ],
+        "reponse": "Minimiser les requêtes HTTP et compresser les fichiers. Réduire le nombre de requêtes HTTP et compresser les fichiers permet de diminuer la quantité de données transférées entre le serveur et le navigateur, ce qui réduit la consommation d'énergie et l'empreinte carbone.",
+        "category": "Eco-conception",
+        "category_id": 3
+      },
+      {
+        "question": "Qu'est-ce qu'un 'design pattern' ?",
+        "choices": [
+          "Un motif décoratif",
+          "Une solution réutilisable à un problème de design commun",
+          "Un type de grille de mise en page",
+          "Une tendance de design populaire"
+        ],
+        "reponse": "Une solution réutilisable à un problème de design commun. Un 'design pattern' est un modèle éprouvé qui permet de résoudre un problème fréquent dans le design, en apportant une solution standardisée qui améliore l'efficacité et la clarté du développement.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Qu'est-ce que le ratio de contraste en accessibilité web ?",
+        "choices": [
+          "La différence de taille entre les éléments",
+          "La différence de luminosité entre le texte et l'arrière-plan",
+          "Le rapport entre les images et le texte",
+          "La différence de police entre les titres et le corps du texte"
+        ],
+        "reponse": "La différence de luminosité entre le texte et l'arrière-plan. Le ratio de contraste mesure la différence entre la couleur du texte et celle de l'arrière-plan. Un ratio de contraste élevé améliore la lisibilité pour les personnes ayant des déficiences visuelles.",
+        "category": "Accessibilité",
+        "category_id": 5
+      },
+      {
+        "question": "Quel est le but principal d'un 'user flow' ?",
+        "choices": [
+          "Mesurer le trafic sur un site web",
+          "Visualiser le parcours d'un utilisateur pour accomplir une tâche",
+          "Créer des animations fluides",
+          "Gérer les flux de données d'un serveur"
+        ],
+        "reponse": "Visualiser le parcours d'un utilisateur pour accomplir une tâche. Un 'user flow' permet de cartographier les étapes qu'un utilisateur suit pour accomplir une action sur un site web, ce qui aide les concepteurs à optimiser l'interface et l'expérience utilisateur.",
+        "category": "UX/UI",
+        "category_id": 1
+      },
+      {
+        "question": "Qu'est-ce que le 'white space' ou 'espace négatif' en design ?",
+        "choices": [
+          "Les zones vides entre les éléments de design",
+          "L'arrière-plan blanc d'un site web",
+          "Les espaces réservés aux publicités",
+          "Les zones où le texte est affiché"
+        ],
+        "reponse": "Les zones vides entre les éléments de design. L'espace négatif ou \"white space\" est un élément essentiel du design, car il permet de structurer l'information et de rendre une page plus aérée et lisible, tout en évitant la surcharge visuelle.",
+        "category": "UX/UI",
+        "category_id": 1
+      }
+    ]
+  }

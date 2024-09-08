@@ -42,8 +42,6 @@ footer {
     border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     transition: transform var(--transition-duration) ease;
     padding: var(--spacing-medium);
@@ -55,8 +53,34 @@ footer {
     transform: scale(1.05);
 }
 
+.card-number, .card-counter {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.card-number {
+    font-size: var(--category-font-size);
+    color: #666;
+
+}
+
 .flashcard-content {
     font-size: var(--content-font-size);
+}
+
+.flashcard-choices {
+    font-size: var(--category-font-size);
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.flashcard-choices li {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
 }
 
 .flashcard-category {

@@ -3,14 +3,18 @@ let flashcardsData = [];
 let currentCardIndex = 0;
 let isShowingQuestion = true;
 let isRandomMode = false;
+let pickedCards = new Set();
 
 // DOM elements
 const flashcardElement = document.getElementById("flashcard");
 const flashcardContentElement = document.getElementById("flashcard-content");
 const flashcardCategoryElement = document.getElementById("flashcard-category");
+const choicesElement = document.getElementById("flashcard-choices");
 const nextButton = document.getElementById("next-btn");
 const prevButton = document.getElementById("prev-btn");
 const randomToggle = document.getElementById("random-toggle");
+const cardCounterElement = document.getElementById("card-counter");
+const cardNumberElement = document.getElementById("card-number");
 
 // Fisher-Yates shuffle algorithm
 function shuffleArray(array) {
@@ -41,11 +45,25 @@ function updateCardContent() {
     : currentCard.reponse;
   flashcardCategoryElement.textContent = `Category: ${currentCard.category}`;
 
+  // Update choices
+  if (isShowingQuestion && currentCard.choices) {
+    choicesElement.innerHTML = currentCard.choices.map((choice, index) =>
+      `<li>${String.fromCharCode(65 + index)}. ${choice}</li>`
+    ).join('');
+    choicesElement.style.display = 'block';
+  } else {
+    choicesElement.style.display = 'none';
+  }
+
   if (isShowingQuestion) {
     flashcardElement.classList.remove('answer');
   } else {
     flashcardElement.classList.add('answer');
   }
+
+  // Update card number
+  cardNumberElement.textContent = `Card ${currentCardIndex + 1} of ${flashcardsData.length}`;
+
 }
 
 function toggleRandomMode() {
@@ -53,6 +71,7 @@ function toggleRandomMode() {
   randomToggle.textContent = isRandomMode ? "Mode Aléatoire: Activé" : "Mode Aléatoire: Désactivé";
   if (isRandomMode) {
     shuffleArray(flashcardsData);
+    pickedCards.clear(); // Reset picked cards when shuffling
   }
   currentCardIndex = 0;
   isShowingQuestion = true;
@@ -78,24 +97,22 @@ prevButton.addEventListener("click", showPrevCard);
 randomToggle.addEventListener("click", toggleRandomMode);
 
 document.addEventListener("keydown", (event) => {
-    if (flashcardsData.length > 0) {
-      if (event.code === "Space") {
-        event.preventDefault();
-        isShowingQuestion = !isShowingQuestion;
-        updateCardContent();
-      } else if (event.code === "ArrowRight") {
-        event.preventDefault();
-        showNextCard();
-      } else if (event.code === "ArrowLeft") {
-        event.preventDefault();
-        showPrevCard();
-      }
+  if (flashcardsData.length > 0) {
+    if (event.code === "Space") {
+      event.preventDefault();
+      isShowingQuestion = !isShowingQuestion;
+      updateCardContent();
+    } else if (event.code === "ArrowRight") {
+      event.preventDefault();
+      showNextCard();
+    } else if (event.code === "ArrowLeft") {
+      event.preventDefault();
+      showPrevCard();
     }
+  }
 });
 
-
-// Fetch the data from cards.json
-fetch("cards.json")
+fetch("deck-evaluation-eden.json")
   .then((response) => response.json())
   .then((data) => {
     flashcardsData = data.flashcards;
