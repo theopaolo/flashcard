@@ -131,7 +131,7 @@
         "category": "UX/UI",
         "category_id": 1
       },
-      {
+        {
         "question": "Que représente les Dark Patterns ?",
         "choices": [
           "Une charte graphique avec une couleur primaire noire ou très foncée",
@@ -163,7 +163,7 @@
           "La propriété CSS font-weight:bold;",
           "Une balise HTML <xmp><h1> à <h6> </xmp>"
         ],
-        "reponse": "On utilisera le CSS. la balise <strong> indique que le texte est important mais le consensus de son rendu dans les navigateurs (gras) n'est pas une obligation. La balise <b> est obsolète. Les <hn> ne doivent être employés que pour les niveaux de titre",
+        "reponse": "On utilisera le CSS. la balise <pre><strong></pre> indique que le texte est important mais le consensus de son rendu dans les navigateurs (gras) n'est pas une obligation. La balise <b> est obsolète. Les <hn> ne doivent être employés que pour les niveaux de titre",
         "category": "HTML/CSS",
         "category_id": 2
       },
