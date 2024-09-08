@@ -206,10 +206,10 @@
       {
         "question": "Quelle est la syntaxe correcte pour faire référence à un CSS externe ?",
         "choices": [
-          "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">",
-          "<link rel=\"stylesheet\" type=\"text/css\" src=\"style.css\">",
-          "<style rel=\"stylesheet\" type=\"text/css\" src=\"style.css\">",
-          "<style rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">"
+          "<xmp><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></xmp>",
+          "<xmp><link rel=\"stylesheet\" type=\"text/css\" src=\"style.css\"></xmp>",
+          "<xmp><style rel=\"stylesheet\" type=\"text/css\" src=\"style.css\"></xmp>",
+          "<xmp><style rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></xmp>"
         ],
         "reponse": "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">",
         "category": "HTML/CSS",
