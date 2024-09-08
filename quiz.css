@@ -145,3 +145,117 @@ button:hover {
     margin-top: 20px;
     font-size: 18px;
   }
+
+  /* Base styling */
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .quiz-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between questions */
+  }
+
+  .question {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .question p {
+    margin: 0 0 10px;
+    font-weight: 400;
+  }
+
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between each answer */
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+
+  label:hover {
+    border-color: #007bff; /* On hover, change border color */
+  }
+
+  label input[type="radio"] {
+    position: absolute;
+    opacity: 0; /* Hide default radio button */
+  }
+
+  label .answer-letter {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #eee;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  /* When the radio input is checked, apply styles to the label */
+  input[type="radio"]:checked + .answer-letter {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  /* Border for the entire label when the input is selected */
+  input[type="radio"]:checked + .answer-letter + label {
+    border-color: #007bff;
+  }
+
+  /* Add a blue border to the label when it's checked */
+  input[type="radio"]:checked + .answer-letter {
+    border-color: #007bff;
+  }
+
+  label.selected {
+    border-color: #007bff;
+  }
+
+  /* Style for selected label */
+  input[type="radio"]:checked + label {
+    border-color: #007bff;
+  }
+
+  /* Submit button styling */
+  .submit-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .submit-btn:hover {
+    background-color: #333;
+  }
+
+  .results {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+  }

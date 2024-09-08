@@ -28,9 +28,13 @@ function renderQuiz() {
     const choicesDiv = document.createElement('div');
     choicesDiv.classList.add('choices');
 
-    card.choices.forEach(choice => {
+    card.choices.forEach((choice, choiceIndex) => {
       const label = document.createElement('label');
-      label.innerHTML = `<input type="radio" name="question${index}" value="${choice}"> ${choice}`;
+      label.innerHTML = `
+        <input type="radio" name="question${index}" value="${choice}">
+        <span class="answer-letter">${String.fromCharCode(65 + choiceIndex)}</span>
+        ${choice}
+      `;
       choicesDiv.appendChild(label);
     });
 
@@ -44,6 +48,16 @@ function renderQuiz() {
 
     quizContainer.appendChild(questionDiv);
   });
+
+  // Add event listener to track selection
+  document.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.addEventListener('change', (event) => {
+      document.querySelectorAll(`input[name="${event.target.name}"]`).forEach((el) => {
+        el.closest('label').classList.remove('selected');
+      });
+      event.target.closest('label').classList.add('selected');
+    });
+  });
 }
 
 // Function to evaluate answers
@@ -54,13 +68,13 @@ function evaluateAnswers() {
 
     if (selected) {
       if (selected.value === card.reponse) {
-        resultDiv.innerHTML = `<p class="correct">Correct!</p>`;
+        resultDiv.innerHTML = `<p class="correct">C'est la bonne réponse!</p>`;
         score++;
       } else {
-        resultDiv.innerHTML = `<p class="incorrect">Incorrect! La bonne réponse est: ${card.reponse}</p>`;
+        resultDiv.innerHTML = `<p class="incorrect">Oops! La bonne réponse est: ${card.reponse}</p>`;
       }
     } else {
-      resultDiv.innerHTML = `<p class="no-answer">Pas de réponse. La bonne réponse est: ${card.reponse}</p>`;
+      resultDiv.innerHTML = `<p class="no-answer">Pas de réponse ? La bonne est : ${card.reponse}</p>`;
     }
   });
 
