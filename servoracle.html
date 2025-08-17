@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>servoracle</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="oracle-container">
+        <header class="oracle-header">
+            <h1>servoracle</h1>
+        </header>
+
+        <div class="container">
+            <!-- Main Card -->
+            <div class="oracle-card main-card" id="main-card">
+                <div class="card-content" id="main-content">
+                    <div class="card-question" id="main-question"></div>
+                    <div class="card-answer" id="main-answer" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Navigation for Main Card -->
+            <div class="navigation">
+                <button class="oracle-btn" id="refresh-main-btn">🎲 Nouvelle</button>
+                <button class="oracle-btn" id="main-flip-btn">🔄 Retourner</button>
+                <button class="oracle-btn" id="draw-joker-btn">🃏 Joker</button>
+            </div>
+
+            <!-- Joker Card -->
+            <div class="oracle-card joker-card" id="joker-card" style="display: none;">
+                <div class="card-content" id="joker-content">
+                    <div class="card-question" id="joker-question"></div>
+                    <div class="card-answer" id="joker-answer" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Navigation for Joker Card -->
+            <div class="navigation joker-navigation" id="joker-navigation" style="display: none;">
+                <button class="oracle-btn" id="joker-flip-btn">🔄 Retourner</button>
+                <button class="oracle-btn" id="close-joker-btn">❌ Fermer</button>
+            </div>
+        </div>
+
+        <footer>
+        </footer>
+    </div>
+
+    <script src="servoracle.js"></script>
+</body>
+</html>

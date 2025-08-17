@@ -5,7 +5,7 @@
     --answer-background-color: #575757;
     --border-radius: 15px;
     --transition-duration: 0.3s;
-    --flashcard-width: 380px;
+    --flashcard-width: 420px;
     --flashcard-min-height: 600px;
     --content-font-size: 22px;
     --category-font-size: 18px;
@@ -13,6 +13,13 @@
     --spacing-small: 12px;
     --spacing-medium: 20px;
     --spacing-large: 1rem;
+
+    /* Oracle specific variables */
+    --oracle-card-width: 360px;
+    --oracle-card-min-height: 400px;
+    --oracle-spacing: 24px;
+    --oracle-header-height: 120px;
+    --oracle-controls-height: 80px;
 }
 
 body {
@@ -42,15 +49,11 @@ footer {
     border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
-    cursor: pointer;
+    cursor: default;
     transition: transform var(--transition-duration) ease;
     padding: var(--spacing-medium);
     box-sizing: border-box;
     position: relative;
-}
-
-.flashcard:hover {
-    transform: scale(1.05);
 }
 
 .card-number, .card-counter {
@@ -81,6 +84,14 @@ footer {
     padding: 5px;
     background-color: #f0f0f0;
     border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.flashcard-choices li:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .flashcard-category {
@@ -118,4 +129,262 @@ button {
 button:hover {
     background-color: var(--background-color);
     color: var(--primary-color);
+}
+
+.navigation {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+#flip-btn {
+    margin-top: var(--spacing-medium);
+    padding: var(--spacing-small) var(--spacing-medium);
+    font-size: var(--button-font-size);
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: calc(var(--border-radius) / 3);
+    transition: background-color var(--transition-duration) ease,
+                color var(--transition-duration) ease;
+}
+
+#flip-btn:hover {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+/* Code highlighting styles */
+.flashcard-content pre {
+    background-color: #2d3748;
+    border-radius: 8px;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    overflow-x: auto;
+    line-height: 1.4;
+}
+
+.flashcard-content code {
+    background-color: #f7fafc;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.flashcard-content pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: #e2e8f0;
+}
+
+/* Target Prism.js highlighted code */
+.flashcard-content code[class*="language-"],
+.flashcard-content pre[class*="language-"] {
+    font-size: 0.8rem;
+}
+
+.flashcard.answer pre {
+    background-color: #4a5568;
+}
+
+.flashcard.answer code {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+
+.flashcard-choices code {
+    background-color: #f7fafc;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.flashcard-choices code[class*="language-"] {
+    font-size: 0.85rem;
+}
+
+/* Answer feedback styles */
+.flashcard.correct-answer {
+    background-color: #3182ce !important;
+    border-color: #2c5282 !important;
+    color: white !important;
+    transform: scale(1.02);
+}
+
+.flashcard.correct-answer .flashcard-category {
+    color: white !important;
+}
+
+.flashcard.incorrect-answer {
+    background-color: #666 !important;
+    border-color: #4a4a4a !important;
+    color: white !important;
+}
+
+.flashcard.incorrect-answer .flashcard-category {
+    color: white !important;
+}
+
+/* ==========================================================================
+   ORACLE STYLES
+   ========================================================================== */
+
+.oracle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--oracle-spacing);
+    background-color: var(--background-color);
+}
+
+.oracle-header {
+    text-align: center;
+    margin-bottom: var(--oracle-spacing);
+    color: var(--primary-color);
+}
+
+.oracle-header h1 {
+    font-size: 3rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-medium);
+}
+
+.oracle-card {
+    width: var(--flashcard-width);
+    min-height: var(--flashcard-min-height);
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-medium);
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    transition: transform var(--transition-duration) ease;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.oracle-card.main-card {
+    border-left: 5px solid #1E3A8A;
+}
+
+.oracle-card.joker-card {
+    border-left: 5px solid #DC143C;
+}
+
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card-question, .card-answer {
+    font-size: var(--content-font-size);
+    line-height: 1.6;
+    color: inherit;
+}
+
+.card-question {
+    font-weight: 500;
+}
+
+.card-answer {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Remove card-actions since buttons are now outside cards */
+
+.oracle-btn {
+    padding: var(--spacing-small) var(--spacing-medium);
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-size: var(--button-font-size);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) ease;
+}
+
+.oracle-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.oracle-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Remove oracle-controls - using original navigation style */
+
+.control-btn {
+    padding: var(--spacing-small) var(--spacing-medium);
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-size: var(--button-font-size);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) ease;
+}
+
+.control-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .oracle-card {
+        width: min(90vw, var(--flashcard-width));
+    }
+
+    .oracle-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .oracle-container {
+        padding: var(--spacing-medium);
+    }
+}
+
+@media (max-width: 480px) {
+    .oracle-header h1 {
+        font-size: 2rem;
+    }
+
+    .oracle-card {
+        min-height: 350px;
+        padding: var(--spacing-medium);
+    }
+
+    .card-question, .card-answer {
+        font-size: 18px;
+    }
 }

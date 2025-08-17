@@ -1,0 +1,262 @@
+{
+  "flashcards": [
+    {
+      "question": "Qu'est-ce qu'un module en JavaScript ?",
+      "choices": [
+        "Un fichier JavaScript avec son propre scope qui peut exporter et importer des fonctionnalités",
+        "Une bibliothèque externe comme jQuery",
+        "Un framework comme React ou Vue",
+        "Un fichier CSS avec des styles"
+      ],
+      "reponse": "Un fichier JavaScript avec son propre scope qui peut exporter et importer des fonctionnalités",
+      "category": "Concepts de Base",
+      "category_id": 13,
+      "correct_choice_index": 0
+    },
+    {
+      "question": "Comment exporter une fonction nommée ?\n\n```javascript\n// math.js\nfunction add(a, b) {\n  return a + b;\n}\n\nfunction multiply(a, b) {\n  return a * b;\n}\n\n// Comment exporter ces fonctions ?\n```",
+      "choices": [
+        "`export function add() { }` ou `export { add, multiply }`",
+        "`module.exports = { add, multiply }`",
+        "`exports.add = add`",
+        "`return { add, multiply }`"
+      ],
+      "reponse": "`export function myFunction() { }` ou `export { myFunction }`",
+      "category": "Exports Nommés",
+      "category_id": 13
+    },
+    {
+      "question": "Comment créer un export par défaut ?\n\n```javascript\n// calculator.js\nclass Calculator {\n  add(a, b) { return a + b; }\n}\n\n// Comment en faire l'export par défaut ?\n??? Calculator;\n```",
+      "choices": [
+        "`export`",
+        "`export default`",
+        "`module.exports =`",
+        "`default export`"
+      ],
+      "reponse": "`export default myFunction;` ou `export default class MyClass { }`",
+      "category": "Export Par Défaut",
+      "category_id": 13
+    },
+    {
+      "question": "Comment importer un export par défaut ?\n\n```javascript\n// calculator.js\nexport default class Calculator { }\n\n// main.js\n??? from './calculator.js';\nconst calc = new Calculator();\n```",
+      "choices": [
+        "`import { Calculator }`",
+        "`import Calculator`",
+        "`import * as Calculator`",
+        "`const Calculator = require`"
+      ],
+      "reponse": "`import MyModule from './module.js';` (sans accolades)",
+      "category": "Import Par Défaut",
+      "category_id": 13
+    },
+    {
+      "question": "Comment importer des exports nommés ?\n\n```javascript\n// utils.js\nexport function format(str) { }\nexport function validate(data) { }\nexport const API_URL = 'https://api.example.com';\n\n// main.js\n??? from './utils.js';\n```",
+      "choices": [
+        "`import utils`",
+        "`import { format, validate, API_URL }`",
+        "`import * as utils`",
+        "`import default { format, validate }`"
+      ],
+      "reponse": "`import { function1, function2 } from './module.js';` (avec accolades)",
+      "category": "Imports Nommés",
+      "category_id": 13
+    },
+    {
+      "question": "Comment importer avec un alias ?\n\n```javascript\n// utils.js\nexport function validate(data) { }\n\n// main.js - 'validate' entre en conflit avec une autre fonction\nimport { ??? } from './utils.js';\n```",
+      "choices": [
+        "`validate alias validateData`",
+        "`validate as validateData`",
+        "`validate -> validateData`",
+        "`validate: validateData`"
+      ],
+      "reponse": "`import { originalName as newName } from './module.js';`",
+      "category": "Alias d'Import",
+      "category_id": 13
+    },
+    {
+      "question": "Comment importer tout un module ?\n\n```javascript\n// utils.js\nexport function add(a, b) { return a + b; }\nexport function multiply(a, b) { return a * b; }\nexport const PI = 3.14159;\n\n// main.js\n??? from './utils.js';\nconsole.log(Utils.add(2, 3)); // 5\n```",
+      "choices": [
+        "`import * as Utils`",
+        "`import { * as Utils }`",
+        "`import Utils.*`",
+        "`import all Utils`"
+      ],
+      "reponse": "`import * as ModuleName from './module.js';`",
+      "category": "Import Global",
+      "category_id": 13
+    },
+    {
+      "question": "Différence entre import statique et dynamique ?\n\n```javascript\n// Import statique\nimport { utils } from './utils.js';\n\n// Import dynamique\nconst utils = await import('./utils.js');\n\nconsole.log(typeof utils); // ?\n```",
+      "choices": [
+        "`'function'`",
+        "`'object'`",
+        "`'module'`",
+        "`'promise'`"
+      ],
+      "reponse": "Statique : résolu au build time. Dynamique : `import()` retourne une Promise, résolu au runtime",
+      "category": "Import Dynamique",
+      "category_id": 13
+    },
+    {
+      "question": "Qu'est-ce qu'un barrel export ?\n\n```javascript\n// components/index.js\nexport { default as Button } from './Button.js';\nexport { default as Input } from './Input.js';\nexport { default as Modal } from './Modal.js';\n\n// main.js\nimport { Button, Input, Modal } from './components/index.js';\n```",
+      "choices": [
+        "Un export en forme de tonneau",
+        "Fichier `index.js` qui re-exporte des modules pour simplifier les imports",
+        "Un export de grande taille",
+        "Un pattern d'optimisation de performance"
+      ],
+      "reponse": "Fichier `index.js` qui re-exporte des modules pour simplifier les imports",
+      "category": "Patterns d'Export",
+      "category_id": 13,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Les modules ont-ils leur propre scope ?\n\n```javascript\n// module1.js\nconst SECRET_KEY = 'abc123';\nexport function getKey() {\n  return SECRET_KEY;\n}\n\n// module2.js\nconsole.log(SECRET_KEY); // ?\n```",
+      "choices": [
+        "Affiche 'abc123'",
+        "ReferenceError: SECRET_KEY is not defined",
+        "undefined",
+        "null"
+      ],
+      "reponse": "Oui, les variables d'un module ne polluent pas l'espace global",
+      "category": "Scope des Modules",
+      "category_id": 13
+    },
+    {
+      "question": "Peut-on avoir exports nommés ET export par défaut ?\n\n```javascript\n// user.js\nexport default class User { }\nexport function validateUser(user) { }\nexport const USER_ROLES = ['admin', 'user'];\n\n// main.js\n??? from './user.js';\n```",
+      "choices": [
+        "`import User, { validateUser, USER_ROLES }`",
+        "`import { User, validateUser, USER_ROLES }`",
+        "`import User { validateUser, USER_ROLES }`",
+        "Impossible, un seul type d'export par module"
+      ],
+      "reponse": "Oui, un module peut avoir un export par défaut + plusieurs exports nommés",
+      "category": "Exports Mixtes",
+      "category_id": 13
+    },
+    {
+      "question": "Qu'est-ce que `import.meta` ?\n\n```javascript\n// module.js\nconsole.log(import.meta.url);\n// Affiche: file:///path/to/module.js\n```",
+      "choices": [
+        "Métadonnées de l'import en cours",
+        "Objet contenant des métadonnées sur le module actuel",
+        "Liste des modules importés",
+        "Configuration d'import"
+      ],
+      "reponse": "Objet contenant des métadonnées sur le module actuel (ex: `import.meta.url`)",
+      "category": "Métadonnées",
+      "category_id": 13,
+      "correct_choice_index": 1,
+      "explanation": "(ex: `import.meta.url`)"
+    },
+    {
+      "question": "Les imports doivent-ils inclure l'extension .js ?\n\n```javascript\n// Lequel est correct en mode natif ?\nimport { utils } from './utils';     // A\nimport { utils } from './utils.js';  // B\n```",
+      "choices": [
+        "A seulement",
+        "B seulement",
+        "Les deux fonctionnent",
+        "Aucun des deux"
+      ],
+      "reponse": "Oui, en mode natif (navigateur). Parfois optionnel avec des bundlers",
+      "category": "Extensions de Fichier",
+      "category_id": 13
+    },
+    {
+      "question": "Comment faire un import conditionnel ?\n\n```javascript\nif (condition) {\n  // Comment importer seulement si nécessaire ?\n  const module = ???;\n}\n```",
+      "choices": [
+        "`import('./module.js')`",
+        "`await import('./module.js')`",
+        "`require('./module.js')`",
+        "`loadModule('./module.js')`"
+      ],
+      "reponse": "`const module = await import('./module.js');` - import dynamique",
+      "category": "Import Conditionnel",
+      "category_id": 13
+    },
+    {
+      "question": "Que signifie \"tree shaking\" ?\n\n```javascript\n// utils.js - 100 fonctions utilitaires\nexport function add(a, b) { return a + b; }\nexport function subtract(a, b) { return a - b; }\n// ... 98 autres fonctions\n\n// main.js - utilise seulement 'add'\nimport { add } from './utils.js';\n```",
+      "choices": [
+        "Chargement de toutes les 100 fonctions",
+        "Élimination du code mort (non utilisé) possible grâce aux imports/exports statiques",
+        "Compilation plus rapide",
+        "Organisation des fichiers en arbre"
+      ],
+      "reponse": "Élimination du code mort (non utilisé) possible grâce aux imports/exports statiques",
+      "category": "Optimisation",
+      "category_id": 13,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Comment exporter plusieurs éléments en une fois ?\n\n```javascript\n// math.js\nfunction add(a, b) { return a + b; }\nfunction multiply(a, b) { return a * b; }\nconst PI = 3.14159;\n\n// À la fin du fichier\n???;\n```",
+      "choices": [
+        "`export add, multiply, PI`",
+        "`export { add, multiply, PI }`",
+        "`module.exports = { add, multiply, PI }`",
+        "`exports = { add, multiply, PI }`"
+      ],
+      "reponse": "`export { function1, function2, CONSTANT };`",
+      "category": "Exports Groupés",
+      "category_id": 13
+    },
+    {
+      "question": "Comment combiner import par défaut et nommés ?\n\n```javascript\n// api.js\nexport default class ApiClient { }\nexport const BASE_URL = 'https://api.example.com';\nexport function createHeaders() { }\n\n// main.js\n??? from './api.js';\n```",
+      "choices": [
+        "`import { ApiClient, BASE_URL, createHeaders }`",
+        "`import ApiClient, { BASE_URL, createHeaders }`",
+        "`import ApiClient + { BASE_URL, createHeaders }`",
+        "`import default ApiClient, { BASE_URL, createHeaders }`"
+      ],
+      "reponse": "`import DefaultExport, { namedExport1, namedExport2 } from './module.js';`",
+      "category": "Imports Mixtes",
+      "category_id": 13
+    },
+    {
+      "question": "Peut-on re-exporter en modifiant le nom ?\n\n```javascript\n// shapes/index.js\nexport { Circle as RoundShape } from './Circle.js';\nexport { Square as BoxShape } from './Square.js';\n\n// main.js\nimport { RoundShape, BoxShape } from './shapes/index.js';\n```",
+      "choices": [
+        "Oui, cet exemple fonctionne",
+        "Non, impossible de renommer lors du re-export",
+        "Seulement avec import dynamique",
+        "Seulement en mode strict"
+      ],
+      "reponse": "Oui : `export { originalName as newName } from './module.js';`",
+      "category": "Re-exports",
+      "category_id": 13
+    },
+    {
+      "question": "Comment importer un module pour side-effects seulement ?\n\n```javascript\n// polyfill.js\nif (!Array.prototype.includes) {\n  Array.prototype.includes = function(searchElement) {\n    // Polyfill implementation\n  };\n}\n\n// main.js - comment importer sans assigner ?\n??? './polyfill.js';\n```",
+      "choices": [
+        "`import * from`",
+        "`import`",
+        "`import {}`",
+        "`require`"
+      ],
+      "reponse": "`import './setup.js';` (sans destructuring ni assignation)",
+      "category": "Side Effects",
+      "category_id": 13
+    },
+    {
+      "question": "Peut-on modifier un import après importation ?\n\n```javascript\n// config.js\nexport const API_URL = 'https://api.example.com';\n\n// main.js\nimport { API_URL } from './config.js';\nAPI_URL = 'https://dev.example.com'; // ?\n```",
+      "choices": [
+        "Oui, ça fonctionne",
+        "TypeError: Assignment to constant variable",
+        "SyntaxError: 'API_URL' is read-only",
+        "ReferenceError: Cannot modify import"
+      ],
+      "reponse": "Non, les imports sont en lecture seule (références immutables)",
+      "category": "Immutabilité",
+      "category_id": 13
+    },
+    {
+      "question": "Quelle est la différence avec CommonJS ?\n\n```javascript\n// CommonJS (Node.js traditionnel)\nconst fs = require('fs');\nmodule.exports = { readFile };\n\n// ES6 Modules\nimport fs from 'fs';\nexport { readFile };\n```",
+      "choices": [
+        "CommonJS est plus moderne",
+        "ES6 : statique, async, tree shaking. CommonJS : dynamique, sync, `require()`",
+        "Aucune différence fonctionnelle",
+        "CommonJS fonctionne seulement en Node.js"
+      ],
+      "reponse": "ES6 : statique, async, tree shaking. CommonJS : dynamique, sync, `require()`",
+      "category": "Comparaison",
+      "category_id": 13,
+      "correct_choice_index": 1
+    }
+  ]
+}

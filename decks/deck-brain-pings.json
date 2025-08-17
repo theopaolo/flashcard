@@ -1,0 +1,320 @@
+{
+    "flashcards": [
+      {
+        "question": "🌅 Matin — Griffon magique",
+        "reponse": "Dessine une forme bizarre en 30s. Donne-lui un nom ridicule. Note une qualité que tu veux incarner aujourd’hui.",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Totem du jour",
+        "reponse": "Choisis un objet autour de toi comme symbole-guide. Écris en une phrase pourquoi il te guide aujourd’hui.",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Micro-intention",
+        "reponse": "Ferme les yeux 10 respirations. Intention: “Aujourd’hui, j’observe ___.” Écris le blanc en un mot.",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Mini palais de mémoire",
+        "reponse": "Transforme 3 tâches du jour en images absurdes (ex: ‘URSSAF’ → un ours sur une surf-facture).",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — 3 lignes d’échauffement",
+        "reponse": "Écris 3 lignes: 1 fait, 1 sensation corporelle, 1 souhait du jour.",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Cartographie-éclair",
+        "reponse": "Dessine un mini-graphe de tes pensées au réveil (3 bulles, 3 flèches).",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Posture-puissance 60s",
+        "reponse": "Tiens-toi droit, épaules ouvertes, respiration basse 60s. Dis une phrase d’élan à voix haute.",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Démarrage sensoriel",
+        "reponse": "Goûte, sens ou touche 1 chose en pleine attention pendant 30s. Décris 3 adjectifs.",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Minute de mouvement",
+        "reponse": "Fais 1 minute de mouvements (étirements, squats, danse lente). Évalue ton énergie sur 10.",
+        "category": "Matin",
+        "category_id": 1
+      },
+      {
+        "question": "🌅 Matin — Rituel de l’objet",
+        "reponse": "Place un objet à un endroit insolite pour te rappeler une action-clé (indice visuel).",
+        "category": "Matin",
+        "category_id": 1
+      },
+
+      {
+        "question": "🌞 Dérive cartographiée",
+        "reponse": "Quand tu décroches, note le chemin A→B→C. 1 minute max. Tu apprends ton pattern.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Reset corporel 20s",
+        "reponse": "Danse idiote/sauts/torsions 20s. Reviens à la tâche avec 1 micro-objectif de 5 minutes.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Micro-apprentissage",
+        "reponse": "Découvre un mot ou fait inutile et délicieux. Écris-le et glisse-le dans une phrase.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Pomodoro joueur",
+        "reponse": "5 minutes focus total, 1 minute pause sensorielle. Répète 2 fois.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 3 respires, 3 mots",
+        "reponse": "Inspire/Expire x3, puis note 3 mots qui décrivent ton état présent.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Fait minimum viable",
+        "reponse": "Choisis la version 1% d’une tâche (micro-version). Fais-la maintenant en 2–5 min.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Brise-autoroute",
+        "reponse": "Change un paramètre: autre stylo, autre chaise, fenêtre ouverte/fermée, musique/silence 3 min.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Question oraculaire",
+        "reponse": "Écris une question ouverte sur ta tâche. Réponds en 2 phrases max, sans censure.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Checkpoint compassion",
+        "reponse": "Demande-toi: “Si c’était un ami, que lui conseillerais-je maintenant ?” Écris la réponse.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Brique LEGO",
+        "reponse": "Fractionne ta tâche en 3 briques. Fais la brique 1 sans réfléchir.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Minute nature",
+        "reponse": "Regarde dehors/une plante/une photo de nature 60s. Décris une texture que tu vois.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Timer curiosité",
+        "reponse": "Accorde-toi 3 minutes pour explorer un lien/idée, puis reviens avec 1 note utile.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Re-cadrage ‘jeu’",
+        "reponse": "Transforme la tâche en jeu: score, temps, combo, ‘pas toucher le sol’. Lance le chrono 5 min.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Changement de canal",
+        "reponse": "Parle à voix haute ce que tu fais pendant 60s (pensée en mode ‘narrateur’).",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Post-it d’atterrissage",
+        "reponse": "Note la prochaine action physique (verbe d’action). Colle-la en vue. Fais-la si <2 min.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Pause eau & respiration",
+        "reponse": "Bois un verre d’eau. 4 respirations 4-4-4 (inspirer 4s, bloquer 4s, expirer 4s).",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Switch contexte 10 min",
+        "reponse": "Si bloqué: bascule 10 min sur une micro-tâche logistique (tri, mail 2 lignes), puis reviens.",
+        "category": "Journée",
+        "category_id": 2
+      },
+      {
+        "question": "🌞 Affirmation réaliste",
+        "reponse": "Écris: “Je peux faire la prochaine petite chose, maintenant.” Puis fais-la.",
+        "category": "Journée",
+        "category_id": 2
+      },
+
+      {
+        "question": "🌙 Phrase souvenir",
+        "reponse": "Écris 1 phrase qui résume ta journée comme un haïku (5–7–5 ou libre).",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Gratitude granuleuse",
+        "reponse": "Note 3 détails concrets (odeur, texture, son) de choses pour lesquelles tu es reconnaissant·e.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Programmation onirique",
+        "reponse": "Écris une image/intention de rêve (ex: ‘une jungle bleue’, ‘solution pour ___’).",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Déconnexion sensorielle",
+        "reponse": "2 minutes yeux fermés, silence ou musique douce. Observe 3 sensations corporelles.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Vidage de cache",
+        "reponse": "Liste tout ce qui ‘tourne en fond’. Flèche → remets chaque item à demain avec 1ère action.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Étirement lunaire",
+        "reponse": "Étire nuque, épaules, dos 2 minutes. Bâille volontairement 3 fois.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Récit en 3 images",
+        "reponse": "Dessine 3 vignettes de ta journée (stick figures ok). Titre-les.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Micro-lecture poétique",
+        "reponse": "Lis 6 lignes d’un texte lent (poème, essai). Note 1 mot à emporter au lit.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Respiration 4-7-8",
+        "reponse": "Inspire 4s, retiens 7s, expire 8s x4 cycles.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Check empathie",
+        "reponse": "Écris une phrase de gentillesse envers toi de la journée. Vraiment douce.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Ranger 2 minutes",
+        "reponse": "Range 2 minutes un micro-espace (bureau, table). Prépare un ‘tapis de décollage’ pour demain.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+      {
+        "question": "🌙 Éteindre proprement",
+        "reponse": "Éteins 1 écran + 1 lumière forte 20 min avant dodo. Respire en pensant ‘demain, léger’.",
+        "category": "Soirée",
+        "category_id": 3
+      },
+
+      {
+        "question": "Hebdo — Art sans but (30 min)",
+        "reponse": "Collage, gribouillage, son chelou ou texture. Sans objectif. Montre-le à personne (ou si !).",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+      {
+        "question": "Hebdo — Constellation d’idées",
+        "reponse": "Relie tes notes de la semaine en carte mentale. Cercles, flèches, couleurs. 30 min.",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+      {
+        "question": "Hebdo — Marche-oracle",
+        "reponse": "Marche 20 min sans musique. Question en tête. Note 3 signes rencontrés.",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+      {
+        "question": "Hebdo — Revue système",
+        "reponse": "Liste ce qui a bien fonctionné/moins bien. Ajoute/supprime 1 script de ta routine.",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+      {
+        "question": "Hebdo — Bibliothèque vivante",
+        "reponse": "Choisis une courte lecture ‘hors-autoroute’ (poésie, essai, science). Résume en 3 puces.",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+      {
+        "question": "Hebdo — Conversation profonde",
+        "reponse": "Échange 20–40 min avec quelqu’un sur un sujet non-logistique. 1 question puissante, écouter.",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+      {
+        "question": "Hebdo — Bilan énergie",
+        "reponse": "Trace une jauge Mon/Dim (0–10). Qu’est-ce qui a +1 ? Qu’est-ce qui a −1 ? Décide 1 ajustement.",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+      {
+        "question": "Hebdo — Rituel chef d’orchestre",
+        "reponse": "Planifie 3 rocs de la semaine (blocs non négociables). Choisis 1 joker plaisir.",
+        "category": "Hebdo",
+        "category_id": 4
+      },
+
+      {
+        "question": "🃏 Inverser la donne",
+        "reponse": "Fais une habitude ‘à l’envers’ aujourd’hui (écrire debout, douche froide le soir, marcher à reculons 20s). Observe l’effet.",
+        "category": "Joker",
+        "category_id": 5
+      },
+      {
+        "question": "🃏 Décalage d’objet",
+        "reponse": "Prends un objet banal. Imagine 3 usages impossibles. Écris une mini-histoire de 4 lignes.",
+        "category": "Joker",
+        "category_id": 5
+      },
+      {
+        "question": "🃏 Silence social",
+        "reponse": "Coupe les notifs 2 heures. Laisse-toi surprendre par l’ennui. Note ce qui émerge.",
+        "category": "Joker",
+        "category_id": 5
+      },
+      {
+        "question": "🃏 Carte blanche",
+        "reponse": "Fais exactement ce dont tu as secrètement envie depuis 10 minutes. Pas d’excuse. 5–15 min.",
+        "category": "Joker",
+        "category_id": 5
+      }
+    ]
+  }

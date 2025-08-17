@@ -259,3 +259,55 @@ button:hover {
     margin-top: 20px;
     font-size: 18px;
   }
+
+  /* Code highlighting styles for quiz */
+  .question pre {
+    background-color: #2d3748;
+    border-radius: 8px;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    overflow-x: auto;
+    line-height: 1.4;
+  }
+
+  .question code {
+    background-color: #f7fafc;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  }
+
+  .question pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: #e2e8f0;
+  }
+
+  /* Target Prism.js highlighted code */
+  .question code[class*="language-"],
+  .question pre[class*="language-"] {
+    font-size: 0.8rem;
+  }
+
+  .choices code {
+    background-color: #f7fafc;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  }
+
+  .choices code[class*="language-"] {
+    font-size: 0.8rem;
+  }
+
+  .result code {
+    background-color: #f7fafc;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  }
+
+  .result code[class*="language-"] {
+    font-size: 0.8rem;
+  }
