@@ -96,15 +96,16 @@ function updateCardContent() {
   if (isShowingQuestion) {
     content = currentCard.question;
   } else {
-    // Show explanation if available, otherwise fall back to reponse
-    if (currentCard.explanation) {
-      content = currentCard.explanation;
-    } else if (currentCard.correct_choice_index !== undefined && currentCard.choices) {
-      // If using new system, show the correct choice + explanation
+    // When answering, show the correct choice with any explanation if available
+    if (currentCard.correct_choice_index !== undefined && currentCard.choices) {
       const correctChoice = currentCard.choices[currentCard.correct_choice_index];
-      const explanation = currentCard.explanation || '';
-      content = explanation ? `${correctChoice}\n\n${explanation}` : correctChoice;
+      const explanation = currentCard.explanation ? `\n\n${currentCard.explanation}` : '';
+      content = `${correctChoice}${explanation}`;
+    } else if (currentCard.explanation) {
+      // For non-choice cards, show the explanation alone if provided
+      content = currentCard.explanation;
     } else {
+      // Fallback to the legacy response field
       content = currentCard.reponse;
     }
   }
