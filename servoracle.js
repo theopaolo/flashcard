@@ -1,69 +1,116 @@
+// import Swiper JS
+import Swiper from 'swiper';
+import { FreeMode, Mousewheel, Keyboard } from 'swiper/modules';
+// import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+
 // Oracle data and state
 let oracleData = [];
-let currentMainCard = null;
-let currentJokerCard = null;
-let mainCardFlipped = false;
-let jokerCardFlipped = false;
+let swiper = null;
+let cardsFlipped = new Set(); // Track which cards are flipped
 
-// DOM elements
-const mainCard = document.getElementById("main-card");
-const jokerCard = document.getElementById("joker-card");
-const jokerNavigation = document.getElementById("joker-navigation");
-const mainQuestion = document.getElementById("main-question");
-const mainAnswer = document.getElementById("main-answer");
-const jokerQuestion = document.getElementById("joker-question");
-const jokerAnswer = document.getElementById("joker-answer");
-const mainFlipBtn = document.getElementById("main-flip-btn");
-const jokerFlipBtn = document.getElementById("joker-flip-btn");
-const refreshMainBtn = document.getElementById("refresh-main-btn");
-const drawJokerBtn = document.getElementById("draw-joker-btn");
-const closeJokerBtn = document.getElementById("close-joker-btn");
+// DOM elements (will be accessed after DOM loads)
+let swiperWrapper, shuffleBtn, flipAllBtn;
 
-// Category configuration with colors (simplified)
+// Category configuration with colors and gradients
 const CATEGORIES = {
-  1: { color: "#FFE4B5", textColor: "#8B4513" }, // Matin
-  2: { color: "#E6F3FF", textColor: "#1E3A8A" }, // Journée
-  3: { color: "#E6E6FA", textColor: "#4B0082" }, // Soirée
-  5: { color: "#FFE4E1", textColor: "#DC143C" }  // Joker
+  1: { color: "linear-gradient(135deg, #FFE4B5 0%, #F5DEB3 100%)", textColor: "#8B4513" }, // Matin
+  2: { color: "linear-gradient(135deg, #E6F3FF 0%, #DBEAFE 100%)", textColor: "#1E3A8A" }, // Journée
+  3: { color: "linear-gradient(135deg, #E6E6FA 0%, #DDD6FE 100%)", textColor: "#4B0082" }, // Soirée
+  5: { color: "linear-gradient(135deg, #FFE4E1 0%, #FECACA 100%)", textColor: "#DC143C" }  // Joker
 };
 
-// Get category ID based on current hour
-function getCurrentCategoryId() {
-  const currentHour = new Date().getHours();
+// Create card element for swiper
+function createCardElement(card, index) {
+  const slide = document.createElement('div');
+  slide.className = 'swiper-slide';
+  slide.dataset.cardIndex = index;
 
-  if (currentHour >= 6 && currentHour <= 11) {
-    return 1; // Matin
-  } else if (currentHour >= 12 && currentHour <= 17) {
-    return 2; // Journée
-  } else {
-    return 3; // Soirée
-  }
+  const cardContainer = document.createElement('div');
+  cardContainer.className = 'oracle-card-container';
+
+  const cardElement = document.createElement('div');
+  cardElement.className = 'oracle-card';
+  cardElement.dataset.categoryId = card.category_id;
+
+  cardElement.innerHTML = `
+    <div class="card-face card-front">
+      <!-- Empty front - just category color -->
+    </div>
+    <div class="card-face card-back">
+      <div class="card-content">
+        <div class="card-question">${formatText(card.question)}</div>
+        <div class="card-answer">${formatText(card.reponse)}</div>
+      </div>
+    </div>
+  `;
+
+  // Apply category styling only to front face
+  const cardFront = cardElement.querySelector('.card-front');
+  applyCategoryStyle(cardFront, card.category_id);
+
+      // Simple CSS-only flip on click
+  const flipCard = () => {
+    const isFlipped = cardsFlipped.has(index);
+
+    if (isFlipped) {
+      cardElement.classList.remove('flipped');
+      cardsFlipped.delete(index);
+    } else {
+      cardElement.classList.add('flipped');
+      cardsFlipped.add(index);
+    }
+  };
+
+  // Single event listener on the entire card
+  cardElement.addEventListener('click', flipCard);
+
+  cardContainer.appendChild(cardElement);
+  slide.appendChild(cardContainer);
+  return slide;
 }
 
-// Get consistent card based on hour (same card per hour)
-function getCardBasedOnHour() {
-  const currentHour = new Date().getHours();
-  const targetCategoryId = getCurrentCategoryId();
-  const categoryCards = oracleData.filter(card => card.category_id === targetCategoryId);
+// Initialize swiper with all cards
+function initializeSwiper() {
+  // Clear existing slides
+  swiperWrapper.innerHTML = '';
+  cardsFlipped.clear();
 
-  if (categoryCards.length === 0) {
-    console.error(`No cards found for category_id: ${targetCategoryId}`);
-    return null;
+  // Create slides for all cards
+  oracleData.forEach((card, index) => {
+    const slide = createCardElement(card, index);
+    swiperWrapper.appendChild(slide);
+  });
+
+  // Initialize or update swiper
+  if (swiper) {
+    swiper.destroy(true, true);
   }
 
-  // Use hour as seed for consistent selection throughout the hour
-  const hourSeed = currentHour + new Date().getDate(); // Changes daily
-  const cardIndex = hourSeed % categoryCards.length;
-
-  return categoryCards[cardIndex];
-}
-
-// Get random joker card
-function getRandomJokerCard() {
-  const jokerCards = oracleData.filter(card => card.category_id === 5); // Joker category_id is 5
-  if (jokerCards.length === 0) return null;
-
-  return jokerCards[Math.floor(Math.random() * jokerCards.length)];
+  swiper = new Swiper('#cards-swiper', {
+    modules: [FreeMode, Mousewheel, Keyboard],
+    direction: 'horizontal',
+    freeMode: {
+      enabled: true,
+      momentum: true,
+      momentumRatio: 0.5,
+      momentumVelocityRatio: 0.5,
+    },
+    mousewheel: {
+      enabled: true,
+      forceToAxis: true,
+    },
+    keyboard: {
+      enabled: true,
+      onlyInViewport: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 0, // Space handled by slide padding
+    grabCursor: true,
+    centerInsufficientSlides: true,
+    watchOverflow: true,
+  });
 }
 
 // Format text with simple line breaks (no HTML escaping needed for oracle cards)
@@ -77,158 +124,71 @@ function applyCategoryStyle(cardElement, categoryId) {
   const categoryConfig = CATEGORIES[categoryId];
   if (!categoryConfig) return;
 
-  cardElement.style.backgroundColor = categoryConfig.color;
+  cardElement.style.background = categoryConfig.color;
   cardElement.style.color = categoryConfig.textColor;
-  cardElement.style.borderLeft = `5px solid ${categoryConfig.textColor}`;
 }
 
-// Display main card
-function displayMainCard(card) {
-  currentMainCard = card;
-  mainCardFlipped = false;
-
-  // Apply category styling
-  applyCategoryStyle(mainCard, card.category_id);
-
-  // Set content
-  mainQuestion.innerHTML = formatText(card.question);
-  mainAnswer.innerHTML = formatText(card.reponse);
-
-  // Reset display state
-  mainQuestion.style.display = 'block';
-  mainAnswer.style.display = 'none';
-  mainFlipBtn.textContent = '🔄 Retourner';
-}
-
-// Display joker card
-function displayJokerCard(card) {
-  currentJokerCard = card;
-  jokerCardFlipped = false;
-
-  // Apply category styling
-  applyCategoryStyle(jokerCard, card.category_id);
-
-  // Set content
-  jokerQuestion.innerHTML = formatText(card.question);
-  jokerAnswer.innerHTML = formatText(card.reponse);
-
-  // Reset display state
-  jokerQuestion.style.display = 'block';
-  jokerAnswer.style.display = 'none';
-  jokerFlipBtn.textContent = '🔄 Retourner';
-
-  // Show joker card and navigation
-  jokerCard.style.display = 'block';
-  jokerNavigation.style.display = 'block';
-}
-
-
-
-// Event handlers for card flipping
-function flipMainCard() {
-  if (!currentMainCard) return;
-
-  mainCardFlipped = !mainCardFlipped;
-
-  if (mainCardFlipped) {
-    mainQuestion.style.display = 'none';
-    mainAnswer.style.display = 'block';
-    mainFlipBtn.textContent = '🔄 Retourner';
-  } else {
-    mainQuestion.style.display = 'block';
-    mainAnswer.style.display = 'none';
-    mainFlipBtn.textContent = '🔄 Retourner';
+// Shuffle cards array
+function shuffleCards() {
+  const shuffled = [...oracleData];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
+  oracleData = shuffled;
+  initializeSwiper();
 }
 
-function flipJokerCard() {
-  if (!currentJokerCard) return;
+// Flip all cards
+function flipAllCards() {
+  const allCards = document.querySelectorAll('.oracle-card');
+  const shouldFlip = cardsFlipped.size < oracleData.length / 2; // Flip if less than half are flipped
 
-  jokerCardFlipped = !jokerCardFlipped;
-
-  if (jokerCardFlipped) {
-    jokerQuestion.style.display = 'none';
-    jokerAnswer.style.display = 'block';
-    jokerFlipBtn.textContent = '🔄 Retourner';
-  } else {
-    jokerQuestion.style.display = 'block';
-    jokerAnswer.style.display = 'none';
-    jokerFlipBtn.textContent = '🔄 Retourner';
-  }
+  allCards.forEach((card, index) => {
+    // Add staggered delay for visual effect
+    setTimeout(() => {
+      if (shouldFlip) {
+        card.classList.add('flipped');
+        cardsFlipped.add(index);
+      } else {
+        card.classList.remove('flipped');
+        cardsFlipped.delete(index);
+      }
+    }, index * 50); // Stagger by 50ms
+  });
 }
 
-// Get random card from current time period
-function getRandomCardFromCurrentPeriod() {
-  const targetCategoryId = getCurrentCategoryId();
-  const categoryCards = oracleData.filter(card => card.category_id === targetCategoryId);
+// Removed resetCards function - flipAllCards handles this intelligently
 
-  if (categoryCards.length === 0) {
-    console.error(`No cards found for category_id: ${targetCategoryId}`);
-    return null;
-  }
+// Setup event listeners after DOM is loaded
+function setupEventListeners() {
+  // Get DOM elements
+  swiperWrapper = document.getElementById("swiper-wrapper");
+  shuffleBtn = document.getElementById("shuffle-btn");
+  flipAllBtn = document.getElementById("flip-all-btn");
 
-  return categoryCards[Math.floor(Math.random() * categoryCards.length)];
+  // Button event listeners
+  shuffleBtn.addEventListener("click", shuffleCards);
+  flipAllBtn.addEventListener("click", flipAllCards);
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Space") {
+      event.preventDefault();
+      flipAllCards();
+    } else if (event.code === "KeyS") {
+      event.preventDefault();
+      shuffleCards();
+    }
+  });
 }
-
-// Draw new main card
-function drawNewMainCard() {
-  const card = getRandomCardFromCurrentPeriod();
-  if (card) {
-    displayMainCard(card);
-  } else {
-    // Show error message if no cards available for current time
-    mainQuestion.textContent = "Aucune carte disponible pour cette période de la journée.";
-    mainAnswer.style.display = 'none';
-    mainQuestion.style.display = 'block';
-  }
-}
-
-// Draw joker card
-function drawJokerCard() {
-  const jokerCard = getRandomJokerCard();
-  if (jokerCard) {
-    displayJokerCard(jokerCard);
-  }
-}
-
-// Close joker card
-function closeJokerCard() {
-  jokerCard.style.display = 'none';
-  jokerNavigation.style.display = 'none';
-  currentJokerCard = null;
-  jokerCardFlipped = false;
-}
-
-// Event listeners
-mainFlipBtn.addEventListener("click", flipMainCard);
-jokerFlipBtn.addEventListener("click", flipJokerCard);
-refreshMainBtn.addEventListener("click", drawNewMainCard);
-drawJokerBtn.addEventListener("click", drawJokerCard);
-closeJokerBtn.addEventListener("click", closeJokerCard);
-
-// Keyboard shortcuts
-document.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
-    event.preventDefault();
-    flipMainCard();
-  } else if (event.code === "KeyJ") {
-    event.preventDefault();
-    drawJokerCard();
-  } else if (event.code === "KeyR") {
-    event.preventDefault();
-    drawNewMainCard();
-  } else if (event.code === "Escape") {
-    event.preventDefault();
-    closeJokerCard();
-  }
-});
 
 // Load oracle data
 function loadOracleData() {
   console.log('Loading oracle data...');
 
   // Show loading state
-  mainQuestion.textContent = "Chargement de l'oracle en cours...";
+  swiperWrapper.innerHTML = '<div class="loading-message">Chargement de l\'oracle en cours...</div>';
 
   fetch('decks/deck-brain-pings.json')
     .then((response) => {
@@ -246,16 +206,17 @@ function loadOracleData() {
       oracleData = data.flashcards;
       console.log('Oracle loaded, cards:', oracleData.length);
 
-      // Draw initial card based on current time
-      drawNewMainCard();
+      // Initialize swiper with all cards
+      initializeSwiper();
     })
     .catch((error) => {
       console.error("Error loading oracle:", error);
-      mainQuestion.textContent = `Erreur lors du chargement: ${error.message}. Veuillez réessayer.`;
+      swiperWrapper.innerHTML = `<div class="error-message">Erreur lors du chargement: ${error.message}. Veuillez réessayer.</div>`;
     });
 }
 
 // Initialize oracle on page load
 window.addEventListener('DOMContentLoaded', () => {
+  setupEventListeners();
   loadOracleData();
 });

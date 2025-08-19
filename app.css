@@ -1,6 +1,6 @@
 :root {
     --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --primary-color: #222;
+    --primary-color: #3d1836;
     --background-color: #fff;
     --answer-background-color: #575757;
     --border-radius: 15px;
@@ -15,11 +15,7 @@
     --spacing-large: 1rem;
 
     /* Oracle specific variables */
-    --oracle-card-width: 360px;
-    --oracle-card-min-height: 400px;
     --oracle-spacing: 24px;
-    --oracle-header-height: 120px;
-    --oracle-controls-height: 80px;
 }
 
 body {
@@ -30,7 +26,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: var(--background-color);
+    background: linear-gradient(135deg, #f8f9fa 0%, #dad0df 100%);
     color: var(--primary-color);
 }
 
@@ -132,29 +128,13 @@ button:hover {
 }
 
 .navigation {
-    display: flex;
+    display: none;
     gap: 12px;
     align-items: center;
     justify-content: center;
 }
 
-#flip-btn {
-    margin-top: var(--spacing-medium);
-    padding: var(--spacing-small) var(--spacing-medium);
-    font-size: var(--button-font-size);
-    cursor: pointer;
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    border: 1px solid var(--primary-color);
-    border-radius: calc(var(--border-radius) / 3);
-    transition: background-color var(--transition-duration) ease,
-                color var(--transition-duration) ease;
-}
-
-#flip-btn:hover {
-    background-color: var(--background-color);
-    color: var(--primary-color);
-}
+/* Removed #flip-btn styles - no longer needed */
 
 /* Code highlighting styles */
 .flashcard-content pre {
@@ -239,21 +219,9 @@ button:hover {
     justify-content: center;
     min-height: 100vh;
     padding: var(--oracle-spacing);
-    background-color: var(--background-color);
 }
 
-.oracle-header {
-    text-align: center;
-    margin-bottom: var(--oracle-spacing);
-    color: var(--primary-color);
-}
-
-.oracle-header h1 {
-    font-size: 3rem;
-    margin: 0 0 0.5rem 0;
-    font-weight: 300;
-    letter-spacing: 2px;
-}
+/* Removed oracle-header styles - header no longer used */
 
 
 
@@ -261,54 +229,204 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-medium);
+    width: 100%;
+    height: 100vh;
+    max-width: 100vw;
+    overflow: visible;
+    padding: 20px;
 }
 
-.oracle-card {
-    width: var(--flashcard-width);
-    min-height: var(--flashcard-min-height);
-    background-color: var(--background-color);
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-medium);
+/* Swiper Container Styles */
+.swiper {
+    width: 100%;
+    height: 550px; /* Reduced height since card containers now have padding */
+    padding: 50px 30px; /* Equal padding for proper centering */
+    box-sizing: border-box;
+    overflow: visible;
     display: flex;
-    flex-direction: column;
-    cursor: default;
-    transition: transform var(--transition-duration) ease;
-    position: relative;
+    align-items: center;
+}
+
+.swiper-wrapper {
+    align-items: center;
+}
+
+.swiper-slide {
+    width: auto !important;
+    flex-shrink: 0;
+    padding: 20px;
     box-sizing: border-box;
 }
 
-.oracle-card.main-card {
-    border-left: 5px solid #1E3A8A;
+.oracle-card-container {
+    perspective: 1000px;
+    width: 350px;
+    height: 450px;
+    flex-shrink: 0;
+    padding: 25px; /* Add padding around card for shadows and animations */
+    box-sizing: border-box;
 }
 
-.oracle-card.joker-card {
-    border-left: 5px solid #DC143C;
+.oracle-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.oracle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.oracle-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.oracle-card.flipped:hover {
+    transform: rotateY(180deg) translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Pure CSS flip transition - no complex animations needed */
+
+/* Flip button removed - clicking anywhere on card now flips it */
+
+.loading-message, .error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: var(--content-font-size);
+    text-align: center;
+    padding: var(--spacing-large);
+}
+
+.error-message {
+    color: #dc3545;
+}
+
+/* Category borders are now applied dynamically via JavaScript */
+
+/* Additional card color variations for visual variety */
+.oracle-card[data-category-id="1"] .card-front {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    border: 8px solid #047857 !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(16, 185, 129, 0.25) !important;
+}
+
+.oracle-card[data-category-id="2"] .card-front {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+    border: 8px solid #c2410c !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(249, 115, 22, 0.25) !important;
+}
+
+.oracle-card[data-category-id="3"] .card-front {
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%) !important;
+    border: 8px solid #be185d !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(236, 72, 153, 0.25) !important;
+}
+
+.oracle-card[data-category-id="4"] .card-front {
+    background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%) !important;
+    border: 8px solid #4d7c0f !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(132, 204, 22, 0.25) !important;
+}
+
+.oracle-card[data-category-id="5"] .card-front {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+    border: 8px solid #3730a3 !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(99, 102, 241, 0.25) !important;
+}
+
+.oracle-card[data-category-id="1"] .card-back {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: 8px solid #047857;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.oracle-card[data-category-id="2"] .card-back {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    border: 8px solid #c2410c;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(249, 115, 22, 0.25);
+}
+
+.oracle-card[data-category-id="3"] .card-back {
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+    border: 8px solid #be185d;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(236, 72, 153, 0.25);
+}
+
+.oracle-card[data-category-id="4"] .card-back {
+    background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+    border: 8px solid #4d7c0f;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(132, 204, 22, 0.25);
+}
+
+.oracle-card[data-category-id="5"] .card-back {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: 8px solid #3730a3;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-medium);
+    box-sizing: border-box;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    border: 3px solid #ea580c;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(245, 158, 11, 0.3);
+    color: white;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: 3px solid #047857;
+    transform: rotateY(180deg);
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(16, 185, 129, 0.25);
+    flex-direction: column;
+    gap: var(--spacing-medium);
+    color: white;
 }
 
 .card-content {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    gap: var(--spacing-medium);
+    width: 100%;
 }
 
 .card-question, .card-answer {
     font-size: var(--content-font-size);
-    line-height: 1.6;
     color: inherit;
 }
 
 .card-question {
-    font-weight: 500;
+    font-weight: 600;
+    margin-bottom: var(--spacing-small);
 }
 
 .card-answer {
-    font-style: italic;
-    opacity: 0.9;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: var(--spacing-medium);
 }
 
 /* Remove card-actions since buttons are now outside cards */
@@ -316,17 +434,21 @@ button:hover {
 .oracle-btn {
     padding: var(--spacing-small) var(--spacing-medium);
     background-color: var(--background-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
     color: var(--primary-color);
     font-size: var(--button-font-size);
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color var(--transition-duration) ease;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .oracle-btn:hover {
     background-color: var(--primary-color);
     color: var(--background-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .oracle-btn:disabled {
@@ -334,7 +456,7 @@ button:hover {
     cursor: not-allowed;
 }
 
-/* Remove oracle-controls - using original navigation style */
+/* Navigation controls */
 
 .control-btn {
     padding: var(--spacing-small) var(--spacing-medium);
@@ -361,30 +483,47 @@ button:hover {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .oracle-card {
-        width: min(90vw, var(--flashcard-width));
+    .oracle-card-container {
+        width: min(90vw, 320px);
+        height: 400px;
     }
 
-    .oracle-header h1 {
-        font-size: 2.5rem;
-    }
+    /* Removed oracle-header responsive styles - header no longer used */
 
     .oracle-container {
         padding: var(--spacing-medium);
     }
+
+    .swiper {
+        height: 75vh; /* Slightly less on tablets for navigation space */
+        padding: 60px 20px 40px 20px; /* Extra top padding for tablets */
+    }
+
+    .swiper-slide {
+        padding: 15px;
+    }
 }
 
 @media (max-width: 480px) {
-    .oracle-header h1 {
-        font-size: 2rem;
+    /* Removed oracle-header responsive styles - header no longer used */
+
+    .oracle-card-container {
+        width: min(85vw, 280px);
+        height: 350px;
     }
 
-    .oracle-card {
-        min-height: 350px;
-        padding: var(--spacing-medium);
+    .card-face {
+        padding: var(--spacing-small);
     }
 
-    .card-question, .card-answer {
-        font-size: 18px;
+    .swiper {
+        height: 70vh; /* Good height for mobile while leaving space for navigation */
+        padding: 50px 15px 30px 15px; /* Extra top padding for mobile */
     }
+
+    .swiper-slide {
+        padding: 10px;
+    }
+
+    /* Removed .flip-btn responsive styles - no longer needed */
 }
