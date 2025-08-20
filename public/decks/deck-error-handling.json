@@ -1,0 +1,255 @@
+{
+  "flashcards": [
+    {
+      "question": "Quels sont les trois blocs principaux de gestion d'erreurs en JavaScript ?",
+      "choices": [
+        "`try`, `catch`, `finally`",
+        "`attempt`, `rescue`, `ensure`",
+        "`begin`, `catch`, `end`",
+        "`try`, `error`, `always`"
+      ],
+      "reponse": "`try`, `catch`, et `finally`",
+      "category": "Blocs d'Erreur",
+      "category_id": 9
+    },
+    {
+      "question": "Quelle est la différence entre `TypeError` et `ReferenceError` ?\n\n```javascript\n// Cas 1:\nlet obj = null;\nobj.method(); // ?\n\n// Cas 2:\nconsole.log(variableInexistante); // ?\n```",
+      "choices": [
+        "`TypeError` et `ReferenceError`",
+        "`ReferenceError` et `TypeError`",
+        "Les deux sont des `TypeError`",
+        "Les deux sont des `ReferenceError`"
+      ],
+      "reponse": "`TypeError`: opération sur un type incompatible. `ReferenceError`: variable non déclarée ou hors de portée",
+      "category": "Types d'Erreurs",
+      "category_id": 9
+    },
+    {
+      "question": "Dans quel ordre s'exécutent `try`, `catch` et `finally` ?\n\n```javascript\ntry {\n  console.log('1');\n  throw new Error('test');\n  console.log('2'); // jamais exécuté\n} catch (e) {\n  console.log('3');\n  return 'early';\n} finally {\n  console.log('4');\n}\nconsole.log('5'); // jamais exécuté\n```",
+      "choices": [
+        "1, 3, 5",
+        "1, 3, 4",
+        "1, 2, 3, 4, 5",
+        "1, 3, 4, 5"
+      ],
+      "reponse": "`try` d'abord, `catch` si erreur, `finally` toujours en dernier même si return/throw",
+      "category": "Blocs d'Erreur",
+      "category_id": 9
+    },
+    {
+      "question": "Comment créer une erreur personnalisée en JavaScript ?\n\n```javascript\nclass ??? extends Error {\n  constructor(message) {\n    super(message);\n    this.name = 'ValidationError';\n  }\n}\n```",
+      "choices": [
+        "`class ValidationError extends Exception`",
+        "`class ValidationError extends Error`",
+        "`class ValidationError implements Error`",
+        "`function ValidationError() extends Error`"
+      ],
+      "reponse": "Étendre la classe Error: `class MonErreur extends Error { constructor(message) { super(message); this.name = 'MonErreur'; } }`",
+      "category": "Erreurs Personnalisées",
+      "category_id": 9
+    },
+    {
+      "question": "Que fait l'instruction `throw` ?\n\n```javascript\nfunction validateAge(age) {\n  if (age < 0) {\n    throw new Error('Age cannot be negative');\n  }\n  return age;\n}\n```",
+      "choices": [
+        "Affiche une erreur dans la console",
+        "Lance une exception qui peut être capturée par un bloc `catch`",
+        "Arrête le programme définitivement",
+        "Crée un log d'erreur"
+      ],
+      "reponse": "Lance une exception qui peut être capturée par un bloc `catch`",
+      "category": "Gestion d'Erreurs",
+      "category_id": 9,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Comment gérer les erreurs dans une fonction `async/await` ?\n\n```javascript\nasync function fetchUserData() {\n  ??? {\n    const response = await fetch('/api/user');\n    const data = await response.json();\n    return data;\n  } ??? (error) {\n    console.error('Failed to fetch user:', error);\n    return null;\n  }\n}\n```",
+      "choices": [
+        "`if` et `else`",
+        "`try` et `catch`",
+        "`attempt` et `rescue`",
+        "`.then()` et `.catch()`"
+      ],
+      "reponse": "Utiliser `try-catch` autour du code `await`",
+      "category": "Async Errors",
+      "category_id": 9
+    },
+    {
+      "question": "Que se passe-t-il si une Promise est rejetée et n'a pas de `.catch()` ?",
+      "choices": [
+        "Rien ne se passe",
+        "Le programme continue normalement",
+        "UnhandledPromiseRejection - erreur non gérée qui peut planter l'application",
+        "L'erreur est automatiquement loggée"
+      ],
+      "reponse": "UnhandledPromiseRejection - erreur non gérée qui peut planter l'application",
+      "category": "Promises Errors",
+      "category_id": 9,
+      "correct_choice_index": 2
+    },
+    {
+      "question": "Quelle méthode Promise utiliser pour gérer plusieurs promesses même si certaines échouent ?\n\n```javascript\nconst promises = [\n  fetch('/api/user'),\n  fetch('/api/posts'),\n  fetch('/api/comments')\n];\n\nconst results = await Promise.???(promises);\n// Récupère tous les résultats même si certains échouent\n```",
+      "choices": [
+        "`Promise.all()`",
+        "`Promise.allSettled()`",
+        "`Promise.race()`",
+        "`Promise.any()`"
+      ],
+      "reponse": "`Promise.allSettled()` - retourne toutes les résultats (fulfilled ou rejected)",
+      "category": "Promises Errors",
+      "category_id": 9,
+      "correct_choice_index": 1,
+      "explanation": "retourne toutes les résultats (fulfilled ou rejected)"
+    },
+    {
+      "question": "Qu'est-ce que le pattern \"Fail Fast\" ?\n\n```javascript\nfunction processUser(user) {\n  // Pattern Fail Fast\n  if (!user) throw new Error('User is required');\n  if (!user.email) throw new Error('Email is required');\n  if (!user.age || user.age < 0) throw new Error('Valid age is required');\n  \n  // Logique principale ici\n  return processUserData(user);\n}\n```",
+      "choices": [
+        "Ignorer les erreurs pour aller plus vite",
+        "Échouer rapidement en validant les entrées au début et en lançant des erreurs immédiatement",
+        "Essayer plusieurs fois avant d'échouer",
+        "Cacher les erreurs aux utilisateurs"
+      ],
+      "reponse": "Échouer rapidement en validant les entrées au début et en lançant des erreurs immédiatement",
+      "category": "Patterns",
+      "category_id": 9,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Comment propager une erreur dans une chaîne de Promises ?\n\n```javascript\nfetch('/api/data')\n  .then(response => response.json())\n  .then(data => processData(data))\n  .catch(error => {\n    logError(error);\n    // Comment propager l'erreur ?\n    ??? error;\n  });\n```",
+      "choices": [
+        "`return`",
+        "`throw`",
+        "`console.error`",
+        "`break`"
+      ],
+      "reponse": "Ne pas avoir de `.catch()` ou re-lancer l'erreur avec `throw error` dans le catch",
+      "category": "Promises Errors",
+      "category_id": 9
+    },
+    {
+      "question": "Comment vérifier le type d'une erreur capturée ?\n\n```javascript\ntry {\n  someRiskyOperation();\n} catch (error) {\n  if (???) {\n    console.log('This is a validation error');\n  }\n}\n```",
+      "choices": [
+        "`error.type === 'ValidationError'`",
+        "`error instanceof ValidationError`",
+        "`typeof error === 'ValidationError'`",
+        "`error.constructor === 'ValidationError'`"
+      ],
+      "reponse": "`error instanceof MonTypeErreur` ou vérifier `error.name` ou `error.constructor.name`",
+      "category": "Types d'Erreurs",
+      "category_id": 9
+    },
+    {
+      "question": "Que signifie \"graceful degradation\" en gestion d'erreurs ?",
+      "choices": [
+        "Ignorer toutes les erreurs",
+        "Continuer de fonctionner avec des fonctionnalités réduites plutôt que de planter complètement",
+        "Arrêter immédiatement en cas d'erreur",
+        "Redémarrer l'application automatiquement"
+      ],
+      "reponse": "Continuer de fonctionner avec des fonctionnalités réduites plutôt que de planter complètement",
+      "category": "Patterns",
+      "category_id": 9,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Comment implémenter un retry avec backoff exponentiel ?\n\n```javascript\nasync function retryWithBackoff(fn, maxRetries = 3) {\n  for (let i = 0; i < maxRetries; i++) {\n    try {\n      return await fn();\n    } catch (error) {\n      if (i === maxRetries - 1) throw error;\n      await sleep(??? ** i * 1000); // Backoff exponentiel\n    }\n  }\n}\n```",
+      "choices": [
+        "`i`",
+        "`2`",
+        "`10`",
+        "`maxRetries`"
+      ],
+      "reponse": "Doubler le délai d'attente à chaque tentative: 1s, 2s, 4s, 8s, etc.",
+      "category": "Retry Logic",
+      "category_id": 9
+    },
+    {
+      "question": "Comment gérer les erreurs dans `Promise.all()` ?\n\n```javascript\nconst promises = [promise1, promise2, promise3];\n\ntry {\n  const results = await Promise.all(promises);\n  console.log('All succeeded:', results);\n} catch (error) {\n  console.log('At least one failed:', error);\n}\n```",
+      "choices": [
+        "Chaque Promise gère ses propres erreurs",
+        "Si une Promise échoue, toutes échouent",
+        "Les erreurs sont ignorées automatiquement",
+        "Seule la dernière erreur est capturée"
+      ],
+      "reponse": "Si une Promise échoue, toutes échouent. Utiliser try-catch ou .catch() sur Promise.all()",
+      "category": "Promises Errors",
+      "category_id": 9,
+      "correct_choice_index": 1,
+      "explanation": ". Utiliser try-catch ou .catch() sur Promise.all()"
+    },
+    {
+      "question": "Comment éviter les try-catch imbriqués (pyramid of doom) ?\n\n```javascript\n// Éviter ceci :\ntry {\n  const user = await getUser();\n  try {\n    const posts = await getPosts(user.id);\n    try {\n      const comments = await getComments(posts[0].id);\n      return comments;\n    } catch (e3) { /* ... */ }\n  } catch (e2) { /* ... */ }\n} catch (e1) { /* ... */ }\n```",
+      "choices": [
+        "Utiliser plus de try-catch",
+        "Early return, async/await, Promise chaining, ou patterns comme Result/Maybe",
+        "Ignorer les erreurs",
+        "Utiliser seulement des callbacks"
+      ],
+      "reponse": "Early return, async/await, Promise chaining, ou patterns comme Result/Maybe",
+      "category": "Bonnes Pratiques",
+      "category_id": 9,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Quelle est la différence entre `console.error()` et `throw new Error()` ?",
+      "choices": [
+        "Aucune différence",
+        "`console.error()` affiche seulement, `throw new Error()` lance une exception qui doit être gérée",
+        "`throw new Error()` affiche seulement",
+        "Les deux lancent des exceptions"
+      ],
+      "reponse": "`console.error()` affiche seulement, `throw new Error()` lance une exception qui doit être gérée",
+      "category": "Gestion d'Erreurs",
+      "category_id": 9,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Qu'est-ce qu'une erreur \"retryable\" vs \"non-retryable\" ?\n\n```javascript\nfunction shouldRetry(error) {\n  // Retryable errors\n  if (error.code === 'TIMEOUT') return true;\n  if (error.status === 500) return true;\n  \n  // Non-retryable errors  \n  if (error.status === 404) return false;\n  if (error.status === 400) return false;\n  \n  return false;\n}\n```",
+      "choices": [
+        "Toutes les erreurs sont retryable",
+        "Retryable: temporaire (timeout, 500). Non-retryable: permanente (404, validation)",
+        "Aucune erreur n'est retryable",
+        "Seulement les erreurs réseau sont retryable"
+      ],
+      "reponse": "Retryable: temporaire (timeout, 500). Non-retryable: permanente (404, validation)",
+      "category": "Retry Logic",
+      "category_id": 9,
+      "correct_choice_index": 1
+    },
+    {
+      "question": "Comment gérer les erreurs dans les Event Listeners ?\n\n```javascript\nbutton.addEventListener('click', (event) => {\n  ??? {\n    processButtonClick(event);\n  } ??? (error) {\n    console.error('Button click failed:', error);\n    showUserFriendlyMessage();\n  }\n});\n```",
+      "choices": [
+        "`if` et `else`",
+        "`try` et `catch`",
+        "Les erreurs sont gérées automatiquement",
+        "Utiliser `.catch()` sur l'événement"
+      ],
+      "reponse": "Wrapper chaque handler dans try-catch ou utiliser window.addEventListener('error')",
+      "category": "Event Errors",
+      "category_id": 9
+    },
+    {
+      "question": "Comment implémenter un timeout sur une Promise ?\n\n```javascript\nfunction withTimeout(promise, ms) {\n  const timeoutPromise = new Promise((_, reject) => {\n    setTimeout(() => reject(new Error('Timeout')), ms);\n  });\n  \n  return Promise.???([ promise, timeoutPromise ]);\n}\n```",
+      "choices": [
+        "`all`",
+        "`race`",
+        "`allSettled`",
+        "`any`"
+      ],
+      "reponse": "`Promise.race([promise, new Promise((_, reject) => setTimeout(reject, timeout))])`",
+      "category": "Timeout",
+      "category_id": 9
+    },
+    {
+      "question": "Quelle est la différence entre 4xx et 5xx en codes d'erreur HTTP ?\n\n```javascript\nif (response.status >= 400 && response.status < 500) {\n  // Erreur ???\n} else if (response.status >= 500) {\n  // Erreur ???\n}\n```",
+      "choices": [
+        "Client et Serveur",
+        "Serveur et Client",
+        "Temporaire et Permanente",
+        "Authentification et Autorisation"
+      ],
+      "reponse": "4xx: erreur client (requête invalide). 5xx: erreur serveur (problème interne)",
+      "category": "HTTP Errors",
+      "category_id": 9
+    }
+  ]
+}
