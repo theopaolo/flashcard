@@ -1,9 +1,9 @@
 // import Swiper JS
-import Swiper from 'swiper';
-import { FreeMode, Mousewheel, Keyboard } from 'swiper/modules';
+import Swiper from "swiper";
+import { FreeMode, Keyboard, Mousewheel } from "swiper/modules";
 // import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
+import "swiper/css";
+import "swiper/css/free-mode";
 
 // Oracle data and state
 let oracleData = [];
@@ -15,23 +15,35 @@ let swiperWrapper, shuffleBtn, flipAllBtn;
 
 // Category configuration with colors and gradients
 const CATEGORIES = {
-  1: { color: "linear-gradient(135deg, #FFE4B5 0%, #F5DEB3 100%)", textColor: "#8B4513" }, // Matin
-  2: { color: "linear-gradient(135deg, #E6F3FF 0%, #DBEAFE 100%)", textColor: "#1E3A8A" }, // Journée
-  3: { color: "linear-gradient(135deg, #E6E6FA 0%, #DDD6FE 100%)", textColor: "#4B0082" }, // Soirée
-  5: { color: "linear-gradient(135deg, #FFE4E1 0%, #FECACA 100%)", textColor: "#DC143C" }  // Joker
+  1: {
+    color: "linear-gradient(135deg, #FFE4B5 0%, #F5DEB3 100%)",
+    textColor: "#8B4513",
+  }, // Matin
+  2: {
+    color: "linear-gradient(135deg, #E6F3FF 0%, #DBEAFE 100%)",
+    textColor: "#1E3A8A",
+  }, // Journée
+  3: {
+    color: "linear-gradient(135deg, #E6E6FA 0%, #DDD6FE 100%)",
+    textColor: "#4B0082",
+  }, // Soirée
+  5: {
+    color: "linear-gradient(135deg, #FFE4E1 0%, #FECACA 100%)",
+    textColor: "#DC143C",
+  }, // Joker
 };
 
 // Create card element for swiper
 function createCardElement(card, index) {
-  const slide = document.createElement('div');
-  slide.className = 'swiper-slide';
+  const slide = document.createElement("div");
+  slide.className = "swiper-slide";
   slide.dataset.cardIndex = index;
 
-  const cardContainer = document.createElement('div');
-  cardContainer.className = 'oracle-card-container';
+  const cardContainer = document.createElement("div");
+  cardContainer.className = "oracle-card-container";
 
-  const cardElement = document.createElement('div');
-  cardElement.className = 'oracle-card';
+  const cardElement = document.createElement("div");
+  cardElement.className = "oracle-card";
   cardElement.dataset.categoryId = card.category_id;
 
   cardElement.innerHTML = `
@@ -47,24 +59,24 @@ function createCardElement(card, index) {
   `;
 
   // Apply category styling only to front face
-  const cardFront = cardElement.querySelector('.card-front');
+  const cardFront = cardElement.querySelector(".card-front");
   applyCategoryStyle(cardFront, card.category_id);
 
-      // Simple CSS-only flip on click
+  // Simple CSS-only flip on click
   const flipCard = () => {
     const isFlipped = cardsFlipped.has(index);
 
     if (isFlipped) {
-      cardElement.classList.remove('flipped');
+      cardElement.classList.remove("flipped");
       cardsFlipped.delete(index);
     } else {
-      cardElement.classList.add('flipped');
+      cardElement.classList.add("flipped");
       cardsFlipped.add(index);
     }
   };
 
   // Single event listener on the entire card
-  cardElement.addEventListener('click', flipCard);
+  cardElement.addEventListener("click", flipCard);
 
   cardContainer.appendChild(cardElement);
   slide.appendChild(cardContainer);
@@ -74,7 +86,7 @@ function createCardElement(card, index) {
 // Initialize swiper with all cards
 function initializeSwiper() {
   // Clear existing slides
-  swiperWrapper.innerHTML = '';
+  swiperWrapper.innerHTML = "";
   cardsFlipped.clear();
 
   // Create slides for all cards
@@ -88,9 +100,9 @@ function initializeSwiper() {
     swiper.destroy(true, true);
   }
 
-  swiper = new Swiper('#cards-swiper', {
+  swiper = new Swiper("#cards-swiper", {
     modules: [FreeMode, Mousewheel, Keyboard],
-    direction: 'horizontal',
+    direction: "horizontal",
     freeMode: {
       enabled: true,
       momentum: true,
@@ -105,7 +117,7 @@ function initializeSwiper() {
       enabled: true,
       onlyInViewport: true,
     },
-    slidesPerView: 'auto',
+    slidesPerView: "auto",
     spaceBetween: 0, // Space handled by slide padding
     grabCursor: true,
     centerInsufficientSlides: true,
@@ -115,8 +127,8 @@ function initializeSwiper() {
 
 // Format text with simple line breaks (no HTML escaping needed for oracle cards)
 function formatText(text) {
-  if (!text) return '';
-  return text.replace(/\n/g, '<br>');
+  if (!text) return "";
+  return text.replace(/\n/g, "<br>");
 }
 
 // Apply category styling to card
@@ -141,17 +153,17 @@ function shuffleCards() {
 
 // Flip all cards
 function flipAllCards() {
-  const allCards = document.querySelectorAll('.oracle-card');
+  const allCards = document.querySelectorAll(".oracle-card");
   const shouldFlip = cardsFlipped.size < oracleData.length / 2; // Flip if less than half are flipped
 
   allCards.forEach((card, index) => {
     // Add staggered delay for visual effect
     setTimeout(() => {
       if (shouldFlip) {
-        card.classList.add('flipped');
+        card.classList.add("flipped");
         cardsFlipped.add(index);
       } else {
-        card.classList.remove('flipped');
+        card.classList.remove("flipped");
         cardsFlipped.delete(index);
       }
     }, index * 50); // Stagger by 50ms
@@ -185,12 +197,13 @@ function setupEventListeners() {
 
 // Load oracle data
 function loadOracleData() {
-  console.log('Loading oracle data...');
+  console.log("Loading oracle data...");
 
   // Show loading state
-  swiperWrapper.innerHTML = '<div class="loading-message">Chargement de l\'oracle en cours...</div>';
+  swiperWrapper.innerHTML =
+    '<div class="loading-message">Chargement de l\'oracle en cours...</div>';
 
-  fetch('decks/deck-brain-pings.json')
+  fetch("decks/deck-brain-pings.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -199,12 +212,16 @@ function loadOracleData() {
     })
     .then((data) => {
       // Validate data structure
-      if (!data.flashcards || !Array.isArray(data.flashcards) || data.flashcards.length === 0) {
-        throw new Error('Invalid oracle format or empty oracle');
+      if (
+        !data.flashcards ||
+        !Array.isArray(data.flashcards) ||
+        data.flashcards.length === 0
+      ) {
+        throw new Error("Invalid oracle format or empty oracle");
       }
 
       oracleData = data.flashcards;
-      console.log('Oracle loaded, cards:', oracleData.length);
+      console.log("Oracle loaded, cards:", oracleData.length);
 
       // Initialize swiper with all cards
       initializeSwiper();
@@ -216,7 +233,7 @@ function loadOracleData() {
 }
 
 // Initialize oracle on page load
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   setupEventListeners();
   loadOracleData();
 });
