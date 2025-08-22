@@ -128,7 +128,7 @@ button:hover {
 }
 
 .navigation {
-    display: none;
+    display: flex;
     gap: 12px;
     align-items: center;
     justify-content: center;
@@ -231,7 +231,6 @@ button:hover {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-medium);
-    width: 100%;
     height: 100vh;
     max-width: 100vw;
     overflow: visible;

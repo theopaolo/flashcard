@@ -14,7 +14,6 @@
 <body>
 
     <div class="container">
-
         <div class="flashcard" id="flashcard">
             <div class="flashcard-content" id="flashcard-content"></div>
             <div class="flashcard-choices" id="flashcard-choices"></div>
@@ -22,9 +21,9 @@
         </div>
         <div id="card-number" class="card-number"></div>
         <div class="navigation">
-            <button id="prev-btn" disabled>⟵ Précédent</button>
-            <button id="flip-btn" disabled>🔄 Retourner</button>
-            <button id="next-btn" disabled>Suivant ⟶</button>
+            <button id="prev-btn" disabled>Précédent</button>
+            <button id="flip-btn" disabled>Retourner</button>
+            <button id="next-btn" disabled>Suivant</button>
         </div>
     </div>
 
@@ -32,39 +31,38 @@
         <div class="deck-selector">
             <label for="deck-select">Choisir un deck :</label>
             <select id="deck-select">
-                <optgroup label="🚀 JavaScript - Fondamentaux">
+                <optgroup label="JavaScript - Fondamentaux">
                     <option value="deck-variables-javascript.json">Variables & Déclarations</option>
                     <option value="deck-functions-javascript.json">Fonctions & Closures</option>
                     <option value="deck-conditions-javascript.json">Conditions & Logique</option>
                     <option value="deck-loops-javascript.json">Boucles & Itération</option>
                 </optgroup>
-                <optgroup label="🔧 JavaScript - Structures & I/O">
+                <optgroup label="JavaScript - Structures & I/O">
                     <option value="deck-data-structures.json">Structures de Données</option>
                     <option value="deck-io-operations.json">Entrées/Sorties & APIs</option>
                     <option value="deck-error-handling.json">Gestion d'Erreurs</option>
                 </optgroup>
-                <optgroup label="⚡ JavaScript - Avancé">
+                <optgroup label="JavaScript - Avancé">
                     <option value="deck-async-javascript.json">Programmation Asynchrone</option>
                     <option value="deck-modules-imports.json">Modules & Imports</option>
                     <option value="deck-oop-javascript.json">Programmation Orientée Objet</option>
                     <option value="deck-recursion-javascript.json">Récursion</option>
                 </optgroup>
-                <optgroup label="📚 Autres">
+                <optgroup label="Autres">
                     <option value="deck-revision-uiux.json">Révision UI/UX</option>
-                    <option value="deck-brain-pings.json">Brain Pings</option>
                 </optgroup>
             </select>
         </div>
-        <button id="random-toggle" disabled>Mode Aléatoire: Désactivé</button>
-        <button id="take-quiz-btn" disabled>Quiz sur ce deck</button>
+        <div class="quiz-buttons">
+            <button id="random-toggle" disabled>Mode Aléatoire: Désactivé</button>
+            <button id="take-quiz-btn" disabled>Quiz sur ce deck</button>
+        </div>
     </footer>
 
     <script src="app.js" type="module"></script>
     <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    <a href="servoracle.html">so</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 
 </html>
