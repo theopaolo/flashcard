@@ -28,12 +28,105 @@ body {
     margin: 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #dad0df 100%);
     color: var(--primary-color);
+    overflow-y: hidden;
 }
 
 footer {
-    position: absolute;
-    bottom: var(--spacing-large);
-    right: var(--spacing-large);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 8px;
+    z-index: 1000;
+}
+
+/* Color Legend Styles */
+.color-legend {
+    display: flex;
+    gap: 8px;
+    max-width: 1200px;
+    overflow-y: auto;
+    margin-top: .5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+.legend-filter {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 4px 6px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+}
+
+.legend-filter:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.legend-filter.active {
+    background-color: var(--primary-color);
+    color: white;
+    opacity: 1;
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(61, 24, 54, 0.3);
+}
+
+.legend-filter.active .legend-text {
+    color: white;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(61, 24, 54, 0.3);
+    flex-shrink: 0;
+}
+
+.legend-text {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.legend-all {
+    background: conic-gradient(from 0deg, #10b981, #f97316, #ec4899, #84cc16, #6366f1, #dc2626, #0891b2, #d97706, #0d9488, #a855f7, #1e40af, #10b981) !important;
+}
+
+.legend-favorites {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+    border-color: #f59e0b !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Filtered cards styles */
+.oracle-card.filtered-out {
+    opacity: 0.3;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.oracle-card.filtered-in {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
 }
 
 .flashcard {
@@ -128,10 +221,9 @@ button:hover {
 }
 
 .navigation {
-    display: none;
-    gap: 12px;
+    display: flex;
+    gap: 8px;
     align-items: center;
-    justify-content: center;
 }
 
 /* Removed #flip-btn styles - no longer needed */
@@ -235,22 +327,23 @@ button:hover {
     height: 100vh;
     max-width: 100vw;
     overflow: visible;
-    padding: 20px;
 }
 
 /* Swiper Container Styles */
 .swiper {
     width: 100%;
-    height: 550px; /* Reduced height since card containers now have padding */
-    padding: 50px 30px; /* Equal padding for proper centering */
+    height: calc(100vh - 120px); /* Take into account footer height */
+    padding: 30px; /* Equal padding for proper centering */
     box-sizing: border-box;
     overflow: visible;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .swiper-wrapper {
     align-items: center;
+    justify-content: center;
 }
 
 .swiper-slide {
@@ -376,6 +469,84 @@ button:hover {
     box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(99, 102, 241, 0.25);
 }
 
+/* Category 6: Comportements TDAH - Rouge sombre pour l'alerte */
+.oracle-card[data-category-id="6"] .card-front {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    border: 8px solid #991b1b !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(220, 38, 38, 0.25) !important;
+}
+
+.oracle-card[data-category-id="6"] .card-back {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border: 8px solid #991b1b;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+/* Category 7: Conseils TDAH - Bleu cyan pour la sagesse */
+.oracle-card[data-category-id="7"] .card-front {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%) !important;
+    border: 8px solid #0c4a6e !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(8, 145, 178, 0.25) !important;
+}
+
+.oracle-card[data-category-id="7"] .card-back {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    border: 8px solid #0c4a6e;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(8, 145, 178, 0.25);
+}
+
+/* Category 8: Mantras et Rappels - Or doux pour la bienveillance */
+.oracle-card[data-category-id="8"] .card-front {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+    border: 8px solid #92400e !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(217, 119, 6, 0.25) !important;
+}
+
+.oracle-card[data-category-id="8"] .card-back {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    border: 8px solid #92400e;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(217, 119, 6, 0.25);
+}
+
+/* Category 9: Soins TDAH - Turquoise apaisant pour le self-care */
+.oracle-card[data-category-id="9"] .card-front {
+    background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%) !important;
+    border: 8px solid #134e4a !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(13, 148, 136, 0.25) !important;
+}
+
+.oracle-card[data-category-id="9"] .card-back {
+    background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+    border: 8px solid #134e4a;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(13, 148, 136, 0.25);
+}
+
+/* Category 10: Relations sociales TDAH - Violet rosé pour l'humain */
+.oracle-card[data-category-id="10"] .card-front {
+    background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%) !important;
+    border: 8px solid #7c3aed !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(168, 85, 247, 0.25) !important;
+}
+
+.oracle-card[data-category-id="10"] .card-back {
+    background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+    border: 8px solid #7c3aed;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(168, 85, 247, 0.25);
+}
+
+/* Category 11: Gestion anxiété/stress TDAH - Bleu nuit profond pour la sérénité */
+.oracle-card[data-category-id="11"] .card-front {
+    background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
+    border: 8px solid #1e3a8a !important;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(30, 64, 175, 0.25) !important;
+}
+
+.oracle-card[data-category-id="11"] .card-back {
+    background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+    border: 8px solid #1e3a8a;
+    box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(30, 64, 175, 0.25);
+}
+
 
 .card-face {
     position: absolute;
@@ -432,28 +603,61 @@ button:hover {
 /* Remove card-actions since buttons are now outside cards */
 
 .oracle-btn {
-    padding: var(--spacing-small) var(--spacing-medium);
+    padding: 4px 8px;
+    margin: 0;
     background-color: var(--background-color);
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 12px;
     color: var(--primary-color);
-    font-size: var(--button-font-size);
-    font-weight: 500;
+    font-size: 11px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    opacity: 0.8;
 }
 
 .oracle-btn:hover {
     background-color: var(--primary-color);
     color: var(--background-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    opacity: 1;
 }
 
 .oracle-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+/* Focus toggle button - discrete design */
+.focus-toggle-btn {
+    padding: 4px;
+    background-color: rgba(61, 24, 54, 0.1);
+    border: 1px solid rgba(61, 24, 54, 0.3);
+    border-radius: 12px;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    opacity: 0.8;
+}
+
+.focus-toggle-btn:hover {
+    opacity: 1;
+    background-color: rgba(61, 24, 54, 0.15);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.focus-toggle-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(61, 24, 54, 0.3);
 }
 
 /* Navigation controls */
@@ -492,15 +696,34 @@ button:hover {
 
     .oracle-container {
         padding: var(--spacing-medium);
+        padding-bottom: 60px; /* Space for legend */
     }
 
     .swiper {
-        height: 75vh; /* Slightly less on tablets for navigation space */
-        padding: 60px 20px 40px 20px; /* Extra top padding for tablets */
+        height: calc(100vh - 140px); /* Account for footer on tablets */
+        padding: 30px 20px; /* Balanced padding for centering */
     }
 
     .swiper-slide {
         padding: 15px;
+    }
+
+    .navigation {
+        gap: 6px;
+    }
+
+    .color-legend {
+        gap: 8px;
+        padding: 0 8px;
+    }
+
+    .legend-item {
+        font-size: 10px;
+    }
+
+    .legend-dot {
+        width: 10px;
+        height: 10px;
     }
 }
 
@@ -517,13 +740,286 @@ button:hover {
     }
 
     .swiper {
-        height: 70vh; /* Good height for mobile while leaving space for navigation */
-        padding: 50px 15px 30px 15px; /* Extra top padding for mobile */
+        height: calc(100vh - 160px); /* Account for footer on mobile */
+        padding: 20px 15px; /* Balanced padding for centering */
     }
 
     .swiper-slide {
         padding: 10px;
     }
 
+    .oracle-container {
+        padding-bottom: 70px; /* Extra space for wrapped legend on mobile */
+    }
+
+    .navigation {
+        gap: 4px;
+    }
+
+    .oracle-btn {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .color-legend {
+        gap: 6px;
+        padding: 0 4px;
+    }
+
+    .legend-item {
+        font-size: 9px;
+        gap: 3px;
+    }
+
+    .legend-dot {
+        width: 8px;
+        height: 8px;
+    }
+
     /* Removed .flip-btn responsive styles - no longer needed */
+}
+
+/* ============================================================================
+   FOCUS MODE STYLES
+   ============================================================================ */
+
+body.focus-mode {
+    background: #2d2d2d;
+}
+
+body.focus-mode .oracle-container {
+    background: #2d2d2d;
+}
+
+body.focus-mode footer {
+    display: none;
+}
+
+body.focus-mode .navigation {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+body.focus-mode .oracle-btn {
+    display: none;
+}
+
+body.focus-mode .focus-toggle-btn {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+body.focus-mode .focus-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+body.focus-mode .swiper {
+    padding: 40px 20px;
+}
+
+body.focus-mode .oracle-card {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+body.focus-mode .card-face {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+body.focus-mode .card-question {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+body.focus-mode .card-answer {
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+/* Enhanced contrast and readability in focus mode */
+body.focus-mode .card-back {
+    color: white !important;
+}
+
+body.focus-mode .card-front {
+    border-width: 4px !important;
+}
+
+/* ============================================================================
+   FAVORITES SYSTEM
+   ============================================================================ */
+
+.favorite-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    margin: 0;
+    padding: 0;
+    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    opacity: 0.8;
+    backdrop-filter: blur(4px);
+}
+
+.favorite-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.favorite-btn.favorited {
+    background: #fbbf24;
+    border-color: #f59e0b;
+    color: white;
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.favorite-btn.favorited:hover {
+    background: #f59e0b;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.favorite-btn.favorited .favorite-icon {
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.favorite-icon {
+    width: 12px;
+    height: 12px;
+    transition: all 0.2s ease;
+}
+
+/* Focus mode adjustments */
+body.focus-mode .favorite-btn {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.focus-mode .favorite-btn:hover {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+/* ============================================================================
+   SOS MODE BUTTON
+   ============================================================================ */
+
+.sos-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.sos-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border: 1px solid #991b1b;
+    border-radius: 12px;
+    color: white;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 4px rgba(220, 38, 38, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+.sos-btn:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+    opacity: 1;
+}
+
+.sos-btn:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.sos-icon {
+    animation: pulse-warning 2s infinite;
+}
+
+.sos-text {
+    font-family: var(--font-family);
+}
+
+@keyframes pulse-warning {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* Focus mode adjustments for SOS */
+body.focus-mode .sos-btn {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border-color: #dc2626;
+}
+
+body.focus-mode .sos-btn:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+/* SOS Active State */
+body.sos-active {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+}
+
+body.sos-active .sos-btn {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    border-color: #166534;
+    animation: none;
+}
+
+body.sos-active .sos-btn:hover {
+    background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+}
+
+body.sos-active .sos-btn .sos-text::after {
+    content: " - Cliquer pour sortir";
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+body.sos-active .sos-icon {
+    animation: none;
+}
+
+/* Hide other controls in SOS mode */
+body.sos-active .navigation {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+body.sos-active footer {
+    opacity: 0.3;
 }

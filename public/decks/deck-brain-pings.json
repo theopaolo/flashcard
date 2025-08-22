@@ -3,318 +3,696 @@
       {
         "question": "Griffon magique",
         "reponse": "Dessine une forme bizarre en 30s. Donne-lui un nom ridicule. Note une qualité que tu veux incarner aujourd’hui.",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Totem du jour",
         "reponse": "Choisis un objet autour de toi comme symbole-guide. Écris en une phrase pourquoi il te guide aujourd’hui.",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Micro-intention",
         "reponse": "Ferme les yeux 10 respirations. Intention: “Aujourd’hui, j’observe ___.” Écris le blanc en un mot.",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Mini palais de mémoire",
         "reponse": "Transforme 3 tâches du jour en images absurdes (ex: ‘URSSAF’ → un ours sur une surf-facture).",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "3 lignes d’échauffement",
         "reponse": "Écris 3 lignes: 1 fait, 1 sensation corporelle, 1 souhait du jour.",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Cartographie-éclair",
         "reponse": "Dessine un mini-graphe de tes pensées au réveil (3 bulles, 3 flèches).",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Posture-puissance 60s",
         "reponse": "Tiens-toi droit, épaules ouvertes, respiration basse 60s. Dis une phrase d’élan à voix haute.",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Démarrage sensoriel",
         "reponse": "Goûte, sens ou touche 1 chose en pleine attention pendant 30s. Décris 3 adjectifs.",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Minute de mouvement",
         "reponse": "Fais 1 minute de mouvements (étirements, squats, danse lente). Évalue ton énergie sur 10.",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
         "question": "Rituel de l’objet",
         "reponse": "Place un objet à un endroit insolite pour te rappeler une action-clé (indice visuel).",
-        "category": "Matin",
+        "category": "Démarrage/Activation",
         "category_id": 1
       },
 
       {
         "question": "Dérive cartographiée",
         "reponse": "Quand tu décroches, note le chemin A→B→C. 1 minute max. Tu apprends ton pattern.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Reset corporel 20s",
         "reponse": "Danse idiote/sauts/torsions 20s. Reviens à la tâche avec 1 micro-objectif de 5 minutes.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Micro-apprentissage",
         "reponse": "Découvre un mot ou fait inutile et délicieux. Écris-le et glisse-le dans une phrase.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Pomodoro joueur",
         "reponse": "5 minutes focus total, 1 minute pause sensorielle. Répète 2 fois.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "3 respires, 3 mots",
         "reponse": "Inspire/Expire x3, puis note 3 mots qui décrivent ton état présent.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Fait minimum viable",
         "reponse": "Choisis la version 1% d’une tâche (micro-version). Fais-la maintenant en 2–5 min.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Brise-autoroute",
         "reponse": "Change un paramètre: autre stylo, autre chaise, fenêtre ouverte/fermée, musique/silence 3 min.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Question oraculaire",
         "reponse": "Écris une question ouverte sur ta tâche. Réponds en 2 phrases max, sans censure.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Checkpoint compassion",
         "reponse": "Demande-toi: “Si c’était un ami, que lui conseillerais-je maintenant ?” Écris la réponse.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Brique LEGO",
         "reponse": "Fractionne ta tâche en 3 briques. Fais la brique 1 sans réfléchir.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Minute nature",
         "reponse": "Regarde dehors/une plante/une photo de nature 60s. Décris une texture que tu vois.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Timer curiosité",
         "reponse": "Accorde-toi 3 minutes pour explorer un lien/idée, puis reviens avec 1 note utile.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Re-cadrage ‘jeu’",
         "reponse": "Transforme la tâche en jeu: score, temps, combo, ‘pas toucher le sol’. Lance le chrono 5 min.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Changement de canal",
         "reponse": "Parle à voix haute ce que tu fais pendant 60s (pensée en mode ‘narrateur’).",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Post-it d’atterrissage",
         "reponse": "Note la prochaine action physique (verbe d’action). Colle-la en vue. Fais-la si <2 min.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Pause eau & respiration",
         "reponse": "Bois un verre d’eau. 4 respirations 4-4-4 (inspirer 4s, bloquer 4s, expirer 4s).",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Switch contexte 10 min",
         "reponse": "Si bloqué: bascule 10 min sur une micro-tâche logistique (tri, mail 2 lignes), puis reviens.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
       {
         "question": "Affirmation réaliste",
         "reponse": "Écris: “Je peux faire la prochaine petite chose, maintenant.” Puis fais-la.",
-        "category": "Journée",
+        "category": "Focus/Redirection",
         "category_id": 2
       },
 
       {
         "question": "Phrase souvenir",
         "reponse": "Écris 1 phrase qui résume ta journée comme un haïku (5–7–5 ou libre).",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Gratitude granuleuse",
         "reponse": "Note 3 détails concrets (odeur, texture, son) de choses pour lesquelles tu es reconnaissant·e.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Programmation onirique",
         "reponse": "Écris une image/intention de rêve (ex: ‘une jungle bleue’, ‘solution pour ___’).",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Déconnexion sensorielle",
         "reponse": "2 minutes yeux fermés, silence ou musique douce. Observe 3 sensations corporelles.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Vidage de cache",
         "reponse": "Liste tout ce qui ‘tourne en fond’. Flèche → remets chaque item à demain avec 1ère action.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Étirement lunaire",
         "reponse": "Étire nuque, épaules, dos 2 minutes. Bâille volontairement 3 fois.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Récit en 3 images",
         "reponse": "Dessine 3 vignettes de ta journée (stick figures ok). Titre-les.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Micro-lecture poétique",
         "reponse": "Lis 6 lignes d’un texte lent (poème, essai). Note 1 mot à emporter au lit.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Respiration 4-7-8",
         "reponse": "Inspire 4s, retiens 7s, expire 8s x4 cycles.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Check empathie",
         "reponse": "Écris une phrase de gentillesse envers toi de la journée. Vraiment douce.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Ranger 2 minutes",
         "reponse": "Range 2 minutes un micro-espace (bureau, table). Prépare un ‘tapis de décollage’ pour demain.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
       {
         "question": "Éteindre proprement",
         "reponse": "Éteins 1 écran + 1 lumière forte 20 min avant dodo. Respire en pensant ‘demain, léger’.",
-        "category": "Soirée",
+        "category": "Apaisement/Transition",
         "category_id": 3
       },
 
       {
         "question": "Hebdo — Art sans but (30 min)",
         "reponse": "Collage, gribouillage, son chelou ou texture. Sans objectif. Montre-le à personne (ou si !).",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
       {
         "question": "Hebdo — Constellation d’idées",
         "reponse": "Relie tes notes de la semaine en carte mentale. Cercles, flèches, couleurs. 30 min.",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
       {
         "question": "Hebdo — Marche-oracle",
         "reponse": "Marche 20 min sans musique. Question en tête. Note 3 signes rencontrés.",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
       {
         "question": "Hebdo — Revue système",
         "reponse": "Liste ce qui a bien fonctionné/moins bien. Ajoute/supprime 1 script de ta routine.",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
       {
         "question": "Hebdo — Bibliothèque vivante",
         "reponse": "Choisis une courte lecture ‘hors-autoroute’ (poésie, essai, science). Résume en 3 puces.",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
       {
         "question": "Hebdo — Conversation profonde",
         "reponse": "Échange 20–40 min avec quelqu’un sur un sujet non-logistique. 1 question puissante, écouter.",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
       {
         "question": "Hebdo — Bilan énergie",
         "reponse": "Trace une jauge Mon/Dim (0–10). Qu’est-ce qui a +1 ? Qu’est-ce qui a −1 ? Décide 1 ajustement.",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
       {
         "question": "Hebdo — Rituel chef d’orchestre",
         "reponse": "Planifie 3 rocs de la semaine (blocs non négociables). Choisis 1 joker plaisir.",
-        "category": "Hebdo",
+        "category": "Régulation/Bilan",
         "category_id": 4
       },
 
       {
         "question": "Inverser la donne",
         "reponse": "Fais une habitude ‘à l’envers’ aujourd’hui (écrire debout, douche froide le soir, marcher à reculons 20s). Observe l’effet.",
-        "category": "Joker",
+        "category": "Créativité/Rupture",
         "category_id": 5
       },
       {
         "question": "Décalage d’objet",
         "reponse": "Prends un objet banal. Imagine 3 usages impossibles. Écris une mini-histoire de 4 lignes.",
-        "category": "Joker",
+        "category": "Créativité/Rupture",
         "category_id": 5
       },
       {
         "question": "Silence social",
         "reponse": "Coupe les notifs 2 heures. Laisse-toi surprendre par l’ennui. Note ce qui émerge.",
-        "category": "Joker",
+        "category": "Créativité/Rupture",
         "category_id": 5
       },
       {
         "question": "Carte blanche",
         "reponse": "Fais exactement ce dont tu as secrètement envie depuis 10 minutes. Pas d’excuse. 5–15 min.",
-        "category": "Joker",
+        "category": "Créativité/Rupture",
         "category_id": 5
+      },
+
+      {
+        "question": "Autosabotage furtif",
+        "reponse": "Tu planifies une journée idéale… puis tu ne la regardes plus. Et tu culpabilises. Ajoute un rappel visuel (post-it ou fond d'écran) + programme 3 notifications téléphone.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Hyperfocus piège à dopamine",
+        "reponse": "Tu passes 3h sur un détail fascinant... mais secondaire. Respire. Note la tâche principale. Reviens-y en 5 minutes.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Overbooking euphorique",
+        "reponse": "Tu dis oui à tout, tu veux tout faire. Mais ton énergie est limitée. Reprends ton planning : enlève 1 chose.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Fuite par benchmarking",
+        "reponse": "Tu cherches ‘le meilleur outil’ pendant 2h au lieu de commencer. Choisis-en un, fixe un délai, agis 5 min.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+
+      {
+        "question": "Timer brique LEGO",
+        "reponse": "Lance un timer de 5 min. Fais juste une brique minuscule de la tâche qui te bloque. Ensuite, tu choisis : continuer ou pause.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "Micro-pacte d’ancrage",
+        "reponse": "Pose-toi la question : ‘Qu’est-ce que je veux VRAIMENT faire maintenant ?’ Écris-le. Engage-toi pour 3 minutes.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "Tableau d’atterrissage",
+        "reponse": "Garde un tableau ou carnet ouvert avec ta ‘tâche en cours’. Dès que tu dérives, regarde ce point d’ancrage visuel.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+
+      {
+        "question": "Tu n’es pas paresseux·se",
+        "reponse": "Tu es neurodivergent·e dans un monde pas conçu pour toi.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
+      },
+      {
+        "question": "Juste une petite chose",
+        "reponse": "Je n’ai pas besoin de tout faire. Juste une petite chose maintenant.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
+      },
+      {
+        "question": "C'est ok de recommencer",
+        "reponse": "Chaque moment est une opportunité. Je peux reprendre maintenant, même si j'ai dérivé.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
+      },
+
+      {
+        "question": "Mémoire de travail : décharge externe",
+        "reponse": "Écris TOUT ce que tu dois retenir sur papier/app. Ta tête n'est pas un disque dur. Libère ta RAM mentale.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "RSD : pause émotionnelle",
+        "reponse": "Réaction émotionnelle forte à une critique ? Respire 10 fois. Demande-toi : 'Est-ce que cette personne me connaît vraiment ?'",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "Body double virtuel",
+        "reponse": "Lance un timer 25min + vidéo 'study with me' ou call avec un ami en silence. Parfois on a juste besoin d'une présence.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "Organisation par énergie",
+        "reponse": "Classe tes tâches : énergie haute/moyenne/basse. Fais les tâches haute énergie quand tu pètes le feu, pas à 17h.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "Pattern de fuite - Doomscrolling",
+        "reponse": "Tu scroll depuis 20min ? Pose le téléphone à l'autre bout de la pièce. Bois un verre d'eau. Reviens à ta tâche initiale.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Perfectionnisme paralysant",
+        "reponse": "Tu n'oses pas commencer par peur de mal faire ? Fais-le mal d'abord. Version 0.1 > version 0.0. Lance le timer 10min.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Surchauffe cognitive",
+        "reponse": "12 onglets ouverts, 5 idées en tête, cerveau qui sature ? Ferme TOUT. Écris les 3 trucs importants. Choisis-en 1.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Mon cerveau a ses propres règles",
+        "reponse": "Je ne fonctionne pas comme les autres, et c'est ok. J'adapte mes stratégies à mon cerveau, pas l'inverse.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
+      },
+      {
+        "question": "Dopamine naturelle",
+        "reponse": "Mouvement 60s (squats, étirements). Musique qui te fait du bien. Petit accomplissement = petite célébration.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "Anti-multitâche",
+        "reponse": "1 seul onglet ouvert. 1 seule tâche visible. Cache le reste. Ton cerveau TDAH est un projecteur, pas un néon.",
+        "category": "Conseils TDAH",
+        "category_id": 7
+      },
+      {
+        "question": "Time-blocking souple",
+        "reponse": "Bloque 2h pour 'travail créatif' au lieu de '9h-11h: présentation'. Donne-toi de la flexibilité dans le cadre.",
+        "category": "Régulation/Bilan",
+        "category_id": 4
+      },
+      {
+        "question": "Journal des patterns",
+        "reponse": "Note : À quel moment j'ai décroché ? Qu'est-ce qui l'a déclenché ? Que pourrais-je faire différemment ?",
+        "category": "Régulation/Bilan",
+        "category_id": 4
+      },
+
+      {
+        "question": "Sommeil TDAH : routine pré-dodo",
+        "reponse": "Écrans off 30min avant. Écris 3 pensées qui tournent en boucle sur papier pour les 'vider'. Respiration 4-7-8 x3.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Alimentation régulée",
+        "reponse": "TDAH = oubli de manger ou grignotage compulsif. Programme 3 alarmes 'manger'. Garde des snacks sains visibles.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Hydratation consciente",
+        "reponse": "Cerveau TDAH déshydraté = brouillard mental. Bouteille toujours visible. Alarme toutes les 2h 'boire'.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Mouvement anti-restlessness",
+        "reponse": "Agitation physique = signal d'alarme. Marche 5min, étirements, sautillements. Évacue l'énergie bloquée.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Surcharge sensorielle : pause refuge",
+        "reponse": "Trop de stimuli = shutdown. Va dans un lieu calme 10min. Casque anti-bruit. Respire sans parler à personne.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Médication & routine",
+        "reponse": "Si traitement : même heure chaque jour. Pilulier visible. Note les effets sur ton énergie/humeur dans un carnet.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Burnout TDAH : signaux d'alerte",
+        "reponse": "Tu fais tout parfaitement puis crack total ? Reconnaît les signaux : irritabilité, oublis ++, isolation sociale.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Self-compassion active",
+        "reponse": "Tu es dur·e avec toi ? Pose ta main sur ton cœur. Dis : 'C'est difficile maintenant, et c'est normal avec un cerveau TDAH.'",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Dopamine saine vs toxique",
+        "reponse": "Écrans/sucre = pic + crash. Essaie : musique, mouvement, accomplir une micro-tâche, contact social bref.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Gestion des crises émotionnelles",
+        "reponse": "Dysrégulation émotionnelle intense ? 1) Nommer l'émotion 2) Respirer 3) Mouvement physique 4) Attendre que ça passe.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Environnement de récupération",
+        "reponse": "Crée un coin 'reset' : couverture douce, lumière tamisée, objet réconfortant. Lieu refuge quand tu satures.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Limites sociales TDAH",
+        "reponse": "Tu donnes tout ton énergie aux autres ? Apprends à dire 'Je dois récupérer' sans te justifier. C'est un besoin, pas un caprice.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Routine de transition",
+        "reponse": "Passage travail → perso difficile ? Rituel de 5min : change de vêtements, lave-toi les mains, respire, 'j'ai fini ma journée pro'.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Gestion des conflits internes",
+        "reponse": "'Je devrais être capable' vs réalité TDAH. Écris les 2 voix sur papier. Réponds avec compassion à celle qui souffre.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+      {
+        "question": "Récupération post-effort",
+        "reponse": "Après un gros effort mental : 20min sans stimulation. Allongé·e, yeux fermés. Ton cerveau a besoin de defrag.",
+        "category": "Soins TDAH",
+        "category_id": 9
+      },
+
+      {
+        "question": "Hyperfocus créatif guidé",
+        "reponse": "Sens l'hyperfocus arriver ? Canalise-le sur une création : dessin, écriture libre, bricolage. Lance un timer 90min max pour éviter l'épuisement.",
+        "category": "Créativité/Rupture",
+        "category_id": 5
+      },
+      {
+        "question": "Réseau imagination activé",
+        "reponse": "Cerveau TDAH = autoroutes de créativité. Laisse divaguer 10min : associations libres, connexions bizarres. Note 1 idée intéressante.",
+        "category": "Créativité/Rupture",
+        "category_id": 5
+      },
+
+      {
+        "question": "Communication : technique STOP",
+        "reponse": "Envie d'interrompre ? STOP : Souffle, Temps d'attente 3 sec, Observe l'autre, Parle après. Tes idées peuvent attendre.",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+      {
+        "question": "Écoute active renforcée",
+        "reponse": "Contact visuel + 'Répète ce que j'ai compris'. Si tu décroches, dis honnêtement : 'Peux-tu reprendre, j'ai perdu le fil ?'",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+
+      {
+        "question": "Anxiété + TDAH : respiration 4-4-6",
+        "reponse": "Double anxiété (situationnelle + TDAH) ? Respire : 4 temps inspiration, 4 temps pause, 6 temps expiration. Répète 5 fois.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+      {
+        "question": "Ruminations mentales : décharge",
+        "reponse": "Pensées qui tournent en boucle ? Écris-les toutes sur papier sans filtrer. Puis déchire ou brûle. Libère ta RAM mentale.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+
+      {
+        "question": "Rupture de pattern créative",
+        "reponse": "Fais exprès de faire une erreur, de casser ta logique. Regarde ce que ça ouvre comme piste inattendue.",
+        "category": "Créativité/Rupture",
+        "category_id": 5
+      },
+      {
+        "question": "Choc de stimuli contrôlé",
+        "reponse": "Expose-toi à une image, musique ou mot incongru. Laisse ton cerveau rebondir en idées. Note la première idée folle.",
+        "category": "Créativité/Rupture",
+        "category_id": 5
+      },
+      {
+        "question": "Pause réponse impulsive",
+        "reponse": "Avant de répondre dans un débat ou un message : respire 4s, lis à voix haute, reformule. Puis choisis ta réponse.",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+      {
+        "question": "Réparation sociale simple",
+        "reponse": "Si tu as oublié un message, une date, un RDV : réponds maintenant. 1 phrase + une touche d'humour ou sincérité suffit.",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+      {
+        "question": "Ancrage sensoriel minute",
+        "reponse": "Pose tes deux pieds au sol. Inspire par le nez 4s, expire par la bouche 6s. Regarde autour : nomme 3 couleurs.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+      {
+        "question": "Scanner du maintenant",
+        "reponse": "Demande-toi : qu'est-ce qui est *réellement en danger* là maintenant ? Note la réponse. Respire. Continue doucement.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+
+      {
+        "question": "Technique du 'body double' social",
+        "reponse": "Demande à quelqu'un de rester près de toi sans parler pendant 30min. Sa présence aide ton cerveau TDAH à rester focus.",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+      {
+        "question": "Déclaration honnête de besoins",
+        "reponse": "Dis : 'J'ai un cerveau TDAH, j'ai besoin de... [précise]'. La transparence évite les malentendus et crée de la connexion.",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+      {
+        "question": "Gestion interruption sociale",
+        "reponse": "Si tu coupes la parole : 'Désolé·e, j'ai eu une idée et mon cerveau a débordé. Continue, je t'écoute.' Puis écoute vraiment.",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+      {
+        "question": "Routine de connexion micro",
+        "reponse": "Envoie 1 message authentique par jour à quelqu'un : 'Comment tu vas ?' ou partage une petite chose qui t'a fait penser à cette personne.",
+        "category": "Relations sociales TDAH",
+        "category_id": 10
+      },
+
+      {
+        "question": "Respiration carrée anti-panique",
+        "reponse": "4 temps inspiration - 4 temps rétention - 4 temps expiration - 4 temps vide. Répète 6 fois. Ça calme le système nerveux TDAH surchauffé.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+      {
+        "question": "Technique des 5-4-3-2-1 adaptée",
+        "reponse": "5 choses que tu vois, 4 que tu touches, 3 que tu entends, 2 que tu sens, 1 que tu goûtes. Ancrage sensoriel puissant pour l'anxiété TDAH.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+      {
+        "question": "Écriture expressive 3 minutes",
+        "reponse": "Écris sans s'arrêter pendant 3 min tout ce qui te stresse. Pas de grammaire, pas de censure. Puis froisse et jette. Libère la pression.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+      {
+        "question": "Reset physique immédiat",
+        "reponse": "Secoue tes mains 10 sec, roule tes épaules, étire ta nuque. L'anxiété TDAH se loge dans le corps. Remets-le en mouvement.",
+        "category": "Gestion anxiété/stress TDAH",
+        "category_id": 11
+      },
+
+      {
+        "question": "Mon rythme est précieux",
+        "reponse": "Je n'ai pas à me presser pour rentrer dans le tempo des autres. Mon rythme TDAH a sa propre beauté et efficacité.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
+      },
+      {
+        "question": "Les erreurs sont mes professeurs",
+        "reponse": "Chaque oubli, chaque distraction m'apprend quelque chose sur mon fonctionnement. Je les accueille avec curiosité, pas avec jugement.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
+      },
+      {
+        "question": "Ma sensibilité est un don",
+        "reponse": "Ce que d'autres appellent 'trop sensible', moi j'appelle 'finement accordé·e'. Je perçois des nuances que d'autres ne voient pas.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
+      },
+      {
+        "question": "Progrès, pas perfection",
+        "reponse": "Aujourd'hui, j'ai fait mieux qu'hier sur au moins une petite chose. C'est ça, grandir avec un cerveau TDAH : pas à pas, avec douceur.",
+        "category": "Mantras et Rappels",
+        "category_id": 8
       }
     ]
   }

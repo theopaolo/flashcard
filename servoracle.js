@@ -7,11 +7,14 @@ import "swiper/css/free-mode";
 
 // Oracle data and state
 let oracleData = [];
+let allCards = []; // Store original cards for filtering
 let swiper = null;
 let cardsFlipped = new Set(); // Track which cards are flipped
+let currentFilter = 'all'; // Track current filter
+let favorites = new Set(); // Track favorite cards
 
 // DOM elements (will be accessed after DOM loads)
-let swiperWrapper, shuffleBtn, flipAllBtn;
+let swiperWrapper, shuffleBtn, flipAllBtn, focusToggleBtn, sosBtn;
 
 // Category configuration with colors and gradients
 const CATEGORIES = {
@@ -54,6 +57,11 @@ function createCardElement(card, index) {
       <div class="card-content">
         <div class="card-question">${formatText(card.question)}</div>
         <div class="card-answer">${formatText(card.reponse)}</div>
+        <button class="favorite-btn" data-card-index="${index}" title="Marquer comme favori">
+          <svg class="favorite-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+          </svg>
+        </button>
       </div>
     </div>
   `;
@@ -61,6 +69,21 @@ function createCardElement(card, index) {
   // Apply category styling only to front face
   const cardFront = cardElement.querySelector(".card-front");
   applyCategoryStyle(cardFront, card.category_id);
+
+  // Setup favorite button (only one now, on the back)
+  const favoriteButton = cardElement.querySelector('.favorite-btn');
+  if (favoriteButton) {
+    // Update button state based on favorites
+    if (favorites.has(index)) {
+      favoriteButton.classList.add('favorited');
+    }
+    
+    // Add event listener for favorite toggle
+    favoriteButton.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent card flip
+      toggleFavorite(index);
+    });
+  }
 
   // Simple CSS-only flip on click
   const flipCard = () => {
@@ -172,16 +195,86 @@ function flipAllCards() {
 
 // Removed resetCards function - flipAllCards handles this intelligently
 
+// Filter cards by category
+function filterCards(categoryId) {
+  currentFilter = categoryId;
+  
+  // Update active filter in legend
+  document.querySelectorAll('.legend-filter').forEach(filter => {
+    filter.classList.remove('active');
+  });
+  document.querySelector(`[data-category-id="${categoryId}"]`).classList.add('active');
+
+  if (categoryId === 'all') {
+    oracleData = [...allCards];
+  } else if (categoryId === 'favorites') {
+    // Filter by favorite cards
+    oracleData = allCards.filter((card, index) => favorites.has(index));
+  } else {
+    oracleData = allCards.filter(card => card.category_id == categoryId);
+  }
+  
+  initializeSwiper();
+}
+
+// Focus mode functionality
+function toggleFocusMode() {
+  const body = document.body;
+  const isCurrentlyFocused = body.classList.contains('focus-mode');
+  
+  if (isCurrentlyFocused) {
+    body.classList.remove('focus-mode');
+    focusToggleBtn.classList.remove('active');
+    localStorage.setItem('focusMode', 'false');
+  } else {
+    body.classList.add('focus-mode');
+    focusToggleBtn.classList.add('active');
+    localStorage.setItem('focusMode', 'true');
+  }
+}
+
+// Load focus mode preference
+function loadFocusMode() {
+  const savedFocusMode = localStorage.getItem('focusMode');
+  if (savedFocusMode === 'true') {
+    document.body.classList.add('focus-mode');
+    if (focusToggleBtn) {
+      focusToggleBtn.classList.add('active');
+    }
+  }
+}
+
 // Setup event listeners after DOM is loaded
 function setupEventListeners() {
   // Get DOM elements
   swiperWrapper = document.getElementById("swiper-wrapper");
   shuffleBtn = document.getElementById("shuffle-btn");
   flipAllBtn = document.getElementById("flip-all-btn");
+  focusToggleBtn = document.getElementById("focus-toggle-btn");
+  sosBtn = document.getElementById("sos-btn");
 
   // Button event listeners
   shuffleBtn.addEventListener("click", shuffleCards);
   flipAllBtn.addEventListener("click", flipAllCards);
+  focusToggleBtn.addEventListener("click", toggleFocusMode);
+  sosBtn.addEventListener("click", () => {
+    if (document.body.classList.contains('sos-active')) {
+      exitSOSMode();
+    } else {
+      triggerSOSMode();
+    }
+  });
+
+  // Legend filter event listeners
+  document.querySelectorAll('.legend-filter').forEach(filter => {
+    filter.addEventListener('click', (event) => {
+      const categoryId = event.currentTarget.dataset.categoryId;
+      filterCards(categoryId);
+    });
+  });
+
+  // Set initial active filter
+  document.querySelector('[data-category-id="all"]').classList.add('active');
 
   // Keyboard shortcuts
   document.addEventListener("keydown", (event) => {
@@ -191,8 +284,145 @@ function setupEventListeners() {
     } else if (event.code === "KeyS") {
       event.preventDefault();
       shuffleCards();
+    } else if (event.code === "KeyF") {
+      event.preventDefault();
+      toggleFocusMode();
+    } else if (event.code === "Escape") {
+      event.preventDefault();
+      if (document.body.classList.contains('sos-active')) {
+        exitSOSMode();
+      } else {
+        triggerSOSMode();
+      }
     }
   });
+
+  // Load focus mode preference
+  loadFocusMode();
+}
+
+// Favorites functionality
+function toggleFavorite(cardIndex) {
+  if (favorites.has(cardIndex)) {
+    favorites.delete(cardIndex);
+  } else {
+    favorites.add(cardIndex);
+  }
+  
+  // Save to localStorage
+  saveFavorites();
+  
+  // Update UI for all cards with this index
+  updateFavoriteButtons(cardIndex);
+}
+
+function updateFavoriteButtons(cardIndex) {
+  const buttons = document.querySelectorAll(`[data-card-index="${cardIndex}"]`);
+  const isFavorited = favorites.has(cardIndex);
+  
+  buttons.forEach(btn => {
+    if (isFavorited) {
+      btn.classList.add('favorited');
+    } else {
+      btn.classList.remove('favorited');
+    }
+  });
+}
+
+function saveFavorites() {
+  localStorage.setItem('cardFavorites', JSON.stringify([...favorites]));
+}
+
+function loadFavorites() {
+  const saved = localStorage.getItem('cardFavorites');
+  if (saved) {
+    favorites = new Set(JSON.parse(saved));
+  }
+}
+
+// SOS Mode - Emergency card selection
+function triggerSOSMode() {
+  // SOS card categories prioritization (most helpful for crisis)
+  const sosCategories = [
+    8,  // Mantras et Rappels
+    11, // Gestion anxiété/stress TDAH
+    9,  // Soins TDAH
+    3,  // Apaisement/Transition
+    7   // Conseils TDAH
+  ];
+  
+  // Get emergency cards
+  const sosCards = [];
+  
+  for (const categoryId of sosCategories) {
+    const categoryCards = allCards.filter(card => card.category_id === categoryId);
+    if (categoryCards.length > 0) {
+      // Take 1-2 cards from each priority category
+      const selectedFromCategory = categoryCards.sort(() => 0.5 - Math.random()).slice(0, 2);
+      sosCards.push(...selectedFromCategory);
+      
+      // Stop when we have 3 cards max
+      if (sosCards.length >= 3) {
+        break;
+      }
+    }
+  }
+  
+  // Ensure we have exactly 3 cards or less
+  const finalSOSCards = sosCards.slice(0, 3);
+  
+  if (finalSOSCards.length === 0) {
+    // Fallback if no SOS cards available
+    console.warn('No SOS cards available');
+    return;
+  }
+  
+  // Update display
+  currentFilter = 'sos';
+  oracleData = finalSOSCards;
+  
+  // Clear active filters in legend
+  document.querySelectorAll('.legend-filter').forEach(filter => {
+    filter.classList.remove('active');
+  });
+  
+  // Activate SOS mode visually
+  document.body.classList.add('sos-active');
+  
+  // Reinitialize swiper with SOS cards
+  initializeSwiper();
+  
+  // Optional: Auto-flip cards to show content immediately
+  setTimeout(() => {
+    const allCards = document.querySelectorAll('.oracle-card');
+    allCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('flipped');
+        cardsFlipped.add(index);
+      }, index * 200); // Stagger the flipping
+    });
+  }, 500);
+}
+
+// Exit SOS mode
+function exitSOSMode() {
+  document.body.classList.remove('sos-active');
+  currentFilter = 'all';
+  
+  // Clear flipped cards state
+  cardsFlipped.clear();
+  
+  // Return to all cards
+  oracleData = [...allCards];
+  
+  // Reset active filter in legend
+  document.querySelectorAll('.legend-filter').forEach(filter => {
+    filter.classList.remove('active');
+  });
+  document.querySelector('[data-category-id="all"]').classList.add('active');
+  
+  // Reinitialize swiper
+  initializeSwiper();
 }
 
 // Load oracle data
@@ -220,9 +450,13 @@ function loadOracleData() {
         throw new Error("Invalid oracle format or empty oracle");
       }
 
-      oracleData = data.flashcards;
+      allCards = data.flashcards; // Store all cards
+      oracleData = [...allCards]; // Initialize with all cards
       console.log("Oracle loaded, cards:", oracleData.length);
 
+      // Load favorites before initializing swiper
+      loadFavorites();
+      
       // Initialize swiper with all cards
       initializeSwiper();
     })
