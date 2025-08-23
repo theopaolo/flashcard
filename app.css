@@ -724,6 +724,8 @@ button:hover {
        width: 90vw;
        height: 70dvh;
        padding: 0.5rem;
+       min-height: 450px;
+       min-width: 350px;
     }
 
     .card-face {
