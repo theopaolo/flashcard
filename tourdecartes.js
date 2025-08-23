@@ -130,6 +130,7 @@ function initializeSwiper() {
   swiper = new Swiper("#cards-swiper", {
     modules: [FreeMode, Mousewheel, Keyboard],
     direction: "horizontal",
+
     freeMode: {
       enabled: true,
       momentum: true,
@@ -149,6 +150,18 @@ function initializeSwiper() {
     grabCursor: true,
     centerInsufficientSlides: true,
     watchOverflow: true,
+
+    breakpoints: {
+      768: {
+        slidesPerView: 3,
+      },
+      480: {
+        slidesPerView: 2,
+      },
+      320: {
+        slidesPerView: 1,
+      },
+    },
   });
 }
 
@@ -207,7 +220,7 @@ function filterCards(categoryId) {
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.classList.remove('active');
   });
-  
+
   const activeFilterElement = document.querySelector(`[data-category-id="${categoryId}"]`);
   if (activeFilterElement) {
     activeFilterElement.classList.add('active');
@@ -442,7 +455,7 @@ function exitSOSMode() {
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.classList.remove('active');
   });
-  
+
   const allFilterElement = document.querySelector('[data-category-id="all"]');
   if (allFilterElement) {
     allFilterElement.classList.add('active');

@@ -334,21 +334,20 @@ button:hover {
 /* Swiper Container Styles */
 .swiper {
     width: 100%;
-    padding: 30px; /* Equal padding for proper centering */
     box-sizing: border-box;
     overflow: visible;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
+    height: 520px;
 }
 
 
 .swiper-slide {
     width: auto !important;
     flex-shrink: 0;
-    padding: 20px;
     box-sizing: border-box;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
 }
@@ -358,7 +357,7 @@ button:hover {
     width: 350px;
     height: 450px;
     flex-shrink: 0;
-    padding: 25px; /* Add padding around card for shadows and animations */
+    padding: 1rem;
     box-sizing: border-box;
 }
 
@@ -699,18 +698,6 @@ button:hover {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .oracle-card-container {
-        width: min(90vw, 320px);
-        height: 400px;
-    }
-
-    .swiper-slide {
-        padding: 15px;
-    }
-
-    .navigation {
-        gap: 6px;
-    }
 
     .color-legend {
         gap: 8px;
@@ -728,24 +715,19 @@ button:hover {
 }
 
 @media (max-width: 480px) {
-    /* Removed oracle-header responsive styles - header no longer used */
+
+    .swiper {
+        height: 65dvh;
+    }
 
     .oracle-card-container {
-        width: min(85vw, 280px);
-        height: 350px;
+       width: 90vw;
+       height: 50dvh;
+       padding: 0.5rem;
     }
 
     .card-face {
         padding: var(--spacing-small);
-    }
-
-    .swiper {
-        height: calc(100vh - 160px); /* Account for footer on mobile */
-        padding: 20px 15px; /* Balanced padding for centering */
-    }
-
-    .swiper-slide {
-        padding: 10px;
     }
 
     .navigation {
@@ -772,7 +754,6 @@ button:hover {
         height: 8px;
     }
 
-    /* Removed .flip-btn responsive styles - no longer needed */
 }
 
 /* ============================================================================
