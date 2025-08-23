@@ -4,67 +4,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashcards</title>
+    <title>servoracle</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="app.css">
-    <!-- Prism.js for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
 </head>
 
 <body>
-
-    <div class="container">
-
-        <div class="flashcard" id="flashcard">
-            <div class="flashcard-content" id="flashcard-content"></div>
-            <div class="flashcard-choices" id="flashcard-choices"></div>
-            <div class="flashcard-category" id="flashcard-category"></div>
+    <div class="oracle-container">
+        <div class="container">
+            <!-- Swiper Container -->
+            <div class="swiper" id="cards-swiper">
+                <div class="swiper-wrapper" id="swiper-wrapper">
+                    <!-- Cards will be dynamically inserted here -->
+                </div>
+            </div>
         </div>
-        <div id="card-number" class="card-number"></div>
-        <div class="navigation">
-            <button id="prev-btn" disabled>⟵ Précédent</button>
-            <button id="flip-btn" disabled>🔄 Retourner</button>
-            <button id="next-btn" disabled>Suivant ⟶</button>
-        </div>
+
+        <footer>
+            <!-- Navigation -->
+            <div class="navigation">
+                <button class="oracle-btn" id="shuffle-btn">Mélanger</button>
+                <button class="oracle-btn" id="flip-all-btn">Tout tourner</button>
+
+                <!-- SOS Button -->
+                <button class="oracle-btn sos-btn" id="sos-btn" title="J'ai besoin d'aide MAINTENANT (Échap)">
+                    <svg class="sos-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                    </svg>
+                    <span class="sos-text">SOS</span>
+                </button>
+
+                <!-- Focus Button -->
+                <!-- <button class="oracle-btn focus-toggle-btn" id="focus-toggle-btn" title="Mode concentration">
+                    <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor">
+                        <path
+                            d="M228,175a8,8,0,0,1-10.92-3l-19-33.2A123.23,123.23,0,0,1,162,155.46l5.87,35.22a8,8,0,0,1-6.58,9.21A8.4,8.4,0,0,1,160,200a8,8,0,0,1-7.88-6.69l-5.77-34.58a133.06,133.06,0,0,1-36.68,0l-5.77,34.58A8,8,0,0,1,96,200a8.4,8.4,0,0,1-1.32-.11,8,8,0,0,1-6.58-9.21L94,155.46a123.23,123.23,0,0,1-36.06-16.69L39,172A8,8,0,1,1,25.06,164l20-35a153.47,153.47,0,0,1-19.3-20A8,8,0,1,1,38.22,99c16.6,20.54,45.64,45,89.78,45s73.18-24.49,89.78-45A8,8,0,1,1,230.22,109a153.47,153.47,0,0,1-19.3,20l20,35A8,8,0,0,1,228,175Z" />
+                    </svg>
+                </button> -->
+            </div>
+            <div class="color-legend">
+                <div class="legend-item legend-filter" data-category-id="all">
+                    <span class="legend-dot legend-all"></span>
+                    <span class="legend-text">Toutes</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="favorites">
+                    <span class="legend-dot legend-favorites">
+                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                        </svg>
+                    </span>
+                    <span class="legend-text">Favoris</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="1">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #10b981, #059669)"></span>
+                    <span class="legend-text">Démarrage</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="2">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #f97316, #ea580c)"></span>
+                    <span class="legend-text">Focus</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="3">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #ec4899, #db2777)"></span>
+                    <span class="legend-text">Transition</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="4">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #84cc16, #65a30d)"></span>
+                    <span class="legend-text">Bilan</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="5">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #6366f1, #4f46e5)"></span>
+                    <span class="legend-text">Créativité</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="6">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #dc2626, #b91c1c)"></span>
+                    <span class="legend-text">Comportements</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="7">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #0891b2, #0e7490)"></span>
+                    <span class="legend-text">Conseils</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="8">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #d97706, #b45309)"></span>
+                    <span class="legend-text">Mantras</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="9">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #0d9488, #0f766e)"></span>
+                    <span class="legend-text">Soins</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="10">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #a855f7, #9333ea)"></span>
+                    <span class="legend-text">Relations</span>
+                </div>
+                <div class="legend-item legend-filter" data-category-id="11">
+                    <span class="legend-dot" style="background: linear-gradient(135deg, #1e40af, #1d4ed8)"></span>
+                    <span class="legend-text">Anxiété</span>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <footer>
-        <div class="deck-selector">
-            <label for="deck-select">Choisir un deck :</label>
-            <select id="deck-select">
-                <optgroup label="🚀 JavaScript - Fondamentaux">
-                    <option value="deck-variables-javascript.json">Variables & Déclarations</option>
-                    <option value="deck-functions-javascript.json">Fonctions & Closures</option>
-                    <option value="deck-conditions-javascript.json">Conditions & Logique</option>
-                    <option value="deck-loops-javascript.json">Boucles & Itération</option>
-                </optgroup>
-                <optgroup label="🔧 JavaScript - Structures & I/O">
-                    <option value="deck-data-structures.json">Structures de Données</option>
-                    <option value="deck-io-operations.json">Entrées/Sorties & APIs</option>
-                    <option value="deck-error-handling.json">Gestion d'Erreurs</option>
-                </optgroup>
-                <optgroup label="⚡ JavaScript - Avancé">
-                    <option value="deck-async-javascript.json">Programmation Asynchrone</option>
-                    <option value="deck-modules-imports.json">Modules & Imports</option>
-                    <option value="deck-oop-javascript.json">Programmation Orientée Objet</option>
-                    <option value="deck-recursion-javascript.json">Récursion</option>
-                </optgroup>
-                <optgroup label="📚 Autres">
-                    <option value="deck-revision-uiux.json">Révision UI/UX</option>
-                    <option value="deck-brain-pings.json">Brain Pings</option>
-                </optgroup>
-            </select>
-        </div>
-        <button id="random-toggle" disabled>Mode Aléatoire: Désactivé</button>
-        <button id="take-quiz-btn" disabled>Quiz sur ce deck</button>
-    </footer>
-
-    <script src="app.js" type="module"></script>
-    <!-- Prism.js for syntax highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    <a href="servoracle.html">so</a>
+    <script src="./servoracle.js" type="module"></script>
 </body>
 
 </html>

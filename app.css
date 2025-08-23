@@ -3,10 +3,10 @@
     --primary-color: #3d1836;
     --background-color: #fff;
     --answer-background-color: #575757;
-    --border-radius: 15px;
-    --transition-duration: 0.3s;
+    --border-radius: 16px;
+    --transition-duration: 0.4s;
     --flashcard-width: 420px;
-    --flashcard-min-height: 600px;
+    --flashcard-min-height: 640px;
     --content-font-size: 22px;
     --category-font-size: 18px;
     --button-font-size: 18px;
@@ -16,6 +16,9 @@
 
     /* Oracle specific variables */
     --oracle-spacing: 24px;
+    --oracle-content-font-size: 1.2rem;
+    --oracle-title-font-size: 2rem;
+    --oracle-tile-max-width: 13ch;
 }
 
 body {
@@ -310,7 +313,6 @@ button:hover {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: var(--oracle-spacing);
 }
 
 /* Removed oracle-header styles - header no longer used */
@@ -332,7 +334,6 @@ button:hover {
 /* Swiper Container Styles */
 .swiper {
     width: 100%;
-    height: calc(100vh - 120px); /* Take into account footer height */
     padding: 30px; /* Equal padding for proper centering */
     box-sizing: border-box;
     overflow: visible;
@@ -341,16 +342,15 @@ button:hover {
     justify-content: center;
 }
 
-.swiper-wrapper {
-    align-items: center;
-    justify-content: center;
-}
 
 .swiper-slide {
     width: auto !important;
     flex-shrink: 0;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .oracle-card-container {
@@ -556,7 +556,6 @@ button:hover {
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
-    justify-content: center;
     padding: var(--spacing-medium);
     box-sizing: border-box;
 }
@@ -591,13 +590,26 @@ button:hover {
 }
 
 .card-question {
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: var(--spacing-small);
 }
 
+.card-question h2 {
+    font-size: var(--oracle-title-font-size);
+    max-width: var(--oracle-tile-max-width);
+    line-height: 1.2;
+}
+
 .card-answer {
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
     padding-top: var(--spacing-medium);
+}
+
+.card-answer p {
+    font-size: var(--oracle-content-font-size);
+    line-height: 1.2;
+    font-weight: 500;
+    color: inherit;
 }
 
 /* Remove card-actions since buttons are now outside cards */
@@ -692,18 +704,6 @@ button:hover {
         height: 400px;
     }
 
-    /* Removed oracle-header responsive styles - header no longer used */
-
-    .oracle-container {
-        padding: var(--spacing-medium);
-        padding-bottom: 60px; /* Space for legend */
-    }
-
-    .swiper {
-        height: calc(100vh - 140px); /* Account for footer on tablets */
-        padding: 30px 20px; /* Balanced padding for centering */
-    }
-
     .swiper-slide {
         padding: 15px;
     }
@@ -746,10 +746,6 @@ button:hover {
 
     .swiper-slide {
         padding: 10px;
-    }
-
-    .oracle-container {
-        padding-bottom: 70px; /* Extra space for wrapped legend on mobile */
     }
 
     .navigation {

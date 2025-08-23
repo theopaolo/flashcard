@@ -20,13 +20,13 @@
       },
       {
         "question": "Mini palais de mémoire",
-        "reponse": "Transforme 3 tâches du jour en images absurdes (ex: ‘URSSAF’ → un ours sur une surf-facture).",
+        "reponse": "Choisis 3 tâches à faire aujourd’hui et associe-les à des images absurdes ou rigolotes (ex: appeler quelqu’un → un téléphone en chaussettes). Plus c’est visuel, plus ça colle !",
         "category": "Démarrage/Activation",
         "category_id": 1
       },
       {
-        "question": "3 lignes d’échauffement",
-        "reponse": "Écris 3 lignes: 1 fait, 1 sensation corporelle, 1 souhait du jour.",
+        "question": "3 lignes échauffement",
+        "reponse": "Écris 3 lignes: <br> - 1 fait, <br> - 1 sensation corporelle, <br> - 1 souhait du jour.",
         "category": "Démarrage/Activation",
         "category_id": 1
       },
@@ -337,11 +337,88 @@
       },
       {
         "question": "Fuite par benchmarking",
-        "reponse": "Tu cherches ‘le meilleur outil’ pendant 2h au lieu de commencer. Choisis-en un, fixe un délai, agis 5 min.",
+        "reponse": "Tu cherches 'le meilleur outil' pendant 2h au lieu de commencer. Choisis-en un, fixe un délai, agis 5 min.",
         "category": "Comportements TDAH",
         "category_id": 6
       },
-
+      {
+        "question": "Procrastination productive",
+        "reponse": "Tu évites LA tâche en faisant plein d'autres trucs 'utiles'. Reconnais le pattern. Pose-toi : 'Qu'est-ce que j'évite vraiment ?'",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Syndrome de l'écureuil",
+        "reponse": "Tu commences 5 projets passionnants... et n'en finis aucun. Choisis UN projet pour cette semaine. Range les autres dans un carnet 'plus tard'.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Paralysie du choix",
+        "reponse": "Trop d'options = cerveau qui freeze. Ferme les yeux, compte jusqu'à 3, pointe du doigt. Commence par ça, même si c'est pas 'optimal'.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Mode 'tout ou rien'",
+        "reponse": "Si tu ne peux pas faire parfaitement, tu ne fais rien. Brise le pattern : fais une version 20% maintenant. Un peu > zéro.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Amnésie de l'objet",
+        "reponse": "Tu poses quelque chose et *POUF* disparu de ton champ mental. Crée des 'stations' : toujours même endroit pour clés, téléphone, lunettes.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Hyperstimulation sociale",
+        "reponse": "En groupe, tu absorbes toutes les énergies et tu exploses. Donne-toi le droit de sortir 5 min 'aux toilettes' pour respirer.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Course contre l'ennui",
+        "reponse": "Dès que ça devient routinier, tu fuis vers la nouveauté. Ajoute 1 petit élément nouveau dans ta routine actuelle au lieu de tout changer.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Transparence émotionnelle excessive",
+        "reponse": "Tes émotions se lisent sur ton visage en temps réel. C'est authentique mais parfois épuisant. Autorise-toi des moments 'poker face'.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Syndrome de l'urgence artificielle",
+        "reponse": "Tu travailles mieux sous pression... alors tu crées des deadlines impossibles. Essaie de programmer 1 vraie pause dans ton chaos organisé.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Multifocus illusionniste",
+        "reponse": "Tu crois gérer 4 trucs en parallèle… mais tu n’en finis aucun. Coupe tout. Note 1 tâche visible. Focalise-toi 10 minutes.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Perfectionnisme gelant",
+        "reponse": "Tu veux commencer parfaitement, du coup tu ne commences jamais. Lance la ‘version nulle’. C’est le début qui compte.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Zombie scroll mental",
+        "reponse": "Tu scrolles sans envie, juste pour fuir une tension interne. Respire, ferme l’écran, note ce que tu évites.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
+      {
+        "question": "Planification méta infinie",
+        "reponse": "Tu passes des heures à organiser ton système… sans faire la tâche. Stop. Fais la tâche mal. Corrige après.",
+        "category": "Comportements TDAH",
+        "category_id": 6
+      },
       {
         "question": "Timer brique LEGO",
         "reponse": "Lance un timer de 5 min. Fais juste une brique minuscule de la tâche qui te bloque. Ensuite, tu choisis : continuer ou pause.",

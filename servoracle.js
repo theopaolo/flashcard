@@ -55,8 +55,8 @@ function createCardElement(card, index) {
     </div>
     <div class="card-face card-back">
       <div class="card-content">
-        <div class="card-question">${formatText(card.question)}</div>
-        <div class="card-answer">${formatText(card.reponse)}</div>
+        <div class="card-question"><h2>${formatText(card.question)}</h2></div>
+        <div class="card-answer"><p>${formatText(card.reponse)}</p></div>
         <button class="favorite-btn" data-card-index="${index}" title="Marquer comme favori">
           <svg class="favorite-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
@@ -77,7 +77,7 @@ function createCardElement(card, index) {
     if (favorites.has(index)) {
       favoriteButton.classList.add('favorited');
     }
-    
+
     // Add event listener for favorite toggle
     favoriteButton.addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent card flip
@@ -109,14 +109,18 @@ function createCardElement(card, index) {
 // Initialize swiper with all cards
 function initializeSwiper() {
   // Clear existing slides
-  swiperWrapper.innerHTML = "";
+  if (swiperWrapper) {
+    swiperWrapper.innerHTML = "";
+  }
   cardsFlipped.clear();
 
-  // Create slides for all cards
-  oracleData.forEach((card, index) => {
-    const slide = createCardElement(card, index);
-    swiperWrapper.appendChild(slide);
-  });
+  // Create slides for all cards (only if swiperWrapper exists)
+  if (swiperWrapper) {
+    oracleData.forEach((card, index) => {
+      const slide = createCardElement(card, index);
+      swiperWrapper.appendChild(slide);
+    });
+  }
 
   // Initialize or update swiper
   if (swiper) {
@@ -198,12 +202,16 @@ function flipAllCards() {
 // Filter cards by category
 function filterCards(categoryId) {
   currentFilter = categoryId;
-  
+
   // Update active filter in legend
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.classList.remove('active');
   });
-  document.querySelector(`[data-category-id="${categoryId}"]`).classList.add('active');
+  
+  const activeFilterElement = document.querySelector(`[data-category-id="${categoryId}"]`);
+  if (activeFilterElement) {
+    activeFilterElement.classList.add('active');
+  }
 
   if (categoryId === 'all') {
     oracleData = [...allCards];
@@ -213,7 +221,7 @@ function filterCards(categoryId) {
   } else {
     oracleData = allCards.filter(card => card.category_id == categoryId);
   }
-  
+
   initializeSwiper();
 }
 
@@ -221,14 +229,18 @@ function filterCards(categoryId) {
 function toggleFocusMode() {
   const body = document.body;
   const isCurrentlyFocused = body.classList.contains('focus-mode');
-  
+
   if (isCurrentlyFocused) {
     body.classList.remove('focus-mode');
-    focusToggleBtn.classList.remove('active');
+    if (focusToggleBtn) {
+      focusToggleBtn.classList.remove('active');
+    }
     localStorage.setItem('focusMode', 'false');
   } else {
     body.classList.add('focus-mode');
-    focusToggleBtn.classList.add('active');
+    if (focusToggleBtn) {
+      focusToggleBtn.classList.add('active');
+    }
     localStorage.setItem('focusMode', 'true');
   }
 }
@@ -253,17 +265,25 @@ function setupEventListeners() {
   focusToggleBtn = document.getElementById("focus-toggle-btn");
   sosBtn = document.getElementById("sos-btn");
 
-  // Button event listeners
-  shuffleBtn.addEventListener("click", shuffleCards);
-  flipAllBtn.addEventListener("click", flipAllCards);
-  focusToggleBtn.addEventListener("click", toggleFocusMode);
-  sosBtn.addEventListener("click", () => {
-    if (document.body.classList.contains('sos-active')) {
-      exitSOSMode();
-    } else {
-      triggerSOSMode();
-    }
-  });
+  // Button event listeners with null checks
+  if (shuffleBtn) {
+    shuffleBtn.addEventListener("click", shuffleCards);
+  }
+  if (flipAllBtn) {
+    flipAllBtn.addEventListener("click", flipAllCards);
+  }
+  if (focusToggleBtn) {
+    focusToggleBtn.addEventListener("click", toggleFocusMode);
+  }
+  if (sosBtn) {
+    sosBtn.addEventListener("click", () => {
+      if (document.body.classList.contains('sos-active')) {
+        exitSOSMode();
+      } else {
+        triggerSOSMode();
+      }
+    });
+  }
 
   // Legend filter event listeners
   document.querySelectorAll('.legend-filter').forEach(filter => {
@@ -274,7 +294,10 @@ function setupEventListeners() {
   });
 
   // Set initial active filter
-  document.querySelector('[data-category-id="all"]').classList.add('active');
+  const allFilterElement = document.querySelector('[data-category-id="all"]');
+  if (allFilterElement) {
+    allFilterElement.classList.add('active');
+  }
 
   // Keyboard shortcuts
   document.addEventListener("keydown", (event) => {
@@ -308,10 +331,10 @@ function toggleFavorite(cardIndex) {
   } else {
     favorites.add(cardIndex);
   }
-  
+
   // Save to localStorage
   saveFavorites();
-  
+
   // Update UI for all cards with this index
   updateFavoriteButtons(cardIndex);
 }
@@ -319,7 +342,7 @@ function toggleFavorite(cardIndex) {
 function updateFavoriteButtons(cardIndex) {
   const buttons = document.querySelectorAll(`[data-card-index="${cardIndex}"]`);
   const isFavorited = favorites.has(cardIndex);
-  
+
   buttons.forEach(btn => {
     if (isFavorited) {
       btn.classList.add('favorited');
@@ -350,48 +373,48 @@ function triggerSOSMode() {
     3,  // Apaisement/Transition
     7   // Conseils TDAH
   ];
-  
+
   // Get emergency cards
   const sosCards = [];
-  
+
   for (const categoryId of sosCategories) {
     const categoryCards = allCards.filter(card => card.category_id === categoryId);
     if (categoryCards.length > 0) {
       // Take 1-2 cards from each priority category
       const selectedFromCategory = categoryCards.sort(() => 0.5 - Math.random()).slice(0, 2);
       sosCards.push(...selectedFromCategory);
-      
+
       // Stop when we have 3 cards max
       if (sosCards.length >= 3) {
         break;
       }
     }
   }
-  
+
   // Ensure we have exactly 3 cards or less
   const finalSOSCards = sosCards.slice(0, 3);
-  
+
   if (finalSOSCards.length === 0) {
     // Fallback if no SOS cards available
     console.warn('No SOS cards available');
     return;
   }
-  
+
   // Update display
   currentFilter = 'sos';
   oracleData = finalSOSCards;
-  
+
   // Clear active filters in legend
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.classList.remove('active');
   });
-  
+
   // Activate SOS mode visually
   document.body.classList.add('sos-active');
-  
+
   // Reinitialize swiper with SOS cards
   initializeSwiper();
-  
+
   // Optional: Auto-flip cards to show content immediately
   setTimeout(() => {
     const allCards = document.querySelectorAll('.oracle-card');
@@ -408,19 +431,23 @@ function triggerSOSMode() {
 function exitSOSMode() {
   document.body.classList.remove('sos-active');
   currentFilter = 'all';
-  
+
   // Clear flipped cards state
   cardsFlipped.clear();
-  
+
   // Return to all cards
   oracleData = [...allCards];
-  
+
   // Reset active filter in legend
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.classList.remove('active');
   });
-  document.querySelector('[data-category-id="all"]').classList.add('active');
   
+  const allFilterElement = document.querySelector('[data-category-id="all"]');
+  if (allFilterElement) {
+    allFilterElement.classList.add('active');
+  }
+
   // Reinitialize swiper
   initializeSwiper();
 }
@@ -430,8 +457,10 @@ function loadOracleData() {
   console.log("Loading oracle data...");
 
   // Show loading state
-  swiperWrapper.innerHTML =
-    '<div class="loading-message">Chargement de l\'oracle en cours...</div>';
+  if (swiperWrapper) {
+    swiperWrapper.innerHTML =
+      '<div class="loading-message">Chargement de l\'oracle en cours...</div>';
+  }
 
   fetch("decks/deck-brain-pings.json")
     .then((response) => {
@@ -456,13 +485,15 @@ function loadOracleData() {
 
       // Load favorites before initializing swiper
       loadFavorites();
-      
+
       // Initialize swiper with all cards
       initializeSwiper();
     })
     .catch((error) => {
       console.error("Error loading oracle:", error);
-      swiperWrapper.innerHTML = `<div class="error-message">Erreur lors du chargement: ${error.message}. Veuillez réessayer.</div>`;
+      if (swiperWrapper) {
+        swiperWrapper.innerHTML = `<div class="error-message">Erreur lors du chargement: ${error.message}. Veuillez réessayer.</div>`;
+      }
     });
 }
 
