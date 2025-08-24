@@ -703,6 +703,16 @@ button:hover {
 
 @media (max-width: 480px) {
 
+    .oracle-container {
+        justify-content: start;
+    }
+
+    .container {
+        justify-content: start;
+        height: 80dvh;
+        margin-top: 1rem;
+    }
+
     .swiper {
         height: 75dvh;
     }
@@ -733,6 +743,29 @@ button:hover {
     .legend-dot {
         width: 8px;
         height: 8px;
+    }
+
+    /* Mobile performance optimizations */
+    .oracle-card {
+        transform-style: flat;
+        will-change: transform;
+        transition: transform 0.4s ease-in-out, box-shadow 0.2s ease;
+    }
+
+    .oracle-card:hover {
+        transform: none; /* Remove hover transform on mobile */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .oracle-card.flipped:hover {
+        transform: rotateY(180deg); /* Keep only rotation on mobile */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Reduce box-shadow complexity on mobile */
+    .oracle-card[data-category-id] .card-front,
+    .oracle-card[data-category-id] .card-back {
+        box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.1), 0 2px 6px rgba(0, 0, 0, 0.1) !important;
     }
 
 }

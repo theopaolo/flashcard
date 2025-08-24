@@ -134,22 +134,34 @@ function initializeSwiper() {
     freeMode: {
       enabled: true,
       momentum: true,
-      momentumRatio: 0.5,
-      momentumVelocityRatio: 0.5,
+      momentumRatio: 0.7,
+      momentumVelocityRatio: 0.7,
     },
+
     mousewheel: {
       enabled: true,
       forceToAxis: true,
     },
+
     keyboard: {
       enabled: true,
-      onlyInViewport: true,
+      onlyInView: true,
+      wport: true,
     },
     slidesPerView: "auto",
-    spaceBetween: 0, // Space handled by slide padding
+    spaceBetween: 0,
     grabCursor: true,
     centerInsufficientSlides: true,
     watchOverflow: true,
+
+    // Mobile performance optimizations
+    updateOnWindowResize: true,
+    observer: false,
+    observeParents: false,
+    // resistance: true,
+    // resistanceRatio: 0.85,
+    speed: 400,
+    touchRatio: 1.2,
   });
 }
 
