@@ -150,18 +150,6 @@ function initializeSwiper() {
     grabCursor: true,
     centerInsufficientSlides: true,
     watchOverflow: true,
-
-    breakpoints: {
-      768: {
-        slidesPerView: 3,
-      },
-      480: {
-        slidesPerView: 2,
-      },
-      320: {
-        slidesPerView: 1,
-      },
-    },
   });
 }
 
@@ -192,12 +180,19 @@ function shuffleCards() {
 }
 
 // Flip all cards
+let isFlippingAll = false;
+
 function flipAllCards() {
+
+  if (isFlippingAll) return;
+  isFlippingAll = true;
+  flipAllBtn.classList.toggle('active');
+
   const allCards = document.querySelectorAll(".oracle-card");
   const shouldFlip = cardsFlipped.size < oracleData.length / 2; // Flip if less than half are flipped
 
   allCards.forEach((card, index) => {
-    // Add staggered delay for visual effect
+
     setTimeout(() => {
       if (shouldFlip) {
         card.classList.add("flipped");
@@ -206,31 +201,52 @@ function flipAllCards() {
         card.classList.remove("flipped");
         cardsFlipped.delete(index);
       }
-    }, index * 50); // Stagger by 50ms
+
+      // Re-enable button after last card animation
+      if (index === allCards.length - 1) {
+        setTimeout(() => {
+          if (flipAllBtn) {
+            flipAllBtn.style.opacity = '';
+            flipAllBtn.style.pointerEvents = '';
+          }
+          isFlippingAll = false;
+        }, 100); // Small delay after last card
+      }
+    },  50); // Stagger by 50ms
   });
 }
 
-// Removed resetCards function - flipAllCards handles this intelligently
 
 // Filter cards by category
 function filterCards(categoryId) {
-  currentFilter = categoryId;
+  // If clicking the same filter that's already active, reset to all cards
+  let resetToAll = false;
+  if (currentFilter === categoryId) {
+    categoryId = 'all';
+    currentFilter = 'all';
+    resetToAll = true;
+  } else {
+    currentFilter = categoryId;
+  }
 
-  // Update active filter in legend
+  // Update active filter in legend - clear all first
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.classList.remove('active');
   });
 
-  const activeFilterElement = document.querySelector(`[data-category-id="${categoryId}"]`);
-  if (activeFilterElement) {
-    activeFilterElement.classList.add('active');
+  // Set active state for the selected filter (unless it's 'all')
+  if (categoryId !== 'all') {
+    const activeFilterElement = document.querySelector(`[data-category-id="${categoryId}"]`);
+    if (activeFilterElement) {
+      activeFilterElement.classList.add('active');
+    }
   }
 
   if (categoryId === 'all') {
     oracleData = [...allCards];
   } else if (categoryId === 'favorites') {
     // Filter by favorite cards
-    oracleData = allCards.filter((card, index) => favorites.has(index));
+    oracleData = allCards.filter((_, index) => favorites.has(index));
   } else {
     oracleData = allCards.filter(card => card.category_id == categoryId);
   }
@@ -306,11 +322,7 @@ function setupEventListeners() {
     });
   });
 
-  // Set initial active filter
-  const allFilterElement = document.querySelector('[data-category-id="all"]');
-  if (allFilterElement) {
-    allFilterElement.classList.add('active');
-  }
+  // No initial active filter since we removed "all" option
 
   // Keyboard shortcuts
   document.addEventListener("keydown", (event) => {
@@ -455,11 +467,6 @@ function exitSOSMode() {
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.classList.remove('active');
   });
-
-  const allFilterElement = document.querySelector('[data-category-id="all"]');
-  if (allFilterElement) {
-    allFilterElement.classList.add('active');
-  }
 
   // Reinitialize swiper
   initializeSwiper();

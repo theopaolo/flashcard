@@ -51,23 +51,24 @@ footer {
     gap: 8px;
     max-width: 1200px;
     overflow-y: auto;
-    margin-top: .5rem;
+    padding-bottom: .5rem;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--primary-color);
-    opacity: 0.8;
+    background-color: rgba(61, 24, 54, 0.1);
+    opacity: 0.75;
 }
 
 .legend-filter {
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 4px 6px;
-    border-radius: 12px;
+    border-radius: 999px;
     border: 1px solid transparent;
 }
 
@@ -618,13 +619,13 @@ button:hover {
     margin: 0;
     background-color: var(--background-color);
     border: 1px solid var(--primary-color);
-    border-radius: 12px;
+    border-radius: 999px;
     color: var(--primary-color);
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-    opacity: 0.8;
 }
 
 .oracle-btn:hover {
@@ -633,6 +634,11 @@ button:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     opacity: 1;
+}
+
+.oracle-btn.active {
+    background-color: var(--primary-color);
+    color: var(--background-color);
 }
 
 .oracle-btn:disabled {
@@ -695,25 +701,6 @@ button:hover {
 }
 
 
-
-/* Responsive design */
-@media (max-width: 768px) {
-
-    .color-legend {
-        gap: 8px;
-        padding: 0 8px;
-    }
-
-    .legend-item {
-        font-size: 10px;
-    }
-
-    .legend-dot {
-        width: 10px;
-        height: 10px;
-    }
-}
-
 @media (max-width: 480px) {
 
     .swiper {
@@ -738,20 +725,9 @@ button:hover {
         gap: 4px;
     }
 
-    .oracle-btn {
-        font-size: 10px;
-        padding: 3px 6px;
-    }
-
-    .color-legend {
-        gap: 6px;
-        padding: 0 4px;
-    }
-
     .legend-item {
         font-size: 12px;
         gap: 4px;
-        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .legend-dot {
