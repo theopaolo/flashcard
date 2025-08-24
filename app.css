@@ -772,7 +772,8 @@ button:hover {
         font-size: 2.25rem;
         text-transform: uppercase;
         hyphens: auto;
-        max-width: 14ch;
+        max-width: 13ch;
+        line-height: 1;
     }
 
     .card-answer p {
