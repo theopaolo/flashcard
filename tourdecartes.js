@@ -15,7 +15,7 @@ let favorites = new Set(); // Track favorite cards
 let currentView = 'swiper'; // Track current view mode: 'swiper' or 'grid'
 
 // DOM elements (will be accessed after DOM loads)
-let swiperWrapper, shuffleBtn, flipAllBtn, focusToggleBtn, sosBtn, viewToggleBtn, gridContainer, swiperContainer;
+let swiperWrapper, shuffleBtn, flipAllBtn, focusToggleBtn, sosBtn, viewToggleBtn, gridContainer, swiperContainer, sosOverlay;
 
 // Category configuration - now handled by CSS via data-category-id attribute
 
@@ -428,19 +428,48 @@ function setupEventListeners() {
   focusToggleBtn = document.getElementById("focus-toggle-btn");
   sosBtn = document.getElementById("sos-btn");
   viewToggleBtn = document.getElementById("view-toggle-btn");
+  sosOverlay = document.querySelector(".sos-overlay");
 
   // Button event listeners with null checks
   if (viewToggleBtn) {
-    viewToggleBtn.addEventListener("click", toggleView);
+    viewToggleBtn.addEventListener("click", (e) => {
+      if (document.body.classList.contains('sos-active')) {
+        exitSOSMode();
+        setTimeout(() => toggleView(), 100);
+        return;
+      }
+      toggleView();
+    });
   }
   if (shuffleBtn) {
-    shuffleBtn.addEventListener("click", shuffleCards);
+    shuffleBtn.addEventListener("click", (e) => {
+      if (document.body.classList.contains('sos-active')) {
+        exitSOSMode();
+        setTimeout(() => shuffleCards(), 100);
+        return;
+      }
+      shuffleCards();
+    });
   }
   if (flipAllBtn) {
-    flipAllBtn.addEventListener("click", flipAllCards);
+    flipAllBtn.addEventListener("click", (e) => {
+      if (document.body.classList.contains('sos-active')) {
+        exitSOSMode();
+        setTimeout(() => flipAllCards(), 100);
+        return;
+      }
+      flipAllCards();
+    });
   }
   if (focusToggleBtn) {
-    focusToggleBtn.addEventListener("click", toggleFocusMode);
+    focusToggleBtn.addEventListener("click", (e) => {
+      if (document.body.classList.contains('sos-active')) {
+        exitSOSMode();
+        setTimeout(() => toggleFocusMode(), 100);
+        return;
+      }
+      toggleFocusMode();
+    });
   }
   if (sosBtn) {
     sosBtn.addEventListener("click", () => {
@@ -456,6 +485,14 @@ function setupEventListeners() {
   document.querySelectorAll('.legend-filter').forEach(filter => {
     filter.addEventListener('click', (event) => {
       const categoryId = event.currentTarget.dataset.categoryId;
+
+      // Exit SOS mode first if active, then apply filter
+      if (document.body.classList.contains('sos-active')) {
+        exitSOSMode();
+        setTimeout(() => filterCards(categoryId), 100);
+        return;
+      }
+
       filterCards(categoryId);
     });
   });
@@ -576,6 +613,12 @@ function triggerSOSMode() {
   // Activate SOS mode visually
   document.body.classList.add('sos-active');
 
+  // Show overlay and add click listener
+  if (sosOverlay) {
+    sosOverlay.style.display = 'block';
+    sosOverlay.addEventListener('click', exitSOSMode);
+  }
+
   // Reinitialize current view with SOS cards
   if (currentView === 'grid') {
     initializeGrid();
@@ -599,6 +642,12 @@ function triggerSOSMode() {
 function exitSOSMode() {
   document.body.classList.remove('sos-active');
   currentFilter = 'all';
+
+  // Hide overlay and remove click listener
+  if (sosOverlay) {
+    sosOverlay.style.display = 'none';
+    sosOverlay.removeEventListener('click', exitSOSMode);
+  }
 
   // Clear flipped cards state
   cardsFlipped.clear();

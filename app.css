@@ -1,16 +1,27 @@
 :root {
     --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-    /* Base Colors */
+    /* Light Mode Colors (Default) */
     --primary-color: #758C50;
     --background-color: #fff;
     --page-background: #ece7e5;
     --text-dark: #3d2318;
+    --text-light: #e6e3da;
 
-    /* Card Base Colors */
+    /* Card Base Colors - Light Mode */
     --card-bg-primary: #E6E3DA;
     --card-bg-secondary: #E6DEB8;
     --card-border-primary: #C2BA8C;
+    --card-text-color: #3d2318;
+    --card-divider: rgba(61, 24, 54, 0.15);
+
+    /* Dark Mode Colors */
+    --dark-page-background: #141414;
+    --dark-card-bg-primary: #2a2a2a;
+    --dark-card-bg-secondary: #1a1a1a;
+    --dark-card-text: #e6e3da;
+    --dark-card-text-secondary: #d4d1c8;
+    --dark-card-divider: rgba(230, 227, 218, 0.2);
 
     /* Category Colors (Used for both borders and legend) */
     --category-1: #C2BA8C;  /* Démarrage */
@@ -31,7 +42,7 @@
 
     /* SOS/Alert Colors - Normalized */
     --sos-red: var(--category-9);
-    --sos-red-bg: var(--category-10);
+    --sos-red-bg: var(--category-6);
     --sos-green: var(--primary-color);
 
     /* Focus Mode Colors */
@@ -80,7 +91,7 @@ footer {
     background: var(--overlay-medium);
     backdrop-filter: blur(10px);
     padding: 8px;
-    z-index: 1000;
+    z-index: 100;
 }
 
 /* Color Legend Styles */
@@ -210,6 +221,8 @@ button:hover {
     justify-content: center;
     min-height: 100vh;
     width: 100%;
+    position: relative;
+    z-index: 950;
 }
 
 /* Removed oracle-header styles - header no longer used */
@@ -329,12 +342,12 @@ body.sos-active .grid-container {
 .oracle-card[data-category-id="1"] .card-back {
     background: var(--card-bg-primary);
     border: 2px solid var(--category-1);
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 .oracle-card[data-category-id="1"] .card-back h2,
 .oracle-card[data-category-id="1"] .card-back p {
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 .oracle-card[data-category-id="2"] .card-front {
@@ -345,12 +358,12 @@ body.sos-active .grid-container {
 .oracle-card[data-category-id="2"] .card-back {
     background: var(--card-bg-primary);
     border: 2px solid var(--category-2);
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 .oracle-card[data-category-id="2"] .card-back h2,
 .oracle-card[data-category-id="2"] .card-back p {
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 .oracle-card[data-category-id="3"] .card-front {
@@ -361,12 +374,12 @@ body.sos-active .grid-container {
 .oracle-card[data-category-id="3"] .card-back {
     background: var(--card-bg-primary);
     border: 2px solid var(--category-3);
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 .oracle-card[data-category-id="3"] .card-back h2,
 .oracle-card[data-category-id="3"] .card-back p {
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 .oracle-card[data-category-id="4"] .card-front {
@@ -420,12 +433,12 @@ body.sos-active .grid-container {
 .oracle-card[data-category-id="8"] .card-back {
     background: var(--card-bg-primary);
     border: 2px solid var(--category-8);
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 .oracle-card[data-category-id="8"] .card-back h2,
 .oracle-card[data-category-id="8"] .card-back p {
-    color: var(--text-dark) !important;
+    color: var(--card-text-color) !important;
 }
 
 /* Category 9: Soins TDAH */
@@ -477,7 +490,7 @@ body.sos-active .grid-container {
 .card-front {
     background: var(--card-bg-primary);
     border: 3px solid var(--card-border-primary);
-    color: var(--text-dark);
+    color: var(--card-text-color);
 }
 
 .card-back {
@@ -486,7 +499,7 @@ body.sos-active .grid-container {
     transform: rotateY(180deg);
     flex-direction: column;
     gap: var(--spacing-medium);
-    color: var(--text-dark);
+    color: var(--card-text-color);
 }
 
 .card-content {
@@ -508,7 +521,7 @@ body.sos-active .grid-container {
 }
 
 .card-answer {
-    border-top: 1px solid var(--overlay-dark);
+    border-top: 1px solid var(--card-divider);
     padding-top: var(--spacing-medium);
 }
 
@@ -579,6 +592,24 @@ body.sos-active .grid-container {
     background-color: var(--primary-color);
     color: white;
     opacity: 1;
+}
+
+/* Icon visibility toggle - show closed eye by default (inactive = dark mode) */
+.focus-toggle-btn .focus-icon-closed {
+    display: block;
+}
+
+.focus-toggle-btn .focus-icon-open {
+    display: none;
+}
+
+/* When active (light mode), show open eye */
+.focus-toggle-btn.active .focus-icon-closed {
+    display: none;
+}
+
+.focus-toggle-btn.active .focus-icon-open {
+    display: block;
 }
 
 /* Navigation controls */
@@ -732,15 +763,22 @@ body.sos-active .grid-container {
 }
 
 /* ============================================================================
-   FOCUS MODE STYLES
+   FOCUS MODE STYLES (DARK MODE)
    ============================================================================ */
 
 body.focus-mode {
-    background: var(--focus-bg);
+    /* Override CSS variables for dark mode */
+    --page-background: var(--dark-page-background);
+    --card-bg-primary: var(--dark-card-bg-primary);
+    --card-bg-secondary: var(--dark-card-bg-secondary);
+    --card-text-color: var(--dark-card-text);
+    --card-divider: var(--dark-card-divider);
+
+    background: var(--page-background);
 }
 
 body.focus-mode .oracle-container {
-    background: var(--focus-bg);
+    background: var(--page-background);
 }
 
 body.focus-mode footer {
@@ -787,13 +825,27 @@ body.focus-mode .card-answer {
     line-height: 1.7;
 }
 
-/* Enhanced contrast and readability in focus mode */
-body.focus-mode .card-back {
-    color: white !important;
-}
-
 body.focus-mode .grid-container {
     padding: 40px 20px;
+}
+
+/* Card text colors in dark mode - using CSS variables */
+body.focus-mode .card-front {
+    color: var(--dark-card-text);
+}
+
+body.focus-mode .card-back {
+    color: var(--dark-card-text);
+}
+
+body.focus-mode .card-back h2,
+body.focus-mode .card-question h2 {
+    color: var(--dark-card-text);
+}
+
+body.focus-mode .card-back p,
+body.focus-mode .card-answer p {
+    color: var(--dark-card-text-secondary);
 }
 
 /* ============================================================================
@@ -853,7 +905,7 @@ body.focus-mode .grid-container {
 
 /* Focus mode adjustments */
 body.focus-mode .favorite-btn {
-    background: var(--overlay-dark);
+    background: var(--overlay-medium);
     border-color: var(--overlay-dark);
     color: var(--overlay-light);
 }
@@ -864,8 +916,26 @@ body.focus-mode .favorite-btn:hover {
 }
 
 /* ============================================================================
-   SOS MODE BUTTON
+   SOS MODE OVERLAY & BUTTON
    ============================================================================ */
+
+/* SOS Overlay - Fullscreen backdrop */
+.sos-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--sos-red-bg);
+    backdrop-filter: blur(8px);
+    z-index: 900;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.sos-overlay:hover {
+    opacity: 0.95;
+}
 
 .sos-container {
     position: fixed;
@@ -882,14 +952,13 @@ body.focus-mode .favorite-btn:hover {
     padding: 4px 8px;
     background: var(--sos-red);
     border: 1px solid var(--sos-red);
-    border-radius: 12px;
+    border-radius: 4px;
     color: white;
     font-size: 11px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    opacity: 0.9;
 }
 
 .sos-btn:hover {
@@ -903,21 +972,29 @@ body.focus-mode .favorite-btn:hover {
 }
 
 .sos-icon {
-    animation: pulse-warning 2s infinite;
+    animation: sparkle 3s ease-in-out infinite;
 }
 
 .sos-text {
     font-family: var(--font-family);
 }
 
-@keyframes pulse-warning {
+@keyframes sparkle {
     0%, 100% {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        opacity: 0.6;
+        transform: scale(1.15) rotate(-8deg);
     }
     50% {
-        opacity: 0.8;
-        transform: scale(1.05);
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    75% {
+        opacity: 0.6;
+        transform: scale(1.15) rotate(8deg);
     }
 }
 
@@ -932,10 +1009,6 @@ body.focus-mode .sos-btn:hover {
 }
 
 /* SOS Active State */
-body.sos-active {
-    background: var(--sos-red-bg);
-}
-
 body.sos-active .sos-btn {
     background: var(--sos-green);
     border-color: var(--sos-green);
@@ -946,9 +1019,9 @@ body.sos-active .sos-btn:hover {
     background: var(--sos-green);
 }
 
-body.sos-active .sos-btn .sos-text::after {
-    content: "Cliquer pour sortir";
-    font-size: 12px;
+body.sos-active .sos-text::after {
+    content: " : sortir";
+    font-size: 11px;
     font-weight: 400;
     opacity: 0.9;
 }
@@ -957,12 +1030,26 @@ body.sos-active .sos-icon {
     animation: none;
 }
 
-/* Hide other controls in SOS mode */
-body.sos-active .navigation {
-    opacity: 0.3;
-    pointer-events: none;
+/* Visual feedback for clickable elements in SOS mode */
+body.sos-active .navigation .oracle-btn:not(.sos-btn) {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+body.sos-active .navigation .oracle-btn:not(.sos-btn):hover {
+    opacity: 1;
+    transform: translateY(-2px);
 }
 
 body.sos-active footer {
-    opacity: 0.3;
+    opacity: 0.5;
+}
+
+body.sos-active .legend-filter {
+    cursor: pointer;
+}
+
+body.sos-active .legend-filter:hover {
+    opacity: 1;
+    background-color: var(--overlay-light);
 }
