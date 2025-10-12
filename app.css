@@ -1,20 +1,58 @@
 :root {
     --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    /* Base Colors */
     --primary-color: #758C50;
     --background-color: #fff;
-    --answer-background-color: #575757;
+    --page-background: #ece7e5;
+    --text-dark: #3d2318;
+
+    /* Card Base Colors */
+    --card-bg-primary: #E6E3DA;
+    --card-bg-secondary: #E6DEB8;
+    --card-border-primary: #C2BA8C;
+
+    /* Category Colors (Used for both borders and legend) */
+    --category-1: #C2BA8C;  /* Démarrage */
+    --category-2: #CC8CB6;  /* Focus */
+    --category-3: #689E9D;  /* Transition */
+    --category-4: #6D6440;  /* Bilan */
+    --category-5: #42213A;  /* Créativité */
+    --category-6: #BA5721;  /* Comportements */
+    --category-7: #2E3E78;  /* Conseils */
+    --category-8: #B1A3A4;  /* Mantras */
+    --category-9: #8F1032;  /* Soins */
+    --category-10: #516830; /* Relations */
+    --category-11: #336665; /* Anxiété */
+
+    /* Favorite Colors */
+    --favorite-primary: #f59e0b;
+    --favorite-secondary: #fbbf24;
+
+    /* SOS/Alert Colors - Normalized */
+    --sos-red: var(--category-9);
+    --sos-red-bg: var(--category-10);
+    --sos-green: var(--primary-color);
+
+    /* Focus Mode Colors */
+    --focus-bg: #141414;
+
+    /* Error Colors */
+    --error-color: #dc3545;
+
+    /* Transparency Overlays - Minimized to essentials */
+    --overlay-light: rgba(255, 255, 255, 0.9);   /* Light overlay (90%) - buttons, backgrounds */
+    --overlay-medium: rgba(255, 255, 255, 0.5);  /* Medium overlay (50%) - glass effects */
+    --overlay-dark: rgba(61, 24, 54, 0.15);      /* Dark overlay (15%) - subtle borders */
+
+    /* Layout & Sizing */
     --border-radius: 4px;
     --transition-duration: 0.4s;
-    --flashcard-width: 420px;
-    --flashcard-min-height: 640px;
     --content-font-size: 22px;
-    --category-font-size: 18px;
     --button-font-size: 18px;
     --spacing-small: 12px;
     --spacing-medium: 20px;
     --spacing-large: 1rem;
-
-    /* Oracle specific variables */
     --oracle-spacing: 24px;
     --oracle-content-font-size: 1.5rem;
     --oracle-title-font-size: 2rem;
@@ -29,7 +67,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: #ece7e5;
+    background: var(--page-background);
     color: var(--primary-color);
     overflow-y: auto;
 }
@@ -39,7 +77,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--overlay-medium);
     backdrop-filter: blur(10px);
     padding: 8px;
     z-index: 1000;
@@ -59,7 +97,7 @@ footer {
     gap: 4px;
     font-size: 12px;
     color: var(--primary-color);
-    background-color: rgba(61, 24, 54, 0.1);
+    background-color: var(--overlay-dark);
     opacity: 0.75;
 }
 
@@ -73,7 +111,7 @@ footer {
 
 .legend-filter:hover {
     opacity: 1;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--overlay-light);
     transform: translateY(-1px);
 }
 
@@ -93,7 +131,7 @@ footer {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    border: 1px solid rgba(61, 24, 54, 0.3);
+    border: 1px solid var(--overlay-dark);
     flex-shrink: 0;
 }
 
@@ -103,12 +141,12 @@ footer {
 }
 
 .legend-all {
-    background: conic-gradient(from 0deg, #E6DEB8, #E6B8DA, #8CC2C1, #918860, #66335A, #DE7D45, #465E9C, #D5C7C8, #B33456, #758C50, #336665, #E6DEB8) !important;
+    background: conic-gradient(from 0deg, var(--category-1), var(--category-2), var(--category-3), var(--category-4), var(--category-5), var(--category-6), var(--category-7), var(--category-8), var(--category-9), var(--category-10), var(--category-11), var(--category-1)) !important;
 }
 
 .legend-favorites {
-    background: #f59e0b !important;
-    border-color: #f59e0b !important;
+    background: var(--favorite-primary) !important;
+    border-color: var(--favorite-primary) !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,33 +166,6 @@ footer {
     opacity: 1;
     transform: scale(1);
     pointer-events: auto;
-}
-
-.flashcard {
-    width: var(--flashcard-width);
-    max-width: 100%;
-    min-height: var(--flashcard-min-height);
-    background-color: var(--background-color);
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    cursor: default;
-    transition: transform var(--transition-duration) ease;
-    padding: var(--spacing-medium);
-    box-sizing: border-box;
-    position: relative;
-}
-
-.card-number, .card-counter {
-    text-align: center;
-    margin: 10px 0;
-    font-weight: bold;
-}
-
-.card-number {
-    font-size: var(--category-font-size);
-    color: #666;
 }
 
 button {
@@ -225,6 +236,17 @@ button:hover {
     padding-bottom: 120px;
 }
 
+/* SOS Mode - Special layout for 3 cards */
+body.sos-active .container:has(.grid-container[style*="display: grid"]) {
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+body.sos-active .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
 /* Swiper Container Styles */
 .swiper {
     width: 100%;
@@ -293,150 +315,150 @@ button:hover {
 }
 
 .error-message {
-    color: #dc3545;
+    color: var(--error-color);
 }
 
 /* Category borders are now applied dynamically via JavaScript */
 
 /* Additional card color variations for visual variety */
 .oracle-card[data-category-id="1"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #C2BA8C !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-1) !important;
 }
 
 .oracle-card[data-category-id="1"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #C2BA8C;
-    color: #3d1836 !important;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-1);
+    color: var(--text-dark) !important;
 }
 
 .oracle-card[data-category-id="1"] .card-back h2,
 .oracle-card[data-category-id="1"] .card-back p {
-    color: #3d1836 !important;
+    color: var(--text-dark) !important;
 }
 
 .oracle-card[data-category-id="2"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #CC8CB6 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-2) !important;
 }
 
 .oracle-card[data-category-id="2"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #CC8CB6;
-    color: #3d1836 !important;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-2);
+    color: var(--text-dark) !important;
 }
 
 .oracle-card[data-category-id="2"] .card-back h2,
 .oracle-card[data-category-id="2"] .card-back p {
-    color: #3d1836 !important;
+    color: var(--text-dark) !important;
 }
 
 .oracle-card[data-category-id="3"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #689E9D !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-3) !important;
 }
 
 .oracle-card[data-category-id="3"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #689E9D;
-    color: #3d1836 !important;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-3);
+    color: var(--text-dark) !important;
 }
 
 .oracle-card[data-category-id="3"] .card-back h2,
 .oracle-card[data-category-id="3"] .card-back p {
-    color: #3d1836 !important;
+    color: var(--text-dark) !important;
 }
 
 .oracle-card[data-category-id="4"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #6D6440 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-4) !important;
 }
 
 .oracle-card[data-category-id="4"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #6D6440;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-4);
 }
 
 .oracle-card[data-category-id="5"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #42213A !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-5) !important;
 }
 
 .oracle-card[data-category-id="5"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #42213A;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-5);
 }
 
 /* Category 6: Comportements TDAH */
 .oracle-card[data-category-id="6"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #BA5721 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-6) !important;
 }
 
 .oracle-card[data-category-id="6"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #BA5721;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-6);
 }
 
 /* Category 7: Conseils TDAH */
 .oracle-card[data-category-id="7"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #2E3E78 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-7) !important;
 }
 
 .oracle-card[data-category-id="7"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #2E3E78;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-7);
 }
 
 /* Category 8: Mantras et Rappels */
 .oracle-card[data-category-id="8"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #B1A3A4 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-8) !important;
 }
 
 .oracle-card[data-category-id="8"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #B1A3A4;
-    color: #3d1836 !important;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-8);
+    color: var(--text-dark) !important;
 }
 
 .oracle-card[data-category-id="8"] .card-back h2,
 .oracle-card[data-category-id="8"] .card-back p {
-    color: #3d1836 !important;
+    color: var(--text-dark) !important;
 }
 
 /* Category 9: Soins TDAH */
 .oracle-card[data-category-id="9"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #8F1032 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-9) !important;
 }
 
 .oracle-card[data-category-id="9"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #8F1032;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-9);
 }
 
 /* Category 10: Relations sociales TDAH */
 .oracle-card[data-category-id="10"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #516830 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-10) !important;
 }
 
 .oracle-card[data-category-id="10"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #516830;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-10);
 }
 
 /* Category 11: Gestion anxiété/stress TDAH */
 .oracle-card[data-category-id="11"] .card-front {
-    background: #E6E3DA !important;
-    border: 2px solid #1F4241 !important;
+    background: var(--card-bg-primary) !important;
+    border: 2px solid var(--category-11) !important;
 }
 
 .oracle-card[data-category-id="11"] .card-back {
-    background: #E6E3DA;
-    border: 2px solid #1F4241;
+    background: var(--card-bg-primary);
+    border: 2px solid var(--category-11);
 }
 
 
@@ -453,18 +475,18 @@ button:hover {
 }
 
 .card-front {
-    background: #E6E3DA;
-    border: 3px solid #C2BA8C;
-    color: #3d1836;
+    background: var(--card-bg-primary);
+    border: 3px solid var(--card-border-primary);
+    color: var(--text-dark);
 }
 
 .card-back {
-    background: #E6DEB8;
-    border: 3px solid #C2BA8C;
+    background: var(--card-bg-secondary);
+    border: 3px solid var(--card-border-primary);
     transform: rotateY(180deg);
     flex-direction: column;
     gap: var(--spacing-medium);
-    color: #3d1836;
+    color: var(--text-dark);
 }
 
 .card-content {
@@ -479,11 +501,6 @@ button:hover {
     color: inherit;
 }
 
-.card-question {
-    font-weight: 400;
-    margin-bottom: var(--spacing-small);
-}
-
 .card-question h2 {
     font-size: var(--oracle-title-font-size);
     max-width: var(--oracle-tile-max-width);
@@ -491,7 +508,7 @@ button:hover {
 }
 
 .card-answer {
-    border-top: 1px solid rgba(61, 24, 54, 0.2);
+    border-top: 1px solid var(--overlay-dark);
     padding-top: var(--spacing-medium);
 }
 
@@ -537,8 +554,8 @@ button:hover {
 /* Focus toggle button - discrete design */
 .focus-toggle-btn {
     padding: 4px;
-    background-color: rgba(61, 24, 54, 0.1);
-    border: 1px solid rgba(61, 24, 54, 0.3);
+    background-color: var(--overlay-dark);
+    border: 1px solid var(--overlay-dark);
     border-radius: 12px;
     color: var(--primary-color);
     cursor: pointer;
@@ -553,7 +570,7 @@ button:hover {
 
 .focus-toggle-btn:hover {
     opacity: 1;
-    background-color: rgba(61, 24, 54, 0.15);
+    background-color: var(--overlay-dark);
     border-color: var(--primary-color);
     transform: translateY(-1px);
 }
@@ -719,11 +736,11 @@ button:hover {
    ============================================================================ */
 
 body.focus-mode {
-    background: #2d2d2d;
+    background: var(--focus-bg);
 }
 
 body.focus-mode .oracle-container {
-    background: #2d2d2d;
+    background: var(--focus-bg);
 }
 
 body.focus-mode footer {
@@ -741,14 +758,14 @@ body.focus-mode .oracle-btn {
 
 body.focus-mode .focus-toggle-btn {
     display: flex;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--overlay-dark);
+    border-color: var(--overlay-dark);
     color: white;
 }
 
 body.focus-mode .focus-toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--overlay-medium);
+    border-color: var(--overlay-medium);
 }
 
 body.focus-mode .swiper {
@@ -772,11 +789,7 @@ body.focus-mode .card-answer {
 
 /* Enhanced contrast and readability in focus mode */
 body.focus-mode .card-back {
-    color: white !imE6DEB8t;
-}
-
-body.focus-mode .card-front {
-    border-width:E6DEB8important;
+    color: white !important;
 }
 
 body.focus-mode .grid-container {
@@ -794,8 +807,8 @@ body.focus-mode .grid-container {
     margin: 0;
     padding: 0;
     color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--overlay-light);
+    border: 1px solid var(--overlay-dark);
     border-radius: 50%;
     width: 26px;
     height: 26px;
@@ -811,19 +824,19 @@ body.focus-mode .grid-container {
 .favorite-btn:hover {
     opacity: 1;
     transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--overlay-light);
 }
 
 .favorite-btn.favorited {
-    background: #fbbf24;
-    border-color: #f59e0b;
+    background: var(--favorite-secondary);
+    border-color: var(--favorite-primary);
     color: white;
     opacity: 1;
     transform: scale(1.05);
 }
 
 .favorite-btn.favorited:hover {
-    background: #f59e0b;
+    background: var(--favorite-primary);
     transform: scale(1.1);
 }
 
@@ -840,13 +853,13 @@ body.focus-mode .grid-container {
 
 /* Focus mode adjustments */
 body.focus-mode .favorite-btn {
-    background: rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 0.8);
+    background: var(--overlay-dark);
+    border-color: var(--overlay-dark);
+    color: var(--overlay-light);
 }
 
 body.focus-mode .favorite-btn:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--overlay-dark);
     color: white;
 }
 
@@ -867,8 +880,8 @@ body.focus-mode .favorite-btn:hover {
     align-items: center;
     gap: 6px;
     padding: 4px 8px;
-    background: #dc2626;
-    border: 1px solid #991b1b;
+    background: var(--sos-red);
+    border: 1px solid var(--sos-red);
     border-radius: 12px;
     color: white;
     font-size: 11px;
@@ -880,7 +893,7 @@ body.focus-mode .favorite-btn:hover {
 }
 
 .sos-btn:hover {
-    background: #b91c1c;
+    background: var(--sos-red);
     transform: translateY(-1px);
     opacity: 1;
 }
@@ -910,31 +923,31 @@ body.focus-mode .favorite-btn:hover {
 
 /* Focus mode adjustments for SOS */
 body.focus-mode .sos-btn {
-    background: #ef4444;
-    border-color: #dc2626;
+    background: var(--sos-red);
+    border-color: var(--sos-red);
 }
 
 body.focus-mode .sos-btn:hover {
-    background: #dc2626;
+    background: var(--sos-red);
 }
 
 /* SOS Active State */
 body.sos-active {
-    background: #fee2e2;
+    background: var(--sos-red-bg);
 }
 
 body.sos-active .sos-btn {
-    background: #16a34a;
-    border-color: #166534;
+    background: var(--sos-green);
+    border-color: var(--sos-green);
     animation: none;
 }
 
 body.sos-active .sos-btn:hover {
-    background: #15803d;
+    background: var(--sos-green);
 }
 
 body.sos-active .sos-btn .sos-text::after {
-    content: " - Cliquer pour sortir";
+    content: "Cliquer pour sortir";
     font-size: 12px;
     font-weight: 400;
     opacity: 0.9;

@@ -234,7 +234,7 @@ function toggleView() {
     swiperContainer.style.display = 'none';
     gridContainer.style.display = 'grid';
     if (viewToggleBtn) {
-      viewToggleBtn.textContent = 'Défilement';
+      viewToggleBtn.textContent = 'Swiper';
     }
 
     // Destroy swiper instance to save resources
@@ -408,7 +408,7 @@ function loadViewMode() {
     currentView = 'grid';
     if (swiperContainer) swiperContainer.style.display = 'none';
     if (gridContainer) gridContainer.style.display = 'grid';
-    if (viewToggleBtn) viewToggleBtn.textContent = 'Défilement';
+    if (viewToggleBtn) viewToggleBtn.textContent = 'Swiper';
   } else {
     currentView = 'swiper';
     if (swiperContainer) swiperContainer.style.display = 'flex';
