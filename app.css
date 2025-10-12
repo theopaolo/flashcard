@@ -1,3 +1,5 @@
+@layer base, components, variants, state, utilities, overrides;
+@layer base {
 :root {
     --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
@@ -68,6 +70,7 @@
     --oracle-content-font-size: 1.5rem;
     --oracle-title-font-size: 2rem;
     --oracle-tile-max-width: 13ch;
+}
 }
 
 body {
@@ -152,12 +155,12 @@ footer {
 }
 
 .legend-all {
-    background: conic-gradient(from 0deg, var(--category-1), var(--category-2), var(--category-3), var(--category-4), var(--category-5), var(--category-6), var(--category-7), var(--category-8), var(--category-9), var(--category-10), var(--category-11), var(--category-1)) !important;
+    background: conic-gradient(from 0deg, var(--category-1), var(--category-2), var(--category-3), var(--category-4), var(--category-5), var(--category-6), var(--category-7), var(--category-8), var(--category-9), var(--category-10), var(--category-11), var(--category-1));
 }
 
-.legend-favorites {
-    background: var(--favorite-primary) !important;
-    border-color: var(--favorite-primary) !important;
+.legend-item .legend-dot.legend-favorites {
+    background: var(--favorite-primary);
+    border-color: var(--favorite-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -241,7 +244,7 @@ button:hover {
     overflow: visible;
 }
 
-.container:has(.grid-container[style*="display: grid"]) {
+.container:has(.grid-container:not(.is-hidden)) {
     height: auto;
     min-height: 100vh;
     justify-content: flex-start;
@@ -250,7 +253,7 @@ button:hover {
 }
 
 /* SOS Mode - Special layout for 3 cards */
-body.sos-active .container:has(.grid-container[style*="display: grid"]) {
+body.sos-active .container:has(.grid-container:not(.is-hidden)) {
     justify-content: center;
     padding-top: 0;
     padding-bottom: 0;
@@ -272,11 +275,11 @@ body.sos-active .grid-container {
 }
 
 
-.swiper-slide {
-    width: auto !important;
+.oracle-container .swiper-slide {
+    width: auto;
     flex-shrink: 0;
     box-sizing: border-box;
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -331,147 +334,32 @@ body.sos-active .grid-container {
     color: var(--error-color);
 }
 
-/* Category borders are now applied dynamically via JavaScript */
-
-/* Additional card color variations for visual variety */
-.oracle-card[data-category-id="1"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-1) !important;
+/* Category borders via CSS variables */
+@layer variants {
+.oracle-card[data-category-id="1"] { --category-color: var(--category-1); }
+.oracle-card[data-category-id="2"] { --category-color: var(--category-2); }
+.oracle-card[data-category-id="3"] { --category-color: var(--category-3); }
+.oracle-card[data-category-id="4"] { --category-color: var(--category-4); }
+.oracle-card[data-category-id="5"] { --category-color: var(--category-5); }
+.oracle-card[data-category-id="6"] { --category-color: var(--category-6); }
+.oracle-card[data-category-id="7"] { --category-color: var(--category-7); }
+.oracle-card[data-category-id="8"] { --category-color: var(--category-8); }
+.oracle-card[data-category-id="9"] { --category-color: var(--category-9); }
+.oracle-card[data-category-id="10"] { --category-color: var(--category-10); }
+.oracle-card[data-category-id="11"] { --category-color: var(--category-11); }
 }
 
-.oracle-card[data-category-id="1"] .card-back {
+@layer components {
+.oracle-card .card-front {
     background: var(--card-bg-primary);
-    border: 2px solid var(--category-1);
-    color: var(--card-text-color) !important;
+    border: 2px solid var(--category-color, var(--card-border-primary));
+    color: var(--card-text-color);
 }
-
-.oracle-card[data-category-id="1"] .card-back h2,
-.oracle-card[data-category-id="1"] .card-back p {
-    color: var(--card-text-color) !important;
-}
-
-.oracle-card[data-category-id="2"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-2) !important;
-}
-
-.oracle-card[data-category-id="2"] .card-back {
+.oracle-card .card-back {
     background: var(--card-bg-primary);
-    border: 2px solid var(--category-2);
-    color: var(--card-text-color) !important;
+    border: 2px solid var(--category-color, var(--card-border-primary));
+    color: var(--card-text-color);
 }
-
-.oracle-card[data-category-id="2"] .card-back h2,
-.oracle-card[data-category-id="2"] .card-back p {
-    color: var(--card-text-color) !important;
-}
-
-.oracle-card[data-category-id="3"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-3) !important;
-}
-
-.oracle-card[data-category-id="3"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-3);
-    color: var(--card-text-color) !important;
-}
-
-.oracle-card[data-category-id="3"] .card-back h2,
-.oracle-card[data-category-id="3"] .card-back p {
-    color: var(--card-text-color) !important;
-}
-
-.oracle-card[data-category-id="4"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-4) !important;
-}
-
-.oracle-card[data-category-id="4"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-4);
-}
-
-.oracle-card[data-category-id="5"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-5) !important;
-}
-
-.oracle-card[data-category-id="5"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-5);
-}
-
-/* Category 6: Comportements TDAH */
-.oracle-card[data-category-id="6"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-6) !important;
-}
-
-.oracle-card[data-category-id="6"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-6);
-}
-
-/* Category 7: Conseils TDAH */
-.oracle-card[data-category-id="7"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-7) !important;
-}
-
-.oracle-card[data-category-id="7"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-7);
-}
-
-/* Category 8: Mantras et Rappels */
-.oracle-card[data-category-id="8"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-8) !important;
-}
-
-.oracle-card[data-category-id="8"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-8);
-    color: var(--card-text-color) !important;
-}
-
-.oracle-card[data-category-id="8"] .card-back h2,
-.oracle-card[data-category-id="8"] .card-back p {
-    color: var(--card-text-color) !important;
-}
-
-/* Category 9: Soins TDAH */
-.oracle-card[data-category-id="9"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-9) !important;
-}
-
-.oracle-card[data-category-id="9"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-9);
-}
-
-/* Category 10: Relations sociales TDAH */
-.oracle-card[data-category-id="10"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-10) !important;
-}
-
-.oracle-card[data-category-id="10"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-10);
-}
-
-/* Category 11: Gestion anxiété/stress TDAH */
-.oracle-card[data-category-id="11"] .card-front {
-    background: var(--card-bg-primary) !important;
-    border: 2px solid var(--category-11) !important;
-}
-
-.oracle-card[data-category-id="11"] .card-back {
-    background: var(--card-bg-primary);
-    border: 2px solid var(--category-11);
 }
 
 
@@ -732,13 +620,11 @@ body.sos-active .grid-container {
     }
 
     .oracle-card:hover {
-        transform: none; /* Remove hover transform on mobile */
-
+        transform: none;
     }
 
     .oracle-card.flipped:hover {
-        transform: rotateY(180deg); /* Keep only rotation on mobile */
-
+        transform: rotateY(180deg);
     }
 
 
@@ -755,11 +641,16 @@ body.sos-active .grid-container {
         min-height: 400px;
     }
 
-    .container:has(.grid-container[style*="display: grid"]) {
+    .container:has(.grid-container:not(.is-hidden)) {
         padding-top: 1rem;
         padding-bottom: 100px;
     }
 
+}
+
+/* Utilities */
+@layer utilities {
+.is-hidden { display: none !important; }
 }
 
 /* ============================================================================

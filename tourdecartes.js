@@ -231,8 +231,8 @@ function toggleView() {
   if (currentView === 'swiper') {
     // Switch to grid view
     currentView = 'grid';
-    swiperContainer.style.display = 'none';
-    gridContainer.style.display = 'grid';
+    swiperContainer && swiperContainer.classList.add('is-hidden');
+    gridContainer && gridContainer.classList.remove('is-hidden');
     if (viewToggleBtn) {
       viewToggleBtn.textContent = 'Swiper';
     }
@@ -248,8 +248,8 @@ function toggleView() {
   } else {
     // Switch to swiper view
     currentView = 'swiper';
-    swiperContainer.style.display = 'flex';
-    gridContainer.style.display = 'none';
+    swiperContainer && swiperContainer.classList.remove('is-hidden');
+    gridContainer && gridContainer.classList.add('is-hidden');
     if (viewToggleBtn) {
       viewToggleBtn.textContent = 'Grille';
     }
@@ -406,13 +406,13 @@ function loadViewMode() {
   const savedViewMode = localStorage.getItem('viewMode');
   if (savedViewMode === 'grid') {
     currentView = 'grid';
-    if (swiperContainer) swiperContainer.style.display = 'none';
-    if (gridContainer) gridContainer.style.display = 'grid';
+    if (swiperContainer) swiperContainer.classList.add('is-hidden');
+    if (gridContainer) gridContainer.classList.remove('is-hidden');
     if (viewToggleBtn) viewToggleBtn.textContent = 'Swiper';
   } else {
     currentView = 'swiper';
-    if (swiperContainer) swiperContainer.style.display = 'flex';
-    if (gridContainer) gridContainer.style.display = 'none';
+    if (swiperContainer) swiperContainer.classList.remove('is-hidden');
+    if (gridContainer) gridContainer.classList.add('is-hidden');
     if (viewToggleBtn) viewToggleBtn.textContent = 'Grille';
   }
 }
@@ -615,7 +615,7 @@ function triggerSOSMode() {
 
   // Show overlay and add click listener
   if (sosOverlay) {
-    sosOverlay.style.display = 'block';
+    sosOverlay.classList.remove('is-hidden');
     sosOverlay.addEventListener('click', exitSOSMode);
   }
 
@@ -645,7 +645,7 @@ function exitSOSMode() {
 
   // Hide overlay and remove click listener
   if (sosOverlay) {
-    sosOverlay.style.display = 'none';
+    sosOverlay.classList.add('is-hidden');
     sosOverlay.removeEventListener('click', exitSOSMode);
   }
 
