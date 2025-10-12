@@ -12,29 +12,12 @@ let swiper = null;
 let cardsFlipped = new Set(); // Track which cards are flipped
 let currentFilter = 'all'; // Track current filter
 let favorites = new Set(); // Track favorite cards
+let currentView = 'swiper'; // Track current view mode: 'swiper' or 'grid'
 
 // DOM elements (will be accessed after DOM loads)
-let swiperWrapper, shuffleBtn, flipAllBtn, focusToggleBtn, sosBtn;
+let swiperWrapper, shuffleBtn, flipAllBtn, focusToggleBtn, sosBtn, viewToggleBtn, gridContainer, swiperContainer;
 
-// Category configuration with colors and gradients
-const CATEGORIES = {
-  1: {
-    color: "linear-gradient(135deg, #FFE4B5 0%, #F5DEB3 100%)",
-    textColor: "#8B4513",
-  }, // Matin
-  2: {
-    color: "linear-gradient(135deg, #E6F3FF 0%, #DBEAFE 100%)",
-    textColor: "#1E3A8A",
-  }, // Journée
-  3: {
-    color: "linear-gradient(135deg, #E6E6FA 0%, #DDD6FE 100%)",
-    textColor: "#4B0082",
-  }, // Soirée
-  5: {
-    color: "linear-gradient(135deg, #FFE4E1 0%, #FECACA 100%)",
-    textColor: "#DC143C",
-  }, // Joker
-};
+// Category configuration - now handled by CSS via data-category-id attribute
 
 // Create card element for swiper
 function createCardElement(card, index) {
@@ -66,9 +49,7 @@ function createCardElement(card, index) {
     </div>
   `;
 
-  // Apply category styling only to front face
-  const cardFront = cardElement.querySelector(".card-front");
-  applyCategoryStyle(cardFront, card.category_id);
+  // Category styling is handled by CSS via data-category-id attribute
 
   // Setup favorite button (only one now, on the back)
   const favoriteButton = cardElement.querySelector('.favorite-btn');
@@ -104,6 +85,70 @@ function createCardElement(card, index) {
   cardContainer.appendChild(cardElement);
   slide.appendChild(cardContainer);
   return slide;
+}
+
+// Create card element for grid view
+function createGridCardElement(card, index) {
+  const cardContainer = document.createElement("div");
+  cardContainer.className = "oracle-card-container";
+
+  const cardElement = document.createElement("div");
+  cardElement.className = "oracle-card";
+  cardElement.dataset.categoryId = card.category_id;
+
+  // Check if card was previously flipped
+  if (cardsFlipped.has(index)) {
+    cardElement.classList.add("flipped");
+  }
+
+  cardElement.innerHTML = `
+    <div class="card-face card-front">
+      <!-- Empty front - just category color -->
+    </div>
+    <div class="card-face card-back">
+      <div class="card-content">
+        <div class="card-question"><h2>${formatText(card.question)}</h2></div>
+        <div class="card-answer"><p>${formatText(card.reponse)}</p></div>
+        <button class="favorite-btn" data-card-index="${index}" title="Marquer comme favori">
+          <svg class="favorite-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  `;
+
+  // Category styling is handled by CSS via data-category-id attribute
+
+  // Setup favorite button
+  const favoriteButton = cardElement.querySelector('.favorite-btn');
+  if (favoriteButton) {
+    if (favorites.has(index)) {
+      favoriteButton.classList.add('favorited');
+    }
+    favoriteButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFavorite(index);
+    });
+  }
+
+  // Simple CSS-only flip on click
+  const flipCard = () => {
+    const isFlipped = cardsFlipped.has(index);
+
+    if (isFlipped) {
+      cardElement.classList.remove("flipped");
+      cardsFlipped.delete(index);
+    } else {
+      cardElement.classList.add("flipped");
+      cardsFlipped.add(index);
+    }
+  };
+
+  cardElement.addEventListener("click", flipCard);
+
+  cardContainer.appendChild(cardElement);
+  return cardContainer;
 }
 
 // Initialize swiper with all cards
@@ -165,19 +210,67 @@ function initializeSwiper() {
   });
 }
 
+// Initialize grid view with all cards
+function initializeGrid() {
+  // Clear existing cards
+  if (gridContainer) {
+    gridContainer.innerHTML = "";
+  }
+
+  // Create cards for grid view
+  if (gridContainer) {
+    oracleData.forEach((card, index) => {
+      const cardElement = createGridCardElement(card, index);
+      gridContainer.appendChild(cardElement);
+    });
+  }
+}
+
+// Toggle between swiper and grid view
+function toggleView() {
+  if (currentView === 'swiper') {
+    // Switch to grid view
+    currentView = 'grid';
+    swiperContainer.style.display = 'none';
+    gridContainer.style.display = 'grid';
+    if (viewToggleBtn) {
+      viewToggleBtn.textContent = 'Défilement';
+    }
+
+    // Destroy swiper instance to save resources
+    if (swiper) {
+      swiper.destroy(false, false);
+      swiper = null;
+    }
+
+    // Initialize grid
+    initializeGrid();
+  } else {
+    // Switch to swiper view
+    currentView = 'swiper';
+    swiperContainer.style.display = 'flex';
+    gridContainer.style.display = 'none';
+    if (viewToggleBtn) {
+      viewToggleBtn.textContent = 'Grille';
+    }
+
+    // Clear any loading messages first
+    if (swiperWrapper) {
+      swiperWrapper.innerHTML = '';
+    }
+
+    // Re-initialize swiper
+    initializeSwiper();
+  }
+
+  // Save preference to localStorage
+  localStorage.setItem('viewMode', currentView);
+}
+
 // Format text with simple line breaks (no HTML escaping needed for oracle cards)
 function formatText(text) {
   if (!text) return "";
   return text.replace(/\n/g, "<br>");
-}
-
-// Apply category styling to card
-function applyCategoryStyle(cardElement, categoryId) {
-  const categoryConfig = CATEGORIES[categoryId];
-  if (!categoryConfig) return;
-
-  cardElement.style.background = categoryConfig.color;
-  cardElement.style.color = categoryConfig.textColor;
 }
 
 // Shuffle cards array
@@ -188,7 +281,13 @@ function shuffleCards() {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   oracleData = shuffled;
-  initializeSwiper();
+
+  // Reinitialize current view
+  if (currentView === 'grid') {
+    initializeGrid();
+  } else {
+    initializeSwiper();
+  }
 }
 
 // Flip all cards
@@ -263,7 +362,12 @@ function filterCards(categoryId) {
     oracleData = allCards.filter(card => card.category_id == categoryId);
   }
 
-  initializeSwiper();
+  // Reinitialize current view
+  if (currentView === 'grid') {
+    initializeGrid();
+  } else {
+    initializeSwiper();
+  }
 }
 
 // Focus mode functionality
@@ -297,16 +401,38 @@ function loadFocusMode() {
   }
 }
 
+// Load view mode preference
+function loadViewMode() {
+  const savedViewMode = localStorage.getItem('viewMode');
+  if (savedViewMode === 'grid') {
+    currentView = 'grid';
+    if (swiperContainer) swiperContainer.style.display = 'none';
+    if (gridContainer) gridContainer.style.display = 'grid';
+    if (viewToggleBtn) viewToggleBtn.textContent = 'Défilement';
+  } else {
+    currentView = 'swiper';
+    if (swiperContainer) swiperContainer.style.display = 'flex';
+    if (gridContainer) gridContainer.style.display = 'none';
+    if (viewToggleBtn) viewToggleBtn.textContent = 'Grille';
+  }
+}
+
 // Setup event listeners after DOM is loaded
 function setupEventListeners() {
   // Get DOM elements
   swiperWrapper = document.getElementById("swiper-wrapper");
+  swiperContainer = document.getElementById("cards-swiper");
+  gridContainer = document.getElementById("cards-grid");
   shuffleBtn = document.getElementById("shuffle-btn");
   flipAllBtn = document.getElementById("flip-all-btn");
   focusToggleBtn = document.getElementById("focus-toggle-btn");
   sosBtn = document.getElementById("sos-btn");
+  viewToggleBtn = document.getElementById("view-toggle-btn");
 
   // Button event listeners with null checks
+  if (viewToggleBtn) {
+    viewToggleBtn.addEventListener("click", toggleView);
+  }
   if (shuffleBtn) {
     shuffleBtn.addEventListener("click", shuffleCards);
   }
@@ -357,8 +483,9 @@ function setupEventListeners() {
     }
   });
 
-  // Load focus mode preference
+  // Load preferences
   loadFocusMode();
+  loadViewMode();
 }
 
 // Favorites functionality
@@ -449,8 +576,12 @@ function triggerSOSMode() {
   // Activate SOS mode visually
   document.body.classList.add('sos-active');
 
-  // Reinitialize swiper with SOS cards
-  initializeSwiper();
+  // Reinitialize current view with SOS cards
+  if (currentView === 'grid') {
+    initializeGrid();
+  } else {
+    initializeSwiper();
+  }
 
   // Optional: Auto-flip cards to show content immediately
   setTimeout(() => {
@@ -480,16 +611,20 @@ function exitSOSMode() {
     filter.classList.remove('active');
   });
 
-  // Reinitialize swiper
-  initializeSwiper();
+  // Reinitialize current view
+  if (currentView === 'grid') {
+    initializeGrid();
+  } else {
+    initializeSwiper();
+  }
 }
 
 // Load oracle data
 function loadOracleData() {
   console.log("Loading oracle data...");
 
-  // Show loading state
-  if (swiperWrapper) {
+  // Show loading state only if in swiper view
+  if (swiperWrapper && currentView === 'swiper') {
     swiperWrapper.innerHTML =
       '<div class="loading-message">Chargement de l\'oracle en cours...</div>';
   }
@@ -515,11 +650,15 @@ function loadOracleData() {
       oracleData = [...allCards]; // Initialize with all cards
       console.log("Oracle loaded, cards:", oracleData.length);
 
-      // Load favorites before initializing swiper
+      // Load favorites before initializing view
       loadFavorites();
 
-      // Initialize swiper with all cards
-      initializeSwiper();
+      // Initialize the current view (based on loaded preference)
+      if (currentView === 'grid') {
+        initializeGrid();
+      } else {
+        initializeSwiper();
+      }
     })
     .catch((error) => {
       console.error("Error loading oracle:", error);
