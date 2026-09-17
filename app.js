@@ -47,7 +47,7 @@ function highlightCode(text) {
 
   // Replace inline code with highlighted versions
   result = result.replace(INLINE_CODE_PATTERN, (match, code) => {
-    return `<code class="language-javascript">${escapeHtml(code)}</code>`;
+    return `<code>${escapeHtml(code)}</code>`;
   });
 
   // Convert line breaks to <br> for non-code content
@@ -91,36 +91,28 @@ function updateCardContent() {
     return;
   }
 
-  let content;
+  let html;
 
   if (isShowingQuestion) {
-    content = currentCard.question;
+    html = highlightCode(currentCard.question);
+  } else if (currentCard.correct_choice_index !== undefined && currentCard.choices) {
+    html = highlightCode(currentCard.choices[currentCard.correct_choice_index]);
+    if (currentCard.explanation) html += `<p class="explanation">${highlightCode(currentCard.explanation)}</p>`;
   } else {
-    // Show explanation if available, otherwise fall back to reponse
-    if (currentCard.explanation) {
-      content = currentCard.explanation;
-    } else if (currentCard.correct_choice_index !== undefined && currentCard.choices) {
-      // If using new system, show the correct choice + explanation
-      const correctChoice = currentCard.choices[currentCard.correct_choice_index];
-      const explanation = currentCard.explanation || '';
-      content = explanation ? `${correctChoice}\n\n${explanation}` : correctChoice;
-    } else {
-      content = currentCard.reponse;
-    }
+    html = highlightCode(currentCard.explanation || currentCard.reponse);
   }
 
-  // Apply syntax highlighting to content
-  flashcardContentElement.innerHTML = highlightCode(content);
-  flashcardCategoryElement.textContent = `Category: ${currentCard.category}`;
+  flashcardContentElement.innerHTML = html;
+  flashcardCategoryElement.textContent = currentCard.category || '';
 
     // Update choices
   if (isShowingQuestion && currentCard.choices) {
     choicesElement.innerHTML = currentCard.choices.map((choice, index) =>
-      `<li class="choice" data-choice="${choice}" data-index="${index}">${String.fromCharCode(65 + index)}. ${highlightCode(choice)}</li>`
+      `<li class="choice" data-choice="${choice}" data-letter="${String.fromCharCode(65 + index)}">${highlightCode(choice)}</li>`
     ).join('');
-    choicesElement.style.display = 'block';
+    choicesElement.hidden = false;
   } else {
-    choicesElement.style.display = 'none';
+    choicesElement.hidden = true;
   }
 
   if (isShowingQuestion) {
@@ -130,7 +122,7 @@ function updateCardContent() {
   }
 
   // Update card number
-  cardNumberElement.textContent = `Card ${currentCardIndex + 1} of ${flashcardsData.length}`;
+  cardNumberElement.textContent = `${currentCardIndex + 1} / ${flashcardsData.length}`;
 
   // Re-highlight syntax after DOM update
   if (typeof Prism !== 'undefined') {
@@ -140,7 +132,7 @@ function updateCardContent() {
 
 function toggleRandomMode() {
   isRandomMode = !isRandomMode;
-  randomToggle.textContent = isRandomMode ? "Mode Aléatoire: Activé" : "Mode Aléatoire: Désactivé";
+  randomToggle.textContent = isRandomMode ? "Ordre : aléatoire" : "Ordre : deck";
   if (isRandomMode) {
     shuffleArray(flashcardsData);
     pickedCards.clear(); // Reset picked cards when shuffling
@@ -247,6 +239,18 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// Quiz decks ({ questions: [{ options, correctAnswer, hint, explanation }] }) are mapped to the flashcard shape
+function toFlashcards(data) {
+  if (Array.isArray(data.flashcards)) return data.flashcards;
+  return (data.questions || []).map((q) => ({
+    question: q.question,
+    choices: q.options.map((o) => o.label),
+    correct_choice_index: q.options.findIndex((o) => o.id === q.correctAnswer),
+    explanation: q.explanation,
+    category: [q.difficulty, ...(q.topics || [])].filter(Boolean).join(', '),
+  }));
+}
+
 function loadDeck(deckFile) {
   console.log('Loading deck:', deckFile);
 
@@ -262,12 +266,10 @@ function loadDeck(deckFile) {
       return response.json();
     })
     .then((data) => {
-      // Validate data structure
-      if (!data.flashcards || !Array.isArray(data.flashcards) || data.flashcards.length === 0) {
-        throw new Error('Invalid deck format or empty deck');
+      flashcardsData = toFlashcards(data);
+      if (flashcardsData.length === 0) {
+        throw new Error('Deck vide ou format inconnu');
       }
-
-      flashcardsData = data.flashcards;
       currentCardIndex = 0;
       isShowingQuestion = true;
       pickedCards.clear();
@@ -293,7 +295,6 @@ function disableAllButtons() {
   prevButton.disabled = true;
   flipButton.disabled = true;
   randomToggle.disabled = true;
-  takeQuizBtn.disabled = true;
 }
 
 function enableAllButtons() {
@@ -301,7 +302,6 @@ function enableAllButtons() {
   prevButton.disabled = false;
   flipButton.disabled = false;
   randomToggle.disabled = false;
-  takeQuizBtn.disabled = false;
 }
 
 deckSelect.addEventListener("change", (e) => {
@@ -309,9 +309,7 @@ deckSelect.addEventListener("change", (e) => {
 });
 
 takeQuizBtn.addEventListener("click", () => {
-  // Store selected deck again for safety
   localStorage.setItem('selectedDeck', deckSelect.value);
-  window.location.href = 'quiz.html';
 });
 
 // On page load, load the default deck and set localStorage

@@ -1,0 +1,928 @@
+{
+  "title": "Docker — Quiz architecture web",
+  "description": "30 questions progressives sur Docker, Docker Compose, réseaux, volumes, multi-stage, registry, staging, production et architecture web.",
+  "language": "fr",
+  "version": "1.0.0",
+  "questions": [
+    {
+      "id": "q01",
+      "difficulty": "intro",
+      "topics": [
+        "image",
+        "container"
+      ],
+      "question": "Quelle proposition décrit le mieux la relation entre une image Docker et un conteneur ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Une image est créée à partir d’un conteneur à chaque démarrage."
+        },
+        {
+          "id": "B",
+          "label": "Une image est un modèle immuable à partir duquel Docker crée des conteneurs."
+        },
+        {
+          "id": "C",
+          "label": "Une image est uniquement une sauvegarde des données persistantes d’un conteneur."
+        },
+        {
+          "id": "D",
+          "label": "Une image et un conteneur sont deux noms pour le même objet Docker."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Demande-toi ce qui existe avant le démarrage et ce que Docker crée lors du lancement.",
+      "explanation": "Une image est un artefact immuable. Un conteneur est une instance créée à partir de cette image et possède sa propre couche writable."
+    },
+    {
+      "id": "q02",
+      "difficulty": "intro",
+      "topics": [
+        "compose",
+        "network",
+        "dns"
+      ],
+      "question": "Dans un projet Compose contenant les services `api` et `db`, l’API doit joindre PostgreSQL sur son port interne 5432. Quel hostname doit-elle utiliser ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "`localhost:5432`"
+        },
+        {
+          "id": "B",
+          "label": "`db:5432`"
+        },
+        {
+          "id": "C",
+          "label": "`127.0.0.1:5432`"
+        },
+        {
+          "id": "D",
+          "label": "`postgres.internal:5432`"
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Compose transforme automatiquement quelque chose que tu écris déjà sous `services:` en nom DNS.",
+      "explanation": "Sur le réseau Compose par défaut, chaque service est joignable par son nom de service."
+    },
+    {
+      "id": "q03",
+      "difficulty": "intro",
+      "topics": [
+        "ports",
+        "network"
+      ],
+      "question": "Un service Compose contient `ports: [\"8080:3000\"]`. Que signifie ce mapping ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Le conteneur écoute sur 8080 et l’hôte sur 3000."
+        },
+        {
+          "id": "B",
+          "label": "L’hôte utilise `localhost:8080` pour atteindre le port 3000 du conteneur."
+        },
+        {
+          "id": "C",
+          "label": "Les autres conteneurs doivent utiliser le port 8080 pour parler à ce service."
+        },
+        {
+          "id": "D",
+          "label": "Docker modifie automatiquement le port d’écoute de l’application de 3000 vers 8080."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Lis la syntaxe comme `machine hôte : conteneur`.",
+      "explanation": "Le port de gauche est publié sur l’hôte, celui de droite correspond au port interne du conteneur."
+    },
+    {
+      "id": "q04",
+      "difficulty": "intro",
+      "topics": [
+        "volume",
+        "persistence"
+      ],
+      "question": "Une base PostgreSQL utilise `db_data:/var/lib/postgresql/data`. Quel est le rôle principal de `db_data` ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Permettre au navigateur d’accéder aux fichiers PostgreSQL."
+        },
+        {
+          "id": "B",
+          "label": "Conserver les données PostgreSQL indépendamment du cycle de vie du conteneur."
+        },
+        {
+          "id": "C",
+          "label": "Copier automatiquement la base dans Git."
+        },
+        {
+          "id": "D",
+          "label": "Modifier de façon permanente l’image `postgres`."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Imagine que le conteneur PostgreSQL est supprimé puis recréé.",
+      "explanation": "Le volume nommé externalise les données importantes hors de la couche writable du conteneur."
+    },
+    {
+      "id": "q05",
+      "difficulty": "intro",
+      "topics": [
+        "bind-mount",
+        "dev"
+      ],
+      "question": "Quel montage est le plus adapté pour que les modifications de `./src` sur ta machine apparaissent immédiatement dans `/app/src` du conteneur ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "`./src:/app/src`"
+        },
+        {
+          "id": "B",
+          "label": "`db_data:/app/src`"
+        },
+        {
+          "id": "C",
+          "label": "`EXPOSE /app/src`"
+        },
+        {
+          "id": "D",
+          "label": "Un `healthcheck` sur `/app/src`."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Cherche le mécanisme qui relie directement un chemin de ta machine à un chemin du conteneur.",
+      "explanation": "Les bind mounts sont particulièrement utiles en développement pour le hot reload et l’édition depuis l’hôte."
+    },
+    {
+      "id": "q06",
+      "difficulty": "intro",
+      "topics": [
+        "compose",
+        "healthcheck",
+        "depends_on"
+      ],
+      "question": "Une API doit démarrer uniquement lorsque PostgreSQL accepte réellement les connexions. Quelle solution est la plus adaptée ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "`depends_on` avec `service_started` uniquement."
+        },
+        {
+          "id": "B",
+          "label": "Un `healthcheck` PostgreSQL et `depends_on` avec `service_healthy`."
+        },
+        {
+          "id": "C",
+          "label": "Publier le port 5432 sur l’hôte."
+        },
+        {
+          "id": "D",
+          "label": "Créer un volume pour PostgreSQL."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Distingue « le processus est lancé » de « le service est opérationnel ».",
+      "explanation": "Le healthcheck teste l’état réel du service ; `service_healthy` permet d’attendre ce résultat."
+    },
+    {
+      "id": "q07",
+      "difficulty": "intro",
+      "topics": [
+        "compose",
+        "migrations"
+      ],
+      "question": "Quel `depends_on` convient à une API qui doit démarrer uniquement après la réussite d’un service de migration ponctuel ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "`service_started`"
+        },
+        {
+          "id": "B",
+          "label": "`service_healthy`"
+        },
+        {
+          "id": "C",
+          "label": "`service_completed_successfully`"
+        },
+        {
+          "id": "D",
+          "label": "Aucune condition n’est nécessaire."
+        }
+      ],
+      "correctAnswer": "C",
+      "hint": "Le service de migration est un job qui doit finir, pas un serveur qui doit rester vivant.",
+      "explanation": "`service_completed_successfully` est adapté aux migrations, setups et tâches ponctuelles."
+    },
+    {
+      "id": "q08",
+      "difficulty": "intro",
+      "topics": [
+        "env",
+        "secrets"
+      ],
+      "question": "Quelle pratique est la plus adaptée pour un secret d’authentification utilisé uniquement en développement local ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Le committer directement dans `compose.yaml`."
+        },
+        {
+          "id": "B",
+          "label": "Le placer dans un `.env` ignoré par Git puis l’injecter via Compose."
+        },
+        {
+          "id": "C",
+          "label": "Le copier dans l’image avec `COPY`."
+        },
+        {
+          "id": "D",
+          "label": "Le mettre dans le tag de l’image Docker."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Cherche une solution simple qui garde le secret hors de Git.",
+      "explanation": "En développement, un `.env` gitignored est souvent suffisant ; en production, on préfère une injection par l’infrastructure ou un secret manager."
+    },
+    {
+      "id": "q09",
+      "difficulty": "intro",
+      "topics": [
+        "dockerfile",
+        "multistage"
+      ],
+      "question": "Dans un Dockerfile multi-stage, quel usage correspond le mieux à `dev`, `builder` et `production` ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "`dev` pour le hot reload, `builder` pour construire les artefacts, `production` pour le runtime final."
+        },
+        {
+          "id": "B",
+          "label": "`builder` pour la production, `production` pour les tests, `dev` pour le staging."
+        },
+        {
+          "id": "C",
+          "label": "Chaque stage doit obligatoirement être déployé sur un serveur différent."
+        },
+        {
+          "id": "D",
+          "label": "Le multi-stage sert uniquement à faire plusieurs copies du même conteneur."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Pense à ce qui est nécessaire pour développer, construire, puis exécuter.",
+      "explanation": "Le multi-stage permet notamment de garder les compilateurs et devDependencies hors de l’image finale."
+    },
+    {
+      "id": "q10",
+      "difficulty": "intro",
+      "topics": [
+        "registry",
+        "cicd",
+        "deploy"
+      ],
+      "question": "Quelle stratégie respecte le mieux le principe `build once, deploy many` ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Rebuilder depuis Git sur staging puis encore une fois sur production."
+        },
+        {
+          "id": "B",
+          "label": "Construire une image une fois, la pousser au registry, puis déployer exactement cette image en staging et en production."
+        },
+        {
+          "id": "C",
+          "label": "Copier le système de fichiers du conteneur staging vers la production."
+        },
+        {
+          "id": "D",
+          "label": "Utiliser uniquement `latest` dans tous les environnements."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Le mot important est `once` : quel artefact ne doit être construit qu’une seule fois ?",
+      "explanation": "La même image doit idéalement être testée en staging puis promue telle quelle en production."
+    },
+    {
+      "id": "q11",
+      "difficulty": "intermediate",
+      "topics": [
+        "network",
+        "frontend",
+        "browser"
+      ],
+      "question": "Un frontend Vue s’exécute dans le navigateur et appelle `http://api:8000/users`. Dans Compose, le service backend s’appelle bien `api`, mais le navigateur ne résout pas ce nom. Pourquoi ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Le DNS interne `api` n’est disponible qu’aux conteneurs du réseau Docker."
+        },
+        {
+          "id": "B",
+          "label": "Le service `api` doit obligatoirement utiliser PostgreSQL pour être résolu."
+        },
+        {
+          "id": "C",
+          "label": "Le frontend et l’API doivent partager un volume pour résoudre leurs hostnames."
+        },
+        {
+          "id": "D",
+          "label": "Docker interdit aux applications frontend d’utiliser des noms de service."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Demande-toi où le code Vue s’exécute réellement après chargement.",
+      "explanation": "Le DNS Compose n’existe que dans les réseaux Docker. Le navigateur doit passer par un port publié ou un domaine public."
+    },
+    {
+      "id": "q12",
+      "difficulty": "intermediate",
+      "topics": [
+        "volume",
+        "uploads",
+        "persistence"
+      ],
+      "question": "Une application stocke PostgreSQL dans `db_data` mais les uploads utilisateurs uniquement dans `/app/uploads` sans volume. Après suppression et recréation des conteneurs, que risque-t-il de se passer ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "La base et les uploads sont tous deux conservés."
+        },
+        {
+          "id": "B",
+          "label": "La base est conservée, mais les uploads du conteneur supprimé peuvent être perdus."
+        },
+        {
+          "id": "C",
+          "label": "Les uploads sont conservés, mais la base est perdue."
+        },
+        {
+          "id": "D",
+          "label": "Tout est forcément perdu après `docker compose down`."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Fais l’inventaire des données qui vivent dans un volume et de celles qui vivent dans la couche writable.",
+      "explanation": "Toute donnée irremplaçable doit être persistée explicitement : base, uploads, documents, etc."
+    },
+    {
+      "id": "q13",
+      "difficulty": "intermediate",
+      "topics": [
+        "bind-mount",
+        "filesystem"
+      ],
+      "question": "Ton Dockerfile fait `COPY . /app`, puis Compose monte `.:/app` en développement. Pourquoi le contenu de l’image à `/app` semble-t-il disparaître au runtime ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Le bind mount masque le contenu de `/app` fourni par l’image tant qu’il est monté."
+        },
+        {
+          "id": "B",
+          "label": "Compose supprime automatiquement les fichiers copiés pendant le build."
+        },
+        {
+          "id": "C",
+          "label": "`COPY` transforme automatiquement `/app` en volume anonyme."
+        },
+        {
+          "id": "D",
+          "label": "Docker fusionne toujours les deux dossiers fichier par fichier."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Imagine que tu poses un nouveau dossier par-dessus un ancien au même chemin.",
+      "explanation": "Le bind mount remplace la vue du chemin monté dans le conteneur ; l’image n’est pas modifiée pour autant."
+    },
+    {
+      "id": "q14",
+      "difficulty": "intermediate",
+      "topics": [
+        "node_modules",
+        "bind-mount",
+        "dev"
+      ],
+      "question": "Pourquoi voit-on parfois `.:/app` puis `/app/node_modules` dans un Compose Node de développement ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Pour utiliser le code de l’hôte tout en gardant des `node_modules` adaptés au Linux du conteneur."
+        },
+        {
+          "id": "B",
+          "label": "Pour envoyer les `node_modules` du conteneur vers Git."
+        },
+        {
+          "id": "C",
+          "label": "Pour rendre `node_modules` accessible au navigateur."
+        },
+        {
+          "id": "D",
+          "label": "Pour que Docker désactive le hot reload."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Pense aux différences possibles entre macOS/Windows et Linux.",
+      "explanation": "Certaines dépendances contiennent des binaires natifs ; garder les `node_modules` dans le conteneur évite les incompatibilités de plateforme."
+    },
+    {
+      "id": "q15",
+      "difficulty": "intermediate",
+      "topics": [
+        "network",
+        "segmentation"
+      ],
+      "question": "Un Compose définit deux réseaux : `frontend` et `backend`. `web` est uniquement sur `frontend`, `api` sur les deux, `db` uniquement sur `backend`. Quelle communication n’est pas possible directement ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "`web` → `api`"
+        },
+        {
+          "id": "B",
+          "label": "`api` → `db`"
+        },
+        {
+          "id": "C",
+          "label": "`web` → `db`"
+        },
+        {
+          "id": "D",
+          "label": "`api` → `web`"
+        }
+      ],
+      "correctAnswer": "C",
+      "hint": "Deux services doivent partager au moins un réseau pour communiquer directement par le réseau Compose.",
+      "explanation": "Les réseaux explicites permettent d’isoler la base du frontend tout en laissant l’API communiquer avec les deux côtés."
+    },
+    {
+      "id": "q16",
+      "difficulty": "intermediate",
+      "topics": [
+        "image",
+        "command",
+        "migrations"
+      ],
+      "question": "Pourquoi `api` et `migrate` peuvent-ils utiliser exactement la même image tout en ayant des comportements différents ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Parce que chaque service peut lancer une commande différente à partir du même environnement logiciel."
+        },
+        {
+          "id": "B",
+          "label": "Parce que Docker transforme automatiquement l’image API en image de migration."
+        },
+        {
+          "id": "C",
+          "label": "Parce que le conteneur `migrate` modifie définitivement l’image de l’API."
+        },
+        {
+          "id": "D",
+          "label": "Parce que `api` et `migrate` doivent en réalité être le même conteneur."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Sépare mentalement « ce qui est installé » de « ce qui est exécuté au démarrage ».",
+      "explanation": "Une image peut fournir le code et les dépendances nécessaires à plusieurs rôles : API, migration, worker, CLI, etc."
+    },
+    {
+      "id": "q17",
+      "difficulty": "intermediate",
+      "topics": [
+        "secrets",
+        "docker-secrets",
+        "node"
+      ],
+      "question": "Une app Node attend `process.env.AUTH_SECRET`, mais Compose lui fournit uniquement un Docker Secret nommé `auth_secret`. Que faut-il anticiper ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Docker crée automatiquement `AUTH_SECRET` à partir du secret."
+        },
+        {
+          "id": "B",
+          "label": "L’app doit lire `/run/secrets/auth_secret` ou utiliser un mécanisme explicite d’injection."
+        },
+        {
+          "id": "C",
+          "label": "Il suffit d’ouvrir un port supplémentaire."
+        },
+        {
+          "id": "D",
+          "label": "Il faut copier le secret dans l’image pendant le build."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Compare la forme attendue par l’application avec la forme fournie par Docker Secrets.",
+      "explanation": "Un Docker Secret est typiquement disponible sous `/run/secrets/<nom>` ; l’application doit savoir lire ce fichier ou recevoir la valeur autrement."
+    },
+    {
+      "id": "q18",
+      "difficulty": "intermediate",
+      "topics": [
+        "extensions",
+        "yaml",
+        "compose"
+      ],
+      "question": "À quoi sert principalement un bloc `x-api-dev: &api-dev` réutilisé avec `<<: *api-dev` ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "À factoriser une configuration commune entre plusieurs services."
+        },
+        {
+          "id": "B",
+          "label": "À créer automatiquement un réseau supplémentaire."
+        },
+        {
+          "id": "C",
+          "label": "À créer un secret Docker."
+        },
+        {
+          "id": "D",
+          "label": "À démarrer un service caché nommé `x-api-dev`."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Observe ce qui se répète souvent entre `api`, `migrate` ou `worker`.",
+      "explanation": "Ce pattern réduit la duplication pour `build`, `image`, `environment`, `volumes`, etc."
+    },
+    {
+      "id": "q19",
+      "difficulty": "intermediate",
+      "topics": [
+        "multistage",
+        "runtime"
+      ],
+      "question": "Pourquoi un stage `builder` peut-il contenir `gcc` et des headers de compilation alors que le stage `production` ne les contient pas ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Parce que ces outils sont nécessaires pour construire certaines dépendances, mais pas forcément pour les exécuter."
+        },
+        {
+          "id": "B",
+          "label": "Parce que Docker désinstalle automatiquement tous les packages dans le dernier stage."
+        },
+        {
+          "id": "C",
+          "label": "Parce que `production` utilise toujours le système de fichiers du stage `builder` en lecture seule."
+        },
+        {
+          "id": "D",
+          "label": "Parce que les compilateurs ne fonctionnent jamais dans un conteneur de production."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Distingue dépendances de build et dépendances de runtime.",
+      "explanation": "Le multi-stage permet de garder l’image finale minimale en n’y copiant que les artefacts nécessaires."
+    },
+    {
+      "id": "q20",
+      "difficulty": "intermediate",
+      "topics": [
+        "staging",
+        "production",
+        "config"
+      ],
+      "question": "Quelle différence devrait principalement exister entre staging et production si l’on veut tester fidèlement la release ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Des images Docker différentes construites avec du code différent."
+        },
+        {
+          "id": "B",
+          "label": "La configuration, les secrets, les URLs et les bases de données, mais idéalement pas l’image."
+        },
+        {
+          "id": "C",
+          "label": "Staging doit obligatoirement utiliser le stage `dev`."
+        },
+        {
+          "id": "D",
+          "label": "Production doit toujours être construite directement sur le serveur cible."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Le staging sert à tester ce que tu vas réellement mettre en production.",
+      "explanation": "Même image, configurations distinctes : c’est ce qui permet une validation fiable avant promotion."
+    },
+    {
+      "id": "q21",
+      "difficulty": "advanced",
+      "topics": [
+        "compose",
+        "healthcheck",
+        "architecture"
+      ],
+      "question": "Tu veux garantir la séquence : PostgreSQL prêt → migrations terminées → API démarrée. Quelle chaîne est la plus correcte ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "`db: service_started` → `api`, migrations lancées ensuite manuellement."
+        },
+        {
+          "id": "B",
+          "label": "`db` avec healthcheck → `migrate` dépend de `service_healthy` → `api` dépend de `service_completed_successfully`."
+        },
+        {
+          "id": "C",
+          "label": "`api` dépend de `db: service_completed_successfully`."
+        },
+        {
+          "id": "D",
+          "label": "Publier `5432:5432` puis démarrer tous les services en parallèle."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Tu as besoin d’une condition de santé pour un service long vivant, puis d’une condition de fin réussie pour un job.",
+      "explanation": "Le DB doit devenir healthy ; le job de migration doit finir avec exit code 0 ; l’API peut alors démarrer."
+    },
+    {
+      "id": "q22",
+      "difficulty": "advanced",
+      "topics": [
+        "frontend",
+        "ssr",
+        "deployment"
+      ],
+      "question": "Quel frontend a généralement le plus d’intérêt à être dockerisé lorsqu’il est déployé sur un VPS/Coolify ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Un frontend SSR qui nécessite un runtime Node en production."
+        },
+        {
+          "id": "B",
+          "label": "Une SPA Vue statique servie directement par Netlify."
+        },
+        {
+          "id": "C",
+          "label": "Un simple dossier d’images statiques hébergé sur un CDN."
+        },
+        {
+          "id": "D",
+          "label": "Un fichier HTML unique ouvert localement dans le navigateur."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Demande-toi s’il existe réellement un processus serveur à maintenir en production.",
+      "explanation": "Le besoin de Docker dépend surtout du runtime et de la plateforme de déploiement, pas du fait d’être headless."
+    },
+    {
+      "id": "q23",
+      "difficulty": "advanced",
+      "topics": [
+        "frontend",
+        "static",
+        "nginx"
+      ],
+      "question": "Une SPA Vue est construite en `dist/` puis placée dans une image nginx. Que fait nginx dans ce cas ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Il exécute Vue côté serveur pour produire chaque page."
+        },
+        {
+          "id": "B",
+          "label": "Il sert les fichiers HTML, JS, CSS et autres assets du dossier `dist/` via HTTP."
+        },
+        {
+          "id": "C",
+          "label": "Il remplace la base PostgreSQL."
+        },
+        {
+          "id": "D",
+          "label": "Il compile TypeScript à chaque requête."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Après `npm run build`, il n’y a plus forcément de runtime Node à faire tourner.",
+      "explanation": "Dans ce cas, nginx ne fait que distribuer les artefacts statiques produits au build."
+    },
+    {
+      "id": "q24",
+      "difficulty": "advanced",
+      "topics": [
+        "registry",
+        "immutable",
+        "release"
+      ],
+      "question": "Pourquoi est-il préférable de déployer `app:a81f25d` plutôt que seulement `app:latest` en production ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Parce qu’un tag basé sur le SHA identifie précisément l’artefact déployé."
+        },
+        {
+          "id": "B",
+          "label": "Parce que Docker interdit `latest` en production."
+        },
+        {
+          "id": "C",
+          "label": "Parce qu’un SHA rend l’image automatiquement plus petite."
+        },
+        {
+          "id": "D",
+          "label": "Parce qu’un SHA chiffre automatiquement l’image."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Pense audit, rollback et identification exacte de la version.",
+      "explanation": "Un tag immuable ou un digest permet de savoir exactement quel artefact a été testé et déployé."
+    },
+    {
+      "id": "q25",
+      "difficulty": "advanced",
+      "topics": [
+        "registry",
+        "staging",
+        "production"
+      ],
+      "question": "La CI a construit `registry.example.org/app:a81f25d` et les tests de staging passent. Quelle action est la plus cohérente pour la production ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Rebuilder le commit sur le serveur de production."
+        },
+        {
+          "id": "B",
+          "label": "Déployer exactement `registry.example.org/app:a81f25d` en production."
+        },
+        {
+          "id": "C",
+          "label": "Copier le système de fichiers du conteneur staging."
+        },
+        {
+          "id": "D",
+          "label": "Modifier manuellement le conteneur staging puis le renommer `prod`."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Après validation du staging, quel élément doit être promu sans être reconstruit ?",
+      "explanation": "Le registry sert précisément à distribuer le même artefact à plusieurs environnements."
+    },
+    {
+      "id": "q26",
+      "difficulty": "advanced",
+      "topics": [
+        "backup",
+        "persistence",
+        "architecture"
+      ],
+      "question": "Une app sur VPS/Coolify contient une API, PostgreSQL et des uploads utilisateurs. Le code est dans Git et les images dans un registry. Que faut-il prioritairement sauvegarder ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "La couche writable de chaque conteneur uniquement."
+        },
+        {
+          "id": "B",
+          "label": "La base PostgreSQL et les uploads utilisateurs."
+        },
+        {
+          "id": "C",
+          "label": "Uniquement l’image Docker de l’API."
+        },
+        {
+          "id": "D",
+          "label": "Uniquement `compose.yaml`."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Sépare ce qui peut être reconstruit depuis Git/registry de ce qui a été créé par les utilisateurs.",
+      "explanation": "Le code et les images sont reproductibles ; la base et les fichiers utilisateurs doivent être sauvegardés."
+    },
+    {
+      "id": "q27",
+      "difficulty": "advanced",
+      "topics": [
+        "volume",
+        "backup",
+        "database"
+      ],
+      "question": "Pour PostgreSQL en production, pourquoi préfère-t-on généralement un backup `pg_dump` cohérent plutôt qu’une simple archive à chaud du volume de données ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Parce qu’un dump est produit par PostgreSQL et respecte mieux la cohérence logique de la base."
+        },
+        {
+          "id": "B",
+          "label": "Parce qu’un volume Docker ne contient jamais les données PostgreSQL."
+        },
+        {
+          "id": "C",
+          "label": "Parce que `pg_dump` sauvegarde automatiquement les images Docker."
+        },
+        {
+          "id": "D",
+          "label": "Parce que Docker interdit de sauvegarder des volumes."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Pense à la différence entre copier des fichiers bruts et demander au moteur de base de produire lui-même son export.",
+      "explanation": "Les sauvegardes database-aware sont généralement plus sûres pour garantir une restauration cohérente."
+    },
+    {
+      "id": "q28",
+      "difficulty": "advanced",
+      "topics": [
+        "monorepo",
+        "compose",
+        "architecture"
+      ],
+      "question": "Un monorepo contient `apps/web` et `apps/api`. Quel avantage Docker Compose apporte surtout en développement local ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Il permet d’orchestrer les services locaux nécessaires, comme l’API et PostgreSQL, avec un réseau et une configuration communs."
+        },
+        {
+          "id": "B",
+          "label": "Il oblige le frontend et l’API à être déployés ensemble en production."
+        },
+        {
+          "id": "C",
+          "label": "Il remplace Git pour versionner les deux applications."
+        },
+        {
+          "id": "D",
+          "label": "Il impose l’utilisation d’un seul conteneur pour tout le monorepo."
+        }
+      ],
+      "correctAnswer": "A",
+      "hint": "Pense surtout à l’expérience de développement et à la coordination des services.",
+      "explanation": "Compose facilite un environnement local reproductible tout en gardant les services séparés."
+    },
+    {
+      "id": "q29",
+      "difficulty": "advanced",
+      "topics": [
+        "coolify",
+        "deployment",
+        "docker"
+      ],
+      "question": "Dans une stack Coolify sur un VPS, quel rôle joue généralement Coolify par rapport à Docker ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Il remplace complètement Docker et exécute les applications sans conteneurs."
+        },
+        {
+          "id": "B",
+          "label": "Il automatise une partie du déploiement, du proxy, des domaines, des variables et de l’exploitation autour des conteneurs."
+        },
+        {
+          "id": "C",
+          "label": "Il remplace Git et stocke nécessairement tout le code source."
+        },
+        {
+          "id": "D",
+          "label": "Il remplace automatiquement PostgreSQL par sa propre base interne."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Considère Coolify comme une couche de gestion autour de Docker, pas comme un substitut au runtime.",
+      "explanation": "Coolify simplifie les opérations courantes mais les applications restent des workloads Docker standards."
+    },
+    {
+      "id": "q30",
+      "difficulty": "advanced",
+      "topics": [
+        "architecture",
+        "dockerization",
+        "deployment"
+      ],
+      "question": "Pour un projet Vue SPA + FastAPI + PostgreSQL, quelle stratégie est la plus cohérente si le frontend est sur Netlify, l’API sur Railway et la DB sur Neon ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Dockeriser obligatoirement les trois composants en production."
+        },
+        {
+          "id": "B",
+          "label": "Dockeriser surtout l’API pour sa portabilité, utiliser PostgreSQL Docker en local, et laisser Netlify/Neon gérer respectivement le frontend statique et la DB en production."
+        },
+        {
+          "id": "C",
+          "label": "Ne jamais utiliser Docker si une seule plateforme managée est présente."
+        },
+        {
+          "id": "D",
+          "label": "Dockeriser uniquement la SPA Vue et jamais l’API."
+        }
+      ],
+      "correctAnswer": "B",
+      "hint": "Dockeriser ou non dépend surtout du runtime et de la plateforme de déploiement.",
+      "explanation": "Une SPA statique peut être servie nativement par Netlify ; Neon gère PostgreSQL ; Docker reste très utile pour rendre le backend portable et pour reproduire la DB localement."
+    }
+  ]
+}

@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="quiz.css">
-    <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
     <title>Quiz</title>
 </head>
 
 <body>
-    <h1>Super Quiz</h1>
-    <div id="quiz-container"></div>
-    <button id="submit">Envoyer vos réponses</button>
-    <div id="results"></div>
+    <div class="column">
+        <header class="topbar">
+            <span><a href="index.html">Flashcards</a> / <strong id="quiz-title">Quiz</strong></span>
+            <span class="status"><span id="progress"></span><span id="score"></span></span>
+        </header>
+
+        <main id="question-card" hidden>
+            <p id="meta" class="meta"></p>
+            <p id="question" class="prompt"></p>
+            <div id="options" class="options"></div>
+            <p id="hint" class="hint" hidden></p>
+            <div id="feedback" class="feedback" hidden></div>
+            <div class="controls">
+                <button id="hint-btn" class="text">Indice <kbd>H</kbd></button>
+                <button id="next-btn" class="text" hidden>Suivant <kbd>↵</kbd></button>
+            </div>
+        </main>
+
+        <section id="results" hidden></section>
+
+        <p class="kbd-help">Clavier : A à D pour répondre, H pour l'indice, Entrée pour la suite.</p>
+    </div>
 
     <script src="quiz.js" type="module"></script>
-    <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 
 </html>

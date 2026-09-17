@@ -5,48 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcards</title>
+    <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="app.css">
-    <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div class="column">
+        <header class="topbar">
+            <label>Deck
+                <select id="deck-select">
+                    <optgroup label="JavaScript">
+                        <option value="deck-variables-javascript.json">Variables et déclarations</option>
+                        <option value="deck-functions-javascript.json">Fonctions et closures</option>
+                        <option value="deck-conditions-javascript.json">Conditions et logique</option>
+                        <option value="deck-loops-javascript.json">Boucles et itération</option>
+                    </optgroup>
+                    <optgroup label="Docker">
+                        <option value="docker-quiz-30.json">Docker, architecture web</option>
+                    </optgroup>
+                </select>
+            </label>
+            <span class="status">
+                <button id="random-toggle" class="text" disabled>Ordre : deck</button>
+                <a id="take-quiz-btn" href="quiz.html">Quiz sur ce deck</a>
+            </span>
+        </header>
 
-    <div class="container">
-        <div class="flashcard" id="flashcard">
-            <div class="flashcard-content" id="flashcard-content"></div>
-            <div class="flashcard-choices" id="flashcard-choices"></div>
-            <div class="flashcard-category" id="flashcard-category"></div>
-        </div>
-        <div id="card-number" class="card-number"></div>
-        <div class="navigation">
-            <button id="prev-btn" disabled>Précédent</button>
-            <button id="flip-btn" disabled>Retourner</button>
-            <button id="next-btn" disabled>Suivant</button>
+        <main class="flashcard" id="flashcard">
+            <p class="flashcard-category meta" id="flashcard-category"></p>
+            <div class="flashcard-content prompt" id="flashcard-content"></div>
+            <ol class="flashcard-choices" id="flashcard-choices"></ol>
+        </main>
+
+        <div class="controls">
+            <button id="prev-btn" class="text" disabled>Précédent <kbd>←</kbd></button>
+            <button id="flip-btn" class="text" disabled>Retourner <kbd>espace</kbd></button>
+            <button id="next-btn" class="text" disabled>Suivant <kbd>→</kbd></button>
+            <span id="card-number" class="counter"></span>
         </div>
     </div>
 
-    <footer>
-        <div class="deck-selector">
-            <label for="deck-select">Choisir un deck :</label>
-            <select id="deck-select">
-                <optgroup label="JavaScript - Fondamentaux">
-                    <option value="deck-variables-javascript.json">Variables & Déclarations</option>
-                    <option value="deck-functions-javascript.json">Fonctions & Closures</option>
-                    <option value="deck-conditions-javascript.json">Conditions & Logique</option>
-                    <option value="deck-loops-javascript.json">Boucles & Itération</option>
-                </optgroup>
-            </select>
-        </div>
-        <div class="quiz-buttons">
-            <button id="random-toggle" disabled>Mode Aléatoire: Désactivé</button>
-            <button id="take-quiz-btn" disabled>Quiz sur ce deck</button>
-        </div>
-    </footer>
-
     <script src="app.js" type="module"></script>
-    <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
